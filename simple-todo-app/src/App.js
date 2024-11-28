@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>
-      <div className={`w-[60%]  mx-auto mt-20 `}>
+      <div className={`max-w-[600px] px-4 mx-auto mt-20 `}>
         <form onSubmit={handleSubmit}>
           <ToastContainer />
           <input
@@ -51,7 +51,7 @@ function App() {
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
           />
-          <button className="bg-stone-900 border text-stone-50 p-4 w-[19%]  rounded-r-full border-stone-900  hover:bg-stone-800 font-semibold ml-[-1px]">
+          <button className="bg-stone-900 border text-stone-100 p-4 w-[19%]  rounded-r-full border-stone-900  hover:bg-stone-800 font-semibold ml-[-1px]">
             Add
           </button>
         </form>
