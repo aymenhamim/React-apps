@@ -7,7 +7,7 @@ function List({ setTasks, tasks }) {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [editItem, setEditItem] = useState("");
   const [newTaskValue, setNewTaskValue] = useState("");
-  const inputCss = "border border-stone-600 p-2 py-1 rounded-md w-[80%]";
+  const inputCss = "border border-stone-600 p-2 py-1 rounded-md ";
 
   const handleClick = () => {
     let checkIfExists = tasks.filter((task) => task === newTaskValue);
@@ -30,6 +30,7 @@ function List({ setTasks, tasks }) {
     }
     setIsModelOpen(false);
     setNewTaskValue("");
+
     toast.success("Updated Successfuly", {
       position: "top-right",
       autoClose: 2000,
@@ -59,8 +60,8 @@ function List({ setTasks, tasks }) {
               className=" text-xl absolute right-3 top-3 cursor-pointer"
               onClick={() => setIsModelOpen(false)}
             />
-            <div className="flex flex-col justify-center items-start ms-10 h-full gap-2">
-              <div className="w-full">
+            <div className="flex flex-col justify-center items-center h-full gap-2">
+              <div>
                 <p className="text-[13px] font-semibold mb-1">Olde value</p>
                 <input
                   type="text"
@@ -70,7 +71,7 @@ function List({ setTasks, tasks }) {
                 />
               </div>
 
-              <div className="w-full">
+              <div>
                 <p className="text-[13px] font-semibold mb-1">New value</p>
                 <input
                   type="text"
@@ -81,7 +82,7 @@ function List({ setTasks, tasks }) {
               </div>
 
               <button
-                className="bg-stone-800 text-stone-50 px-3 py-2 rounded-md ml-32 mt-2 mr-20 text-sm self-end"
+                className="bg-stone-800 text-stone-50 px-3 py-1 rounded-md ml-32 mt-2 text-sm m"
                 onClick={handleClick}
               >
                 save

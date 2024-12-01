@@ -30,13 +30,14 @@ function ListItem({ setEditItem, setIsModelOpen, setTasks, tasks, children }) {
   };
   return (
     <>
-      <li className={ListItemTailwind}>
+      <li>
         {children}
         <div className="flex text-2xl gap-4">
           <MdEditSquare
             className="text-cyan-700 cursor-pointer"
             onClick={handleUpdate}
           />
+
           <AiOutlineDelete
             className="text-red-500 cursor-pointer"
             onClick={handleDelete}
