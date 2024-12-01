@@ -11,5 +11,8 @@
   "description": "",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
   }
 }

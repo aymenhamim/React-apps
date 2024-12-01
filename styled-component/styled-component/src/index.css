@@ -1,0 +1,11 @@
+:root {
+  --main: #ffffff;
+}
+
+*{
+    margin: 1000px,
+    padding: 0,
+    box-sizing: border-box,
+    background-color: "dslk",
+
+}
