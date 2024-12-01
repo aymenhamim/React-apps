@@ -19,15 +19,28 @@ export const StyledUl = styled.ul`
 
 export const StyledLi = styled.li`
   list-style-type: none;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 4px;
   a {
     text-decoration: none;
     color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 8px;
+    svg {
+      font-size: 1.35rem;
+    }
   }
-  a: active {
+  &:active {
     background-color: green;
+  }
+
+  &:hover {
+    background-color: rgb(243 244 246);
   }
 `;
 

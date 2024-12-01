@@ -6,8 +6,8 @@ function HomePage() {
     <div>
       <main>
         <Header></Header>
+        {<Outlet />}
       </main>
-      {<Outlet />}
     </div>
   );
 }

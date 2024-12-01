@@ -6,7 +6,9 @@ import {
   StyledLi,
   Container,
 } from './styles/Header.styled';
-import Products from '../pages/Products';
+import { TiHome } from 'react-icons/ti';
+import { FaCartShopping } from 'react-icons/fa6';
+import { MdMessage } from 'react-icons/md';
 
 function Header() {
   return (
@@ -15,15 +17,25 @@ function Header() {
       <Container>
         <StyledUl>
           <StyledLi>
-            <Link to="/">Home</Link>
+            <Link to="/landing">
+              <TiHome />
+              Home
+            </Link>
           </StyledLi>
 
           <StyledLi>
-            <Link to="/products">Products</Link>{' '}
+            <Link to="/products">
+              <FaCartShopping />
+              Products
+            </Link>{' '}
           </StyledLi>
 
           <StyledLi>
-            <Link to="/contact">Contact US</Link>
+            <Link to="/contact">
+              {' '}
+              <MdMessage />
+              Contact US
+            </Link>
           </StyledLi>
         </StyledUl>
         <Button>
