@@ -4,7 +4,7 @@ export const Slider = styled.section`
   max-width: 1720px;
   height: 308px;
   background-color: rgb(243 244 246);
-  margin: 30px auto;
+  margin: 30px;
   border-radius: 28px;
   padding: 1rem;
   position: relative;
@@ -34,6 +34,7 @@ export const Slider = styled.section`
     cursor: pointer;
     padding: 10px;
     border-radius: 50%;
+    transition: 0.2s;
 
     &:hover {
       background-color: lightgray;
