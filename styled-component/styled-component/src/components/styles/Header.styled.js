@@ -10,6 +10,12 @@ export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & img {
+    max-width: 120px;
+    height: 40px;
+    border-radius: 6px;
+  }
 `;
 
 export const StyledUl = styled.ul`

@@ -1,6 +1,6 @@
 import { AiOutlineDelete } from "react-icons/ai";
 
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MdEditSquare } from "react-icons/md";
 
@@ -30,7 +30,7 @@ function ListItem({ setEditItem, setIsModelOpen, setTasks, tasks, children }) {
   };
   return (
     <>
-      <li>
+      <li className={ListItemTailwind}>
         {children}
         <div className="flex text-2xl gap-4">
           <MdEditSquare

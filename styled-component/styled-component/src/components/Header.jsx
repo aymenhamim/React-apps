@@ -13,7 +13,7 @@ import { MdMessage } from 'react-icons/md';
 function Header() {
   return (
     <StyledHeader bg="lightblue">
-      <h3>LOGO</h3>
+      <img src="../../public/img/Logo.jpeg" alt="Logo" />
       <Container>
         <StyledUl>
           <StyledLi>
