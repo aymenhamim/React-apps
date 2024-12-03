@@ -6,6 +6,11 @@ class User {
     this.username = name;
     this.pwd = pwd;
   }
+
+  describe(this: User) {
+    console.log("User " + this.username);
+  }
 }
 
-console.log(new User("AymenHa", "123"));
+const me = new User("AymenHa", "123");
+me.describe();
