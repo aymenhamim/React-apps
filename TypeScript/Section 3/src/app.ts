@@ -1,16 +1,30 @@
-class User {
-  username: string;
-  pwd: string;
+class Department {
+  name: string;
+  protected employees: (string | number)[] = [];
 
-  constructor(name: string, pwd: string) {
-    this.username = name;
-    this.pwd = pwd;
+  constructor(n: string) {
+    this.name = n;
   }
 
-  describe(this: User) {
-    console.log("User " + this.username);
+  describe(this: Department) {
+    console.log("User " + this.name);
+  }
+
+  addEmploye(newEmploye: string) {
+    this.employees.push(newEmploye);
+  }
+
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
   }
 }
 
-const me = new User("AymenHa", "123");
-me.describe();
+const accounting = new Department("AymenHa");
+accounting.addEmploye("eric");
+accounting.addEmploye("mark");
+
+// accounting.employees[2] = "pau";
+
+accounting.describe();
+accounting.printEmployeeInformation();
