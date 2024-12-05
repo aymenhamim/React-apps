@@ -69,3 +69,28 @@ textStorage.addItem("hello");
 textStorage.addItem("test");
 
 console.log(textStorage.getItems());
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+
+  return courseGoal as CourseGoal;
+}
+
+const names: Readonly<string[]> = ["aymen", "hamim"];
+// names.push("test");
+
+console.log(names);
