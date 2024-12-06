@@ -7,5 +7,5 @@ export const BlurLayer = styled.div`
   width: 100%;
   min-height: 100dvh;
   backdrop-filter: blur(6px);
-  /* background-color: #00000028; */
+  backdrop-filter: brightness(90%);
 `;

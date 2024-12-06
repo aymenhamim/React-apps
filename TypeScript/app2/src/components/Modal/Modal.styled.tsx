@@ -14,10 +14,6 @@ export const ModalStyled = styled.div`
 
   border: 1px solid black;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   #close {
     position: absolute;
     top: 7%;

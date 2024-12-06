@@ -4,13 +4,15 @@ import { ModalStyled } from './Modal.styled';
 
 type ModalProps = {
   children: React.ReactNode;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function Modal({ children }: ModalProps) {
   const [isOpen, SetIsOpen] = useState(true);
 
   function handleClose() {
-    SetIsOpen(old => !old);
+    SetIsOpen(false);
   }
 
   return (
