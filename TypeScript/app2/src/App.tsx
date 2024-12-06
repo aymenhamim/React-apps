@@ -1,18 +1,35 @@
-import { useState } from 'react';
 import Button from './components/button/Button';
+import { Modal } from './components/Modal/Modal';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>React with TypeScript ⚛️</h1>
-
-      <Button fontSize={20} variant="sm" type="principal" setCount={setCount}>
-        <span>👉 </span>
-        <span>Click Me </span>
-        <span> 👈</span>
-      </Button>
+      <main>
+        <Button>
+          <span>👉 </span>
+          <span>Click Me </span>
+          <span> 👈</span>
+        </Button>
+        <Button>
+          <span>👉 </span>
+          <span>Click Me </span>
+          <span> 👈</span>
+        </Button>
+        <Button>
+          <span>👉 </span>
+          <span>Click Me </span>
+          <span> 👈</span>
+        </Button>
+        <Modal>
+          <h2>Hello</h2>
+          <br />
+          <Button>
+            <span>👉 </span>
+            <span>Click Me </span>
+            <span> 👈</span>
+          </Button>
+        </Modal>
+      </main>
     </>
   );
 }

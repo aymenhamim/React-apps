@@ -3,7 +3,7 @@ import './button.css';
 
 type ButtonProps = {
   children: React.ReactNode;
-  fontSize: number;
+  fontSize?: number;
   variant?: 'sm' | 'xs' | 'md' | 'xl';
   type?: 'principal' | 'secondary';
   onClick?: () => void;
