@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 import './button.css';
 
 type ButtonProps = {
@@ -6,17 +6,17 @@ type ButtonProps = {
   fontSize?: number;
   variant?: 'sm' | 'xs' | 'md' | 'xl';
   type?: 'principal' | 'secondary';
-  handleClick?: MouseEventHandler<HTMLButtonElement>;
+  handleClick?: () => void;
   setCount?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 function Button({
   children,
-  fontSize,
-  variant,
-  type,
+  // fontSize,
+  // variant,
+  // type,
   handleClick,
-  setCount,
+  // setCount,
 }: ButtonProps) {
   return <button onClick={handleClick}>{children}</button>;
 }
