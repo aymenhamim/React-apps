@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
 import './button.css';
 
-type ButtonProps = {
+interface ButtonProps {
   children: React.ReactNode;
-  fontSize?: number;
-  variant?: 'sm' | 'xs' | 'md' | 'xl';
-  type?: 'principal' | 'secondary';
+  type?: 'principal' | 'secondary' | 'outline';
+  corner?: 'smooth' | 'pill';
   handleClick?: () => void;
-  setCount?: React.Dispatch<React.SetStateAction<number>>;
-};
+}
 
 function Button({
   children,
-  // fontSize,
-  // variant,
   // type,
   handleClick,
-  // setCount,
 }: ButtonProps) {
   return <button onClick={handleClick}>{children}</button>;
 }
