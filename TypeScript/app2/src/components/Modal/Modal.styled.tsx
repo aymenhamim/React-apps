@@ -11,8 +11,8 @@ export const ModalStyled = styled.div`
   bottom: 50%;
   right: 50%;
   transform: translate(50%, 10%);
-
-  border: 1px solid black;
+  /* box-shadow: 0px 0px 7px 15px var(--base-color-grey-100); */
+  /* box-shadow: 0px 0px 3px 5px var(--base-color-grey-200); */
 
   #close {
     position: absolute;

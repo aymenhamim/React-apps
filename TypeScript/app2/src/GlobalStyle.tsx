@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 /* CSS Reset*/
 
 *,
@@ -55,6 +58,7 @@ html {
   color: #000;
   background-color: var(--base-color-white);
   background-color: lightgrey;
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -349,3 +353,13 @@ html {
   --text-decoration-none: none;
   --paragraph-indent-0: 0px;
 }
+
+/* body {
+  background-color: #000;
+} */
+
+
+
+`;
+
+export { GlobalStyle };

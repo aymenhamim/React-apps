@@ -1,39 +1,45 @@
 import { useState } from 'react';
 import Button from './components/button/Button';
 import { Modal } from './components/Modal/Modal';
-import Test from './Test';
+import { GlobalStyle } from './GlobalStyle';
 
 function App() {
   const [isOpen1, setIsOpen1] = useState(false);
 
-  // useEffect(() => {
-  //   const closeModal = () => {
-  //     setIsOpen(true);
-  //     console.log(isOpen);
-  //   };
-  // }, [isOpen]);
-
   return (
     <>
+      <GlobalStyle />
       <main>
-        <Button handleClick={() => setIsOpen1(true)}>
+        <Button onClick={() => setIsOpen1(true)} corner="pill" type="primary">
           <span>👉 </span>
           <span>Click Me </span>
           <span> 👈</span>
         </Button>
+        <br />
+        <br />
 
         <Modal isOpen={isOpen1} setIsOpen={setIsOpen1}>
-          <h2>Hello</h2>
-          <br />
-          <Button handleClick={() => setIsOpen1(false)}>
-            <span>👉 </span>
+          <h2>Click From the Button</h2>
+
+          <Button
+            onClick={() => setIsOpen1(true)}
+            corner="pill"
+            type="secondary"
+          >
             <span>Click Me </span>
-            <span> 👈</span>
           </Button>
         </Modal>
-      </main>
 
-      <Test />
+        <Button
+          onClick={() => setIsOpen1(true)}
+          corner="smooth"
+          type="secondary"
+        >
+          <span>👉 </span>
+          <span>Click Me </span>
+          <span> 👈</span>
+        </Button>
+      </main>
     </>
   );
 }

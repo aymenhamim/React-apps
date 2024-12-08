@@ -1,18 +1,26 @@
 import './button.css';
+import { ButtonStyled } from './Button.styled';
 
 interface ButtonProps {
   children: React.ReactNode;
-  type?: 'principal' | 'secondary' | 'outline';
+  type?: 'primary' | 'secondary' | 'outline';
   corner?: 'smooth' | 'pill';
-  handleClick?: () => void;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
-function Button({
-  children,
-  // type,
-  handleClick,
-}: ButtonProps) {
-  return <button onClick={handleClick}>{children}</button>;
+function Button({ children, type, corner, disabled, onClick }: ButtonProps) {
+  return (
+    <ButtonStyled
+      onClick={onClick}
+      $type={type}
+      $corner={corner}
+      $disabled={disabled}
+    >
+      {' '}
+      {children}
+    </ButtonStyled>
+  );
 }
 
 export default Button;
