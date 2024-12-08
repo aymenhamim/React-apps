@@ -57,7 +57,6 @@ html {
   color-scheme: light dark;
   color: #000;
   background-color: var(--base-color-white);
-  background-color: lightgrey;
 
 
   font-synthesis: none;
@@ -354,9 +353,7 @@ html {
   --paragraph-indent-0: 0px;
 }
 
-/* body {
-  background-color: #000;
-} */
+
 
 
 

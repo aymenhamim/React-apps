@@ -21,12 +21,8 @@ function App() {
         <Modal isOpen={isOpen1} setIsOpen={setIsOpen1}>
           <h2>Click From the Button</h2>
 
-          <Button
-            onClick={() => setIsOpen1(true)}
-            corner="pill"
-            type="secondary"
-          >
-            <span>Click Me </span>
+          <Button onClick={() => setIsOpen1(true)}>
+            <span>Submit </span>
           </Button>
         </Modal>
 

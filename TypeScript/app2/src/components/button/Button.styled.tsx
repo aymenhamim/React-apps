@@ -27,14 +27,14 @@ const buttonStyles = {
     }
     &:disabled {
       background-color: var(--base-color-grey-200);
-      color: var(--base-color-grey-400);
+      color: var(--base-color-black);
       border: 1px solid var(--base-color-grey-400);
     }
   `,
 
   secondary: css`
     background-color: var(--base-color-white);
-    color: black;
+    color: var(--base-color-black);
     border: 1px solid var(--base-color-grey-300);
     box-shadow: 0 2px 5px 0 rgba(103, 110, 118, 0.08);
 
@@ -45,7 +45,7 @@ const buttonStyles = {
     &:focus:not(:disabled) {
       box-shadow: 0 0 0 5px var(--base-color-grey-200);
     }
-    &:disabled:not(:disabled) {
+    &:disabled {
       color: var(--base-color-grey-300);
     }
   `,
@@ -57,7 +57,7 @@ const buttonStyles = {
     box-shadow: 0 2px 5px 0 rgba(103, 110, 118, 0.08);
 
     &:hover:not(:disabled) {
-      background-color: var(--base-color-grey-100);
+      background-color: var(--base-color-grey-50);
     }
 
     &:disabled {
@@ -93,3 +93,8 @@ export const ButtonStyled = styled.button<ButtonProps>`
   ${props => props.$type && buttonStyles[props.$type]}
   ${props => props.$corner && cornerStyles[props.$corner]}
 `;
+
+ButtonStyled.defaultProps = {
+  $type: 'primary',
+  $corner: 'smooth',
+};

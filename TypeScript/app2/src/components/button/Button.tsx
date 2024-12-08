@@ -15,7 +15,7 @@ function Button({ children, type, corner, disabled, onClick }: ButtonProps) {
       onClick={onClick}
       $type={type}
       $corner={corner}
-      $disabled={disabled}
+      disabled={disabled}
     >
       {' '}
       {children}
