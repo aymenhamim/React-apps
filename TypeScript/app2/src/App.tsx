@@ -1,10 +1,10 @@
-import { GlobalStyle } from './GlobalStyle';
+// import { GlobalStyle } from './GlobalStyle';
 import { DashboardHeader } from './components/dashboard-header/index';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       <main>
         <DashboardHeader userName="aymen hamim" />
       </main>

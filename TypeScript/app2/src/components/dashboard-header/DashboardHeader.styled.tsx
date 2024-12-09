@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // }
 
 export const StyledDashboardHeader = styled.div`
-  width: calc(100% - 100px);
+  width: 100%;
   max-width: 1820px;
   margin: 0;
   /* height: 184px; */
@@ -20,24 +20,25 @@ export const StyledDashboardHeader = styled.div`
   border-bottom: 1px solid var(--base-black-60);
 
   & p {
-    /* font: var(--text-body-2-bold); */
-    font-weight: bold;
+    font: var(--text-body-2);
+    /* font-weight: bold; */
   }
 
   & h1 {
     /* font-size: 64px; */
     text-transform: capitalize;
+    font: var(--text-headline-1-light);
   }
 
   & h3 {
-    /* color: var(--base-grd-1); */
-    background: linear-gradient(90deg, #6cd8ff 0%, #48c5ff 50%, #0ca2ff 100%);
+    background: var(--base-grd-1);
     font: (--text-headline-3);
     -webkit-background-clip: text;
     background-clip: text; // for compability
     -webkit-text-fill-color: transparent;
 
-    font-weight: 700;
-    font-size: 25px;
+    /* font-weight: 700; */
+    /* font-size: 25px; */
+    font: var(--text-headline-3);
   }
 `;
