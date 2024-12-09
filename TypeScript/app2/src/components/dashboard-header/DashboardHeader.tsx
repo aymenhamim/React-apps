@@ -1,18 +1,21 @@
 import { FC } from 'react';
-import { StyledDashboardHeader } from './dashboardHeader.styled';
+import { StyledDashboardHeader } from './DashboardHeader.styled';
 
 interface DashboardHeaderPropes {
   userName: string;
-  curDate: Date;
 }
 
-export const DashboardHeader: FC<DashboardHeaderPropes> = ({
-  userName,
-  curDate,
-}) => {
+export const DashboardHeader: FC<DashboardHeaderPropes> = ({ userName }) => {
+  const date = new Date().toDateString();
+  const formatedDate = date.replace(' ', ', ').slice(0, -4);
+
   return (
     <StyledDashboardHeader>
-      {userName}:{`${curDate.toDateString()}`}
+      <p>{formatedDate}</p>
+      <div>
+        <h1>Hi {userName} 👋</h1>
+        <h3>Discover, learn and achieve something new today</h3>
+      </div>
     </StyledDashboardHeader>
   );
 };
