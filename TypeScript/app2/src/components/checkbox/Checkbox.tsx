@@ -1,17 +1,23 @@
 import { FC } from 'react';
-import { StyledCheckbox, StyledCheckboxCustom } from './Checkbox.Styled';
+import { StyledCheckboxCustom } from './Checkbox.Styled';
 
 interface CheckboxProps {
   size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  checked?: boolean;
+  id?: string;
 }
 
-export const Checkbox: FC<CheckboxProps> = ({ size = 'md' }) => {
+export const Checkbox: FC<CheckboxProps> = ({
+  size = 'md',
+  disabled = false,
+  checked,
+  id,
+}) => {
   return (
-    <div>
-      <StyledCheckbox type="checkbox" />
-      <StyledCheckboxCustom $size={size} className="custom-check" />
-      <span className="custom-check"></span>
-      <p>Hello world</p>
-    </div>
+    <StyledCheckboxCustom $size={size} className="container ">
+      <input type="checkbox" disabled={disabled} id={id} checked={checked} />
+      <span className="checkmark" />
+    </StyledCheckboxCustom>
   );
 };
