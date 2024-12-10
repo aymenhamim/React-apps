@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { StyledCheckbox } from './Checkbox.Styled';
+import { StyledCheckbox, StyledCheckboxCustom } from './Checkbox.Styled';
 
 interface CheckboxProps {
   size?: 'sm' | 'md' | 'lg';
@@ -8,7 +8,8 @@ interface CheckboxProps {
 export const Checkbox: FC<CheckboxProps> = ({ size = 'md' }) => {
   return (
     <div>
-      <StyledCheckbox $size={size} type="checkbox" />
+      <StyledCheckbox type="checkbox" />
+      <StyledCheckboxCustom $size={size} className="custom-check" />
       <span className="custom-check"></span>
       <p>Hello world</p>
     </div>
