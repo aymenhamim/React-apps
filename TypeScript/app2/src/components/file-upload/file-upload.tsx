@@ -6,11 +6,11 @@ const ImageUpload: React.FC = () => {
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     // Generate previews for the uploaded images
-    const imagePreviews = acceptedFiles.map(file => {
-      console.log(file);
+    const imagePreview = acceptedFiles.map(file => {
+      // console.log(file);
       return URL.createObjectURL(file); // Create object URL for preview
     });
-    setPreviews(imagePreviews);
+    setPreviews(imagePreview);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
