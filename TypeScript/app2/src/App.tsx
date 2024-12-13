@@ -1,19 +1,17 @@
-import { Checkbox } from './components/checkbox';
-import { Modal } from './components/Modal';
+import Button from './components/button/Button';
+import DragDrop from './components/drag-drop/drag-drop';
+import FileUpload from './components/file-upload/file-upload';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <Modal setIsOpen={() => false} isOpen={true}>
-        <Checkbox size="sm" id="true" disabled={false} />
-        <label htmlFor="true">Click me</label>
-        <br />
-        <input type="checkbox" />
-        <label htmlFor="true">Click me</label>
-        <br />
-      </Modal>
-    </>
+    <div>
+      <div style={{ maxWidth: '600px', margin: '50px auto' }}>
+        <h1>Drag & Drop File Upload</h1>
+        <FileUpload />
+      </div>
+      {/* <DragDrop name="test" /> */}
+    </div>
   );
-}
+};
 
 export default App;
