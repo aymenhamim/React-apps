@@ -53,7 +53,7 @@ const ImageUpload: React.FC = () => {
               style={{
                 width: '150px',
                 height: '150px',
-                objectFit: 'cover',
+                objectFit: 'fill',
                 borderRadius: '10px',
               }}
             />
