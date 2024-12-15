@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { StyledDropZone } from './drop-zone.styled';
 import { useDropzone } from 'react-dropzone';
 
@@ -18,7 +18,7 @@ const DragAndDropPicture: FC = () => {
       });
 
       setFile(fileWithPreview);
-      console.log(fileWithPreview);
+      //   console.log(fileWithPreview);
     }
   }, []);
 
@@ -37,7 +37,6 @@ const DragAndDropPicture: FC = () => {
   });
 
   // cleanUp function
-
   useEffect(() => {
     return () => {
       if (file?.preview) {

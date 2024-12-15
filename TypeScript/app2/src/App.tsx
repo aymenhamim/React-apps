@@ -1,7 +1,10 @@
-import Button from './components/button/Button';
-import DragDrop from './components/drag-drop/drag-drop';
-import DragAndDropPicture from './components/drop-zone/drop-zone';
-import FileUpload from './components/file-upload/file-upload';
+// import Button from './components/button/Button';
+// import DragDrop from './components/drag-drop/drag-drop';
+// import DragAndDropPicture from './components/drop-zone/drop-zone';
+// import FileUpload from './components/file-upload/file-upload';
+// import Table from './components/pagination/ui/table';
+
+import Pagination from './components/pagination/ui/pagination';
 
 const App: React.FC = () => {
   return (
@@ -11,10 +14,17 @@ const App: React.FC = () => {
         <FileUpload />
       </div> */}
       {/* <DragDrop name="test" /> */}
-      <h1 style={{ margin: '2rem auto', textAlign: 'center' }}>
+
+      {/* Drag & drop */}
+
+      {/* <h1 style={{ margin: '2rem auto', textAlign: 'center' }}>
         Updlaod files
       </h1>
-      <DragAndDropPicture />
+      <DragAndDropPicture /> */}
+
+      {/* Pagination */}
+
+      <Pagination />
     </div>
   );
 };
