@@ -4,6 +4,7 @@
 // import FileUpload from './components/file-upload/file-upload';
 // import Table from './components/pagination/ui/table';
 
+import Container from './components/pagination/ui/container';
 import Pagination from './components/pagination/ui/pagination';
 
 const App: React.FC = () => {
@@ -24,7 +25,7 @@ const App: React.FC = () => {
 
       {/* Pagination */}
 
-      <Pagination />
+      <Container />
     </div>
   );
 };
