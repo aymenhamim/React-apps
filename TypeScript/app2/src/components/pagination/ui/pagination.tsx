@@ -17,6 +17,10 @@ const Pagination: FC<PaginationProps> = ({ data, limit }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / limit);
 
+  const startIndex = (currentPage - 1) * limit;
+  const endIndex = startIndex + limit;
+  const currentData = data.slice(startIndex, endIndex);
+
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -30,10 +34,6 @@ const Pagination: FC<PaginationProps> = ({ data, limit }) => {
     if (currentPage < totalPages) setCurrentPage(prev => prev + 1);
     else return;
   }
-
-  const startIndex = (currentPage - 1) * limit;
-  const endIndex = startIndex + limit;
-  const currentData = data.slice(startIndex, endIndex);
 
   return (
     <>

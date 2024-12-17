@@ -4,11 +4,11 @@ import Pagination from './pagination';
 
 const Container: FC = () => {
   let users = getUsers();
-  let [limit, setLimit] = useState(5);
+  let [limit, setLimit] = useState(12);
 
   return (
     <div>
-      Hello world <Pagination data={users} limit={limit} />
+      <Pagination data={users} limit={limit} />
     </div>
   );
 };
