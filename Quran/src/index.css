@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* select::-webkit-scrollbar {
+  display: none;
+} */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
