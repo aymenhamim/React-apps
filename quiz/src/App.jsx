@@ -6,6 +6,7 @@ import Error from "./Error";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
 import NextButton from "./NextButton";
+import Progress from "./Progress";
 
 const initialState = {
   questions: [],
@@ -44,7 +45,6 @@ function reducer(state, action) {
             : state.points,
       };
     case "NextQuestion":
-      console.log(state.points);
       return { ...state, answer: null, index: state.index + 1 };
 
     default:
@@ -53,11 +53,12 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(
+  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
     reducer,
     initialState
   );
   const numQuestions = questions.length;
+  const pointSum = questions.reduce((acc, cur) => acc + cur.points, 0);
 
   useEffect(function () {
     async function getQuizs() {
@@ -75,6 +76,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
@@ -83,6 +85,12 @@ function App() {
         )}
         {status === "active" && (
           <>
+            <Progress
+              numQuestions={numQuestions}
+              currentQuestionName={index + 1}
+              points={points}
+              pointSum={pointSum}
+            />
             <Question
               question={questions[index]}
               dispatch={dispatch}
