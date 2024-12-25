@@ -1,6 +1,9 @@
 import { useEffect, useReducer } from "react";
 import Main from "./AppMain";
 import Header from "./Header";
+import Loader from "./Loader";
+import Error from "./Error";
+import StartScreen from "./StartScreen";
 
 const initialState = {
   questions: [],
@@ -28,14 +31,14 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status }, dispatch] = useReducer(reducer, initialState);
+  const numQuestions = questions.length;
 
   useEffect(function () {
     async function getQuizs() {
       try {
         const data = await fetch(`http://localhost:3000/questions`);
         const questions = await data.json();
-        console.log(questions);
 
         dispatch({ type: "dataReceived", payload: questions });
       } catch (err) {
@@ -47,7 +50,11 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main />
+      <Main>
+        {status === "loading" && <Loader />}
+        {status === "error" && <Error />}
+        {status === "ready" && <StartScreen numQuestions={numQuestions} />}
+      </Main>
     </div>
   );
 }
