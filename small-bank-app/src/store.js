@@ -24,7 +24,7 @@ function reducer(state = initialState, action) {
                 balance: state.balance + action.payload.amount
             }
 
-        case 'account/payloan':
+        case 'account/payLoan':
             return {
                 ...state,
                 loan: 0,
@@ -41,12 +41,29 @@ function reducer(state = initialState, action) {
 
 const store = createStore(reducer)
 
-store.dispatch({ type: 'account/deposit', payload: 1000 })
-store.dispatch({ type: 'account/withdraw', payload: 1 })
-console.log(store.getState())
+// store.dispatch({ type: 'account/deposit', payload: 1000 })
+// store.dispatch({ type: 'account/withdraw', payload: 1 })
+// console.log(store.getState())
+// store.dispatch({ type: 'account/requestLoan', payload: { amount: 400, loanPurpose: 'baghi nchri gha clavier' } })
+// console.log(store.getState())
+// store.dispatch({ type: 'account/payLoan' })
+// console.log(store.getState())
 
-store.dispatch({ type: 'account/requestLoan', payload: { amount: 400, loanPurpose: 'baghi nchri gha clavier' } })
-console.log(store.getState())
+function deposit(amount) {
+    return { type: 'account/deposit', payload: amount }
+}
+function withdraw(amount) {
+    return { type: 'account/withdraw', payload: amount }
+}
+function requestLoan(amount, purpose) {
+    return { type: 'account/requestLoan', payload: { amount: amount, loanPurpose: purpose } }
+}
+function payLoan() {
+    return { type: 'account/payLoan' }
+}
 
-store.dispatch({ type: 'account/payloan' })
+store.dispatch(deposit(1000))
+store.dispatch(withdraw(1))
+store.dispatch(requestLoan(420, 'baghi nchri gha clavier'))
+store.dispatch(payLoan())
 console.log(store.getState())
