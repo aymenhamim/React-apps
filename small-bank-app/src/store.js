@@ -1,4 +1,5 @@
-import { useReducer } from "react"
+import { createStore } from "redux"
+
 
 const initialState = {
     balance: 0,
@@ -11,16 +12,16 @@ function reducer(state = initialState, action) {
         case 'account/deposit':
             return { ...state, balance: state.balance + action.payload }
 
-        case 'account/withdrax':
+        case 'account/withdraw':
             return { ...state, balance: state.balance - action.payload }
 
         case 'account/requestLoan':
             if (state.loan > 0) return state
             return {
                 ...state,
-                loan: action.payload.loan,
-                loanPurpose: state.payload.loanPurpose,
-                balance: state.balance + action.payload.loan
+                loan: action.payload.amount,
+                loanPurpose: action.payload.loanPurpose,
+                balance: state.balance + action.payload.amount
             }
 
         case 'account/payloan':
@@ -36,4 +37,16 @@ function reducer(state = initialState, action) {
     }
 }
 
-const [state, dispatch] = useReducer(reducer, initialState)
+
+
+const store = createStore(reducer)
+
+store.dispatch({ type: 'account/deposit', payload: 1000 })
+store.dispatch({ type: 'account/withdraw', payload: 1 })
+console.log(store.getState())
+
+store.dispatch({ type: 'account/requestLoan', payload: { amount: 400, loanPurpose: 'baghi nchri gha clavier' } })
+console.log(store.getState())
+
+store.dispatch({ type: 'account/payloan' })
+console.log(store.getState())
