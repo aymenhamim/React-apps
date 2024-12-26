@@ -56,6 +56,15 @@ function reducer(state, action) {
         highScore:
           state.highScore > state.points ? state.highScore : state.points,
       };
+
+    case "restartQuiz":
+      return {
+        ...state,
+        status: "ready",
+        index: 0,
+        answer: null,
+        points: 0,
+      };
     default:
       return new Error("this action is not valid");
   }
@@ -116,6 +125,7 @@ function App() {
             pointSum={pointSum}
             points={points}
             highScore={highScore}
+            dispatch={dispatch}
           />
         )}
       </Main>
