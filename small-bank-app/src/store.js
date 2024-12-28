@@ -1,13 +1,19 @@
-import { createStore } from "redux"
+import { combineReducers, createStore } from "redux"
 
 
-const initialState = {
+const initialStateAccount = {
     balance: 0,
     loan: 0,
     loanPurpose: '',
 }
 
-function reducer(state = initialState, action) {
+const initialStateCustomer = {
+    fullName: '',
+    nationalId: '',
+    createdAt: ''
+}
+
+function Accountreducer(state = initialStateAccount, action) {
     switch (action.type) {
         case 'account/deposit':
             return { ...state, balance: state.balance + action.payload }
@@ -37,9 +43,27 @@ function reducer(state = initialState, action) {
     }
 }
 
+function customerReducer(state = initialStateCustomer, action) {
+    switch (action.type) {
 
+        case 'customer/createCustomer':
+            return {
+                ...state,
+                fullName: action.payload.fullName,
+                nationalId: action.payload.nationalId,
+                createdAt: action.payload.createdAt
+            }
+        case 'customer/updateName':
+            return { ...state, fullName: action.payload }
 
-const store = createStore(reducer)
+        default:
+            return state
+    }
+}
+
+const rootReducer = combineReducers({ account: Accountreducer, customer: customerReducer })
+
+const store = createStore(rootReducer)
 
 // store.dispatch({ type: 'account/deposit', payload: 1000 })
 // store.dispatch({ type: 'account/withdraw', payload: 1 })
@@ -66,4 +90,20 @@ store.dispatch(deposit(1000))
 store.dispatch(withdraw(1))
 store.dispatch(requestLoan(420, 'baghi nchri gha clavier'))
 store.dispatch(payLoan())
+console.log(store.getState())
+
+function createCustomer(fullName, nationalId) {
+    return { type: "customer/createCustomer", payload: { fullName, nationalId, createdAt: new Date().toUTCString() } }
+}
+
+function updateName(fullName) {
+    return { type: 'customer/updateName', payload: fullName }
+}
+
+// function deleteCustomer(nationalId) {
+//     return { type: 'customer/deleteCustomer', payload: nationalId }
+// }
+
+store.dispatch(createCustomer('aymen Hamim', 'BB230603'))
+store.dispatch(updateName('ayman'))
 console.log(store.getState())
