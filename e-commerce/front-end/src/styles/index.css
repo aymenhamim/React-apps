@@ -7,3 +7,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.icon-img {
+  color: red;
+  width: 22px;
+
+  top: 0%;
+  right: 10px;
+  transform: translateY(50%);
+}
