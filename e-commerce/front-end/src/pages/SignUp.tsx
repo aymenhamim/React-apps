@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const inputStyle =
   'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 pr-10 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2';
 
 const nameStyle =
   'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2  text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2';
 
-function SignUp() {
+const SignUp: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
@@ -111,14 +113,14 @@ function SignUp() {
           </button>
           <p className="mt-4 text-center text-sm text-stone-500">
             Already have an account?{' '}
-            <a href="#" className="font-semibold text-stone-950">
+            <NavLink to={'/login'} className="font-semibold text-stone-950">
               Sign In
-            </a>
+            </NavLink>
           </p>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;

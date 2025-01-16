@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const inputStyle =
   'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 pr-10 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2';
 
-function SignIn() {
+const SignIn: React.FC = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('aymen@gmail.com');
   const [password, setPassword] = useState('');
 
@@ -12,6 +16,13 @@ function SignIn() {
   const handleIsVisible = () => {
     setPwd(prev => !prev);
   };
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (email && password) {
+      navigate('/');
+    }
+  }
 
   return (
     <div className="flex min-h-dvh min-w-full items-center justify-center bg-slate-300">
@@ -31,7 +42,7 @@ function SignIn() {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="relative h-fit w-full">
             <img src="/icons/email.svg" className="icon-img absolute" />
             <input
@@ -65,10 +76,16 @@ function SignIn() {
           >
             Get Started
           </button>
+          <p className="mt-4 text-center text-sm text-stone-500">
+            I don't have an account?{' '}
+            <NavLink to={'/signup'} className="font-semibold text-stone-950">
+              Sign In
+            </NavLink>
+          </p>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;
