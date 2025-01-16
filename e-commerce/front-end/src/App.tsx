@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import SignIn from './pages/signIn';
-import SignUp from './pages/signUp';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -8,7 +7,7 @@ function App() {
   return (
     <div>
       <SignIn />
-      {/* <SignUp /> */}
+      <SignUp />
     </div>
   );
 }
