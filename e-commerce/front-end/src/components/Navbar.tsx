@@ -2,9 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-const inputStyle =
-  'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 pr-10 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2';
-
 const Navbar: React.FC = () => {
   return (
     <div className="mx-auto flex w-[90dvw] items-center justify-between rounded-lg border border-stone-600 bg-stone-50 px-5 py-2.5 shadow-sm">
