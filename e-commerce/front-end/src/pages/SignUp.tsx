@@ -47,10 +47,18 @@ function SignUp() {
           <div className="gap flex w-full items-center justify-center gap-2">
             <input
               type="text"
-              className={nameStyle + ''}
+              className={nameStyle}
               placeholder="First Name"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
             />
-            <input type="text" className={nameStyle} placeholder="Last Name" />
+            <input
+              type="text"
+              className={nameStyle}
+              placeholder="Last Name"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+            />
           </div>
 
           <div className="relative h-fit w-full">
