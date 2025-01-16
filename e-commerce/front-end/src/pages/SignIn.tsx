@@ -47,7 +47,7 @@ function SignIn() {
             <img
               src={`/icons/${pwd ? 'eye2' : 'eye'}.svg`}
               className="icon-img absolute cursor-pointer"
-              onClick={() => handleIsVisible(1)}
+              onClick={() => handleIsVisible()}
             />
             <input
               placeholder="Password"
@@ -61,7 +61,7 @@ function SignIn() {
           <p className="text-right text-sm font-semibold">Forgot password?</p>
           <button
             type="submit"
-            className="mt-4 w-full rounded-full bg-stone-900 py-2 text-center text-stone-50 transition-all duration-300 hover:bg-stone-700"
+            className="mt-4 w-full rounded-full bg-stone-900 py-2 text-center text-stone-50 transition-all duration-300 hover:bg-stone-700 focus:ring-8 focus:ring-stone-300"
           >
             Get Started
           </button>

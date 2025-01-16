@@ -17,7 +17,7 @@ function SignUp() {
   const [pwd1, setPwd1] = useState(false);
   const [pwd2, setPwd2] = useState(false);
 
-  const handleIsVisible = num => {
+  const handleIsVisible = (num: Number) => {
     if (num == 1) {
       setPwd1(prev => !prev);
     }
@@ -97,7 +97,7 @@ function SignUp() {
 
           <button
             type="submit"
-            className="mt-4 w-full rounded-full bg-stone-900 py-2 text-center text-stone-50 transition-all duration-300 hover:bg-stone-700"
+            className="mt-4 w-full rounded-full bg-stone-900 py-2 text-center text-stone-50 transition-all duration-300 hover:bg-stone-700 focus:ring-8 focus:ring-stone-300"
           >
             Sign up
           </button>
