@@ -4,7 +4,7 @@ import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import React from 'react';
-import UserLayout from './layouts/userLayout';
+import UserLayout from './layouts/UserLayout';
 import Category from './pages/Category';
 import ContactUs from './pages/ContactUs';
 

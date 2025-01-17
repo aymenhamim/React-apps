@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 interface FilterItemI {
   text?: string;
   filter?: string;
@@ -13,12 +13,13 @@ const FilterItem: React.FC<FilterItemI> = ({
 }) => {
   return (
     <li>
-      <NavLink
+      <Link
         className={`rounded-md border border-stone-500 bg-stone-50 px-3 py-2 ${className}`}
-        to={text}
+        // to={`?category=${text}`}
+        to={`?product=${text}`}
       >
         {text}
-      </NavLink>
+      </Link>
     </li>
   );
 };
