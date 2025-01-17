@@ -17,7 +17,7 @@ const FiltersList: React.FC = () => {
   const isActive = location.pathname === `/Home`;
 
   return (
-    <div className="mt-4">
+    <div className="mt-8">
       <ul className="flex gap-3">
         <FilterItem
           text="All"
