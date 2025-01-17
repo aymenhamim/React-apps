@@ -42,7 +42,7 @@ const ProductItem: React.FC<ProductI> = ({
               <p className="font-semibold">{price} DH</p>
             )}
           </div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-stone-800 text-stone-50">
+          <button className="f flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-stone-800 text-stone-50">
             +
           </button>
         </div>

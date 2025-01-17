@@ -12,7 +12,7 @@ const productsL = [
     price: 500,
     discount: 10,
     quantity: 5,
-    img: '/img/product-1.jpg',
+    img: 'https://elhaj4gamingstore.com/wp-content/uploads/2024/11/Untitled-design-2024-11-03T115202.731.png',
   },
   {
     id: 'product02',
@@ -21,7 +21,7 @@ const productsL = [
       'Improve your gaming exprience with this mouse & use more than 5 buttons',
     price: 300,
     quantity: 10,
-    img: '/img/product-1.jpg',
+    img: 'https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-09T141515.803.jpg',
   },
   {
     id: 'product04',
