@@ -26,7 +26,7 @@ const ProductItem: React.FC<ProductI> = ({
   console.log(discountAmount, newPrice);
 
   return (
-    <div className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-stone-100">
+    <div className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-red-100">
       <img src={img} alt={name} className="mx-auto mix-blend-multiply" />
       <div className="p-4">
         <h3 className="font-bold">{name}</h3>

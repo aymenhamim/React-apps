@@ -17,7 +17,7 @@ interface ProductListI {
 
 const ProductList: React.FC<ProductListI> = ({ products }) => {
   return (
-    <div className="mt-8 flex flex-wrap justify-start gap-3">
+    <div className="mt-8 flex flex-wrap justify-center gap-3">
       {products?.map(p => (
         <ProductItem
           name={p.name}
