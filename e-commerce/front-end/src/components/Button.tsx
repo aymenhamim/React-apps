@@ -9,34 +9,53 @@ interface ButtonProps
   children: ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className,
+  variant,
+  size,
+  rounded,
+  ...props
+}) => {
   return (
-    <button {...props} className={cn(buttonVariants({}))}>
+    <button
+      className={cn(buttonVariants({ variant, size, rounded, className }))}
+      {...props}
+    >
       {children}
     </button>
   );
 };
 
-const buttonVariants = cva('', {
+const buttonVariants = cva(' outline-none duration-200  ', {
   variants: {
     variant: {
       primary:
-        'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2  text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2',
+        'border border-stone-300 bg-stone-800 text-stone-50 ring-stone-300 hover:border-stone-500 hover:bg-stone-600  focus:ring-4 ',
 
       secondary:
-        'w-full rounded-md border bg-stone-100 border-stone-700 bg-stone-50 px-3 py-2  text-stone-50 outline-none ring-stone-300 transition-all duration-200  hover:bg-stone-300 focus:border-stone-500 focus:bg-stone-300 focus:ring-4 mb-2',
+        'border border-stone-700 text-stone-900 bg-stone-50 ring-stone-300 hover:bg-stone-200 focus:ring-4',
+
+      delete:
+        'border border-red-700 text-white bg-red-400 ring-red-200 hover:bg-red-400 focus:ring-4',
     },
     size: {
-      sm: 'text-sm mx-1 my-0',
-      md: 'text-sm mx-1 my-0',
-      lg: 'text-sm mx-1 my-0',
-      xl: 'text-sm mx-1 my-0',
-      // ["3xl"]: "text-sm mx-1 my-0",
+      sm: 'text-sm p-1 py-0.5 ',
+      md: 'px-2 py-1',
+      lg: 'text-lg px-2 py-1.5',
+      xl: 'text-lg px-4 py-2',
+      full: 'py-2 text-center w-full ',
+    },
+    rounded: {
+      smooth: 'rounded-md',
+      pill: 'rounded-full',
+      none: '',
     },
   },
   defaultVariants: {
     variant: 'primary',
     size: 'md',
+    rounded: 'smooth',
   },
 });
 

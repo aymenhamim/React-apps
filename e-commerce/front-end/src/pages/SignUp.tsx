@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 const inputStyle =
   'w-full rounded-md border border-stone-300 bg-stone-50 px-3 py-2 pr-10 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 mb-2';
 
@@ -105,12 +106,10 @@ const SignUp: React.FC = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="mt-4 w-full rounded-full bg-stone-900 py-2 text-center text-stone-50 transition-all duration-300 hover:bg-stone-700 focus:ring-8 focus:ring-stone-300"
-          >
+          <Button type="submit" size="full" rounded="pill" className="mt-4">
             Sign up
-          </button>
+          </Button>
+
           <p className="mt-4 text-center text-sm text-stone-500">
             Already have an account?{' '}
             <NavLink to={'/login'} className="font-semibold text-stone-950">
