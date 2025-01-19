@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import IconButton from '../components/IconButton';
 import Input from '../components/Input';
 
 const ContactUs: React.FC = () => {
@@ -19,7 +20,7 @@ const ContactUs: React.FC = () => {
       </Button>
       <br />
       <br />
-      <Button rounded="none">None</Button>
+      {/* <Button rounded="none">None</Button>
       <Button rounded="smooth">smooth</Button>
       <Button rounded="pill">pill</Button>
       <br />
@@ -31,7 +32,15 @@ const ContactUs: React.FC = () => {
       <br />
       <Input rounded="pill" inputType="text" className="my-6" />
       <Input rounded="smooth" inputType="text" />
-      <Input rounded="none" inputType="text" />
+      <Input rounded="none" inputType="text" /> */}
+      <IconButton icon="email" size="sm" />
+      <IconButton icon="left" size="md" />
+      <IconButton icon="left" size="lg" />
+      <br />
+      <br />
+      <IconButton icon="right-arrow" size="lg" rounded="pill" />
+      <IconButton icon="right-arrow" size="lg" rounded="none" />
+      <IconButton icon="right-arrow" size="lg" rounded="smooth" />
     </div>
   );
 };
