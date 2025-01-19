@@ -6,10 +6,12 @@ interface IconBtnProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof IconBtnVariants> {
   icon: string;
+  iconSize?: string;
 }
 
 const IconButton: React.FC<IconBtnProps> = ({
   icon,
+  iconSize = 'w-5',
   size,
   className,
   rounded,
@@ -20,7 +22,7 @@ const IconButton: React.FC<IconBtnProps> = ({
       {...props}
       className={cn(IconBtnVariants({ size, className, rounded }))}
     >
-      <img src={`/icons/${icon}.svg`} alt="" className="w-5" />
+      <img src={`/icons/${icon}.svg`} alt="" className={iconSize} />
     </button>
   );
 };
