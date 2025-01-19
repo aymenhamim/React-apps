@@ -61,7 +61,6 @@ const Home: React.FC = () => {
       <Slider />
       <FiltersList />
       <ProductList products={productsL} />
-      Home page
     </div>
   );
 };

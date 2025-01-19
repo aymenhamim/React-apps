@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const UserLayout: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const UserLayout: React.FC = () => {
       <div className="mx-auto mt-4 flex w-[90dvw]">
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 };
