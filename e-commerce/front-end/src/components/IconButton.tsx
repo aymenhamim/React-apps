@@ -26,7 +26,7 @@ const IconButton: React.FC<IconBtnProps> = ({
 };
 
 const IconBtnVariants = cva(
-  'border border-stone-900 bg-stone-50 outline-none ring-stone-300 hover:bg-stone-200 focus:ring-4 duration-200',
+  'border border-stone-900 bg-stone-50 outline-none ring-stone-300 hover:bg-stone-200 focus:ring-4 duration-200 flex justify-center items-center',
   {
     variants: {
       size: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import IconButton from './IconButton';
 interface ProductI {
   name?: string;
   description?: string;
@@ -26,12 +27,12 @@ const ProductItem: React.FC<ProductI> = ({
   console.log(discountAmount, newPrice);
 
   return (
-    <div className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-red-100">
+    <div className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-stone-100">
       <img src={img} alt={name} className="mx-auto mix-blend-multiply" />
       <div className="p-4">
         <h3 className="font-bold">{name}</h3>
         <p className="mb-3 text-sm text-stone-500">{desc}</p>
-        <div className="flex w-full justify-between">
+        <div className="flex w-full items-end justify-between">
           <div>
             {discount > 0 ? (
               <>
@@ -42,9 +43,7 @@ const ProductItem: React.FC<ProductI> = ({
               <p className="font-semibold">{price} DH</p>
             )}
           </div>
-          <button className="f flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-stone-800 text-stone-50">
-            +
-          </button>
+          <IconButton icon="add" size="lg" className="h-12 w-12" />
         </div>
       </div>
     </div>
