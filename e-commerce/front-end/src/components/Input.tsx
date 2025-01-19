@@ -39,7 +39,7 @@ const Input: React.FC<InputProps> = ({
 // const inputStyle = ' rounded-md  px-3 py-2 pr-10       mb-2';
 
 const InputVariant = cva(
-  ' w-full border border-stone-300 bg-stone-50 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 px-3 py-2',
+  ' w-full border border-stone-300 bg-stone-50 text-stone-600 outline-none ring-stone-300 transition-all duration-200 hover:border-stone-500 hover:bg-stone-100 focus:border-stone-500 focus:bg-stone-100 focus:ring-4 px-3 py-2 mb-2',
   {
     variants: {
       rounded: {

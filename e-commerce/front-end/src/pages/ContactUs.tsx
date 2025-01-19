@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import Input from '../components/Input';
 
 const ContactUs: React.FC = () => {
   return (
@@ -21,6 +22,16 @@ const ContactUs: React.FC = () => {
       <Button rounded="none">None</Button>
       <Button rounded="smooth">smooth</Button>
       <Button rounded="pill">pill</Button>
+      <br />
+      <br />
+      <Input inputType="text" />
+      <Input inputType="password" />
+      <Input inputType="email" />
+      <br />
+      <br />
+      <Input rounded="pill" inputType="text" className="my-6" />
+      <Input rounded="smooth" inputType="text" />
+      <Input rounded="none" inputType="text" />
     </div>
   );
 };

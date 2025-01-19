@@ -1,6 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority';
-import React, { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
-import { twMerge } from 'tailwind-merge';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import cn from '../utils/cn';
 
 interface ButtonProps
