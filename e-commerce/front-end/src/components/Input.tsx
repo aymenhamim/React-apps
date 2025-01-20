@@ -6,7 +6,7 @@ interface InputProps
   extends InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof InputVariant> {
   children?: ReactNode;
-  inputType: 'text' | 'password' | 'email';
+  inputType: 'text' | 'password' | 'email' | 'tel';
 
   //   inputName: string;
   //   icon?: boolean;

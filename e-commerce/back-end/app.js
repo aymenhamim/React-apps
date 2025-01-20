@@ -1,16 +1,22 @@
+const mongoose = require('mongoose');
 const express = require('express')
-const app = express()
 
-app.get('/', (req, res) => {
+const app = express();
+
+const productsRouter = require('./routes/productsRouter')
+
+app.route('api/products/').get((req, res) => {
     res.status(200).json({
         status: 'success',
         data: {
-            a: 'hello nodemon'
+            name: 'the first request has been sent successfuly'
         }
     })
 })
 
-const port = 3000
-app.listen(port, () => {
-    console.log(`Listening to the server on ${port} port`)
-})
+app.use('api/v1/products', productsRouter)
+
+
+
+
+module.exports = app;
