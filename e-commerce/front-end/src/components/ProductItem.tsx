@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import IconButton from './IconButton';
+import { useNavigate } from 'react-router-dom';
 interface ProductI {
   name?: string;
   description?: string;
@@ -20,14 +21,22 @@ const ProductItem: React.FC<ProductI> = ({
   id = 'p1',
 }) => {
   const desc = description.slice(0, 45).padEnd(48, '.');
+  const navigate = useNavigate();
 
   const discountAmount = (price * discount) / 100 || 0;
 
   const newPrice = price - discountAmount;
-  console.log(discountAmount, newPrice);
+  // console.log(discountAmount, newPrice);
+  function handleClick() {
+    console.log('clicked');
+    navigate(`/products/${id}`);
+  }
 
   return (
-    <div className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-stone-100">
+    <div
+      className="max-w-[20rem] cursor-pointer overflow-hidden rounded-lg border-2 bg-stone-50 shadow-md duration-300 hover:border-stone-500 hover:bg-stone-100"
+      onClick={handleClick}
+    >
       <img src={img} alt={name} className="mx-auto mix-blend-multiply" />
       <div className="p-4">
         <h3 className="font-bold">{name}</h3>

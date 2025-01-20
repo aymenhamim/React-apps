@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '../components/Button';
-import IconButton from '../components/IconButton';
+// import IconButton from '../components/IconButton';
 import Input from '../components/Input';
 
 const ContactUs: React.FC = () => {
@@ -67,7 +67,7 @@ const ContactUs: React.FC = () => {
             id="phone"
             value={phone}
             onChange={e => setPhone(e.target.value)}
-            placeholder="Phone"
+            placeholder="    "
           />
         </div>
 
