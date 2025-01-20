@@ -3,11 +3,11 @@ import './Slider.css';
 import IconButton from './IconButton';
 
 const imgs = [
-  'banner-1.jpg',
-  'banner-2.jpg',
-  'banner-3.jpg',
-  'banner-4.jpg',
-  'banner-5.jpg',
+  'slider1.jpg',
+  'slider2.jpg',
+  'slider1.jpg',
+  'slider2.jpg',
+  'slider1.jpg',
 ];
 
 const Slider: React.FC = () => {
@@ -28,11 +28,11 @@ const Slider: React.FC = () => {
   }
 
   return (
-    <div className="relative h-auto max-h-52 w-full overflow-hidden rounded-2xl">
+    <div className="relative h-auto max-h-60 w-full overflow-hidden rounded-2xl">
       <img
-        src="/img/New-Project-2-1.jpg"
+        src={`/img/${imgs[index]}`}
         alt=""
-        className="slider h-full w-full origin-center bg-cover object-contain"
+        className="h-full w-full bg-cover object-contain"
       />
       <IconButton
         icon="left"
