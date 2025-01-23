@@ -9,24 +9,29 @@ import Category from './pages/Category';
 import ContactUs from './pages/ContactUs';
 import ShowProduct from './pages/ShowProduct';
 
+import { Provider } from 'react-redux';
+import store from './redux/store1.js';
+
 const App: React.FC = () => {
   // const [count, setCount] = useState(0);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* <Route path="/" element={<Navigate to="/products" replace />}> */}
-        <Route path="/" element={<UserLayout />}>
-          <Route index path="products" element={<Products />} />
-          <Route path="products/:id" element={<ShowProduct />} />
-          <Route path="category" element={<Category />} />
-          <Route path="contact-us" element={<ContactUs />} />
-        </Route>
-        <Route path="login" element={<SignIn />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/" element={<Navigate to="/products" replace />}> */}
+          <Route path="/" element={<UserLayout />}>
+            <Route index path="products" element={<Products />} />
+            <Route path="products/:id" element={<ShowProduct />} />
+            <Route path="category" element={<Category />} />
+            <Route path="contact-us" element={<ContactUs />} />
+          </Route>
+          <Route path="login" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
 
