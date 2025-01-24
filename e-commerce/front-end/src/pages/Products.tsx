@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from '../components/Slider';
 import FiltersList from '../components/FiltersList';
 import ProductList from '../components/ProductList';
+// import { useSelector } from 'react-redux';
 
 const productsL = [
   {
@@ -56,6 +57,7 @@ const productsL = [
 ];
 
 const Home: React.FC = () => {
+  // const { isLoading, data } = useSelector(state => state);
   return (
     <div className="w-full">
       <Slider />
