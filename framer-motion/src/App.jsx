@@ -1,58 +1,38 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 function App() {
-  const sliderValue = useMotionValue(1);
-
-  const opacity = useTransform(sliderValue, [0.5, 2], [0, 1]);
-
-  const scaleSpring = useSpring(sliderValue, {
-    stiffness: 300,
+  const value = useMotionValue(0);
+  const x = useSpring(value, {
+    stiffness: 500,
     damping: 10,
-    mass: 0.6,
-    // velocity: 0, // fels more heavy
+    mass: 0.3,
   });
 
-  function onRangeChange(e) {
-    sliderValue.set(parseFloat(e.target.value));
-  }
+  const scale = useTransform(x, [-100, 0, 100], [1, 1, 2]);
+  const borderRadius = useTransform(x, [-100, 0, 100], ['50%', '0%', '50%']);
+  const background = useTransform(
+    x,
+    [-100, 0, 100],
+    ['#ffffff', '#ffffff', '#f2f'],
+  );
 
   return (
     <div className="flex min-h-dvh items-center justify-center bg-stone-800">
-      <div className="w flex h-72 w-[500px] items-center justify-center bg-slate-300 p-10">
+      <div className="p-6' mx-2 flex h-72 w-fit min-w-48 items-center justify-center rounded-xl bg-stone-50">
         <motion.button
-          initial={{
-            // y: -500,
-            // x: -300,
-            opacity: 0,
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          className="h-20 w-20 border border-stone-950 bg-slate-200 px-2 py-1 outline-none"
+          style={{
+            scale,
+            x,
+            borderRadius,
+            background,
           }}
-          whileInView={{
-            x: 0,
-            opacity: 1,
-            transition: {
-              delay: 0.3,
-            },
-          }}
-          whileTap={{ scale: 1.3 }}
-          className="rounded-md bg-stone-800 px-5 py-2 text-stone-50"
-        >
-          Click me
-        </motion.button>
+        ></motion.button>
       </div>
 
-      <div className="p-6' mx-2 flex h-72 w-48 items-center justify-center rounded-xl bg-stone-50">
-        <motion.button
-          drag
-          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-          className="rounded-md bg-stone-900 px-2 py-1 text-stone-50"
-          style={{
-            scale: scaleSpring,
-            opacity,
-          }}
-        >
-          Click Here
-        </motion.button>
-      </div>
-      <div className="p-6' flex h-72 w-48 items-center justify-center rounded-xl bg-stone-50">
+      {/* <div className="p-6' flex h-72 w-48 items-center justify-center rounded-xl bg-stone-50">
         <input
           type="range"
           min={0.5}
@@ -61,7 +41,7 @@ function App() {
           defaultValue={1}
           onChange={e => onRangeChange(e)}
         />
-      </div>
+      </div> */}
 
       {/* <div className="flex min-h-screen items-center justify-center">
         <div className="relative flex aspect-[2/4] w-[150px] flex-col overflow-hidden rounded-2xl bg-[#41352a] text-white">
