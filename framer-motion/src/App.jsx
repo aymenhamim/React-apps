@@ -1,17 +1,23 @@
-import { useState } from 'react';
-import { delay, easeInOut, motion, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 function App() {
-  const [rotate, setRotate] = useState(0);
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+  const sliderValue = useMotionValue(1);
 
-  function handleChange(e) {
-    // rotate.set(e.target.value);
-    setRotate(+e.target.value);
+  const opacity = useTransform(sliderValue, [0.5, 2], [0, 1]);
+
+  const scaleSpring = useSpring(sliderValue, {
+    stiffness: 300,
+    damping: 10,
+    mass: 0.6,
+    // velocity: 0, // fels more heavy
+  });
+
+  function onRangeChange(e) {
+    sliderValue.set(parseFloat(e.target.value));
   }
+
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-slate-50">
+    <div className="flex min-h-dvh items-center justify-center bg-stone-800">
       <div className="w flex h-72 w-[500px] items-center justify-center bg-slate-300 p-10">
         <motion.button
           initial={{
@@ -26,35 +32,35 @@ function App() {
               delay: 0.3,
             },
           }}
-          whileTap={{ scale: 1.1 }}
+          whileTap={{ scale: 1.3 }}
           className="rounded-md bg-stone-800 px-5 py-2 text-stone-50"
         >
           Click me
         </motion.button>
+      </div>
 
-        <div>
-          <input type="range" min={-180} max={190} onChange={handleChange} />
-
-          <input
-            type="range"
-            min={-300}
-            max={300}
-            onChange={e => setX(+e.target.value)}
-          />
-
-          <input
-            type="range"
-            min={-300}
-            max={300}
-            onChange={e => setY(+e.target.value)}
-          />
-
-          <motion.div
-            className="m-5 h-32 w-32 rounded-md border-4 border-red-500"
-            animate={{ rotate, x, y }}
-            transition={{ type: 'spring' }}
-          ></motion.div>
-        </div>
+      <div className="p-6' mx-2 flex h-72 w-48 items-center justify-center rounded-xl bg-stone-50">
+        <motion.button
+          drag
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+          className="rounded-md bg-stone-900 px-2 py-1 text-stone-50"
+          style={{
+            scale: scaleSpring,
+            opacity,
+          }}
+        >
+          Click Here
+        </motion.button>
+      </div>
+      <div className="p-6' flex h-72 w-48 items-center justify-center rounded-xl bg-stone-50">
+        <input
+          type="range"
+          min={0.5}
+          max={2}
+          step={0.01}
+          defaultValue={1}
+          onChange={e => onRangeChange(e)}
+        />
       </div>
 
       {/* <div className="flex min-h-screen items-center justify-center">
