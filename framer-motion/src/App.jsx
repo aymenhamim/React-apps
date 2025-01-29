@@ -1,54 +1,69 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
+const buttonStyle = `mx-auto mt-6 flex justify-center rounded-lg bg-stone-800 p-3 duration-300 hover:bg-stone-700 focus:ring-4 focus:ring-stone-400`;
+
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = ['Home', 'Invoices', 'Usage', 'profile', 'Settings'];
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-slate-500">
-      <div className="mx-2 flex min-h-[25rem] min-w-[24rem] flex-col items-center gap-10 rounded-xl bg-stone-100 px-20 py-10">
-        <motion.button
-          className="rounded-full border border-stone-950 bg-stone-800 px-3 py-2 text-stone-50 outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          Toggle Visibility
-        </motion.button>
+    <div className="flex min-h-dvh items-center bg-stone-50">
+      <motion.nav
+        initial="hidden"
+        animate={`${isOpen ? 'visible' : 'hidden'}`}
+        variants={{
+          hidden: {
+            width: 90,
+            transition: {
+              staggerChildren: 0.05,
+              staggerDirection: -1,
+              when: 'afterChildren',
+            },
+          },
 
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.div
+          visible: {
+            width: 150,
+            transition: {
+              staggerChildren: 0.05,
+            },
+          },
+        }}
+        className={`h-dvh bg-stone-900 text-stone-50`}
+      >
+        <button className={buttonStyle} onClick={() => setIsOpen(!isOpen)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+        </button>
+
+        <ul className="mx-auto mt-20 w-fit">
+          {menuItems.map((m, index) => (
+            <motion.li
               variants={{
-                open: { opacity: 1, y: 0 },
-                closed: { opacity: 0, y: 20 },
+                hidden: { opacity: 0, x: -30 },
+                visible: { opacity: 1, x: 0 },
               }}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="relative flex flex-col rounded-lg border border-stone-600 bg-stone-50 px-8 py-6 shadow-sm"
+              key={index}
+              className="my-5"
             >
-              <motion.button
-                variants={{
-                  open: { scale: 1, rotate: 0 },
-                  closed: { scale: 0, rotate: 360 },
-                }}
-                onClick={() => setIsOpen(false)}
-                className="BG-stone-50 absolute right-0.5 top-1 h-7 w-7 rounded-full border border-stone-800 bg-stone-900 font-bold text-stone-50"
-              >
-                X
-              </motion.button>
-              <motion.div
-                variants={{
-                  open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: 20 },
-                }}
-                className="mb-3 h-28 w-44 rounded-md bg-stone-500"
-              ></motion.div>
-
-              <p>Random card</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+              {m}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.nav>
     </div>
   );
 }
