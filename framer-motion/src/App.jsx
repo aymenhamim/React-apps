@@ -1,71 +1,33 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import Skeleton from './Skeleton';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-const buttonStyle = `mx-auto mt-6 flex justify-center rounded-lg bg-stone-800 p-3 duration-300 hover:bg-stone-700 focus:ring-4 focus:ring-stone-400`;
-
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuItems = ['Home', 'Invoices', 'Usage', 'profile', 'Settings'];
+const App = () => {
+  const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <div className="flex min-h-dvh items-center bg-stone-50">
-      <motion.nav
-        initial="hidden"
-        animate={`${isOpen ? 'visible' : 'hidden'}`}
-        variants={{
-          hidden: {
-            width: 90,
-            transition: {
-              staggerChildren: 0.05,
-              staggerDirection: -1,
-              when: 'afterChildren',
-            },
-          },
-
-          visible: {
-            width: 150,
-            transition: {
-              staggerChildren: 0.05,
-            },
-          },
-        }}
-        className={`h-dvh bg-stone-900 text-stone-50`}
+    <div>
+      <button
+        className="fixed left-1/2 top-3 z-20 -translate-x-1/2 rounded-full bg-black px-8 py-2 text-white"
+        onClick={() => setIsOpened(open => !open)}
       >
-        <button className={buttonStyle} onClick={() => setIsOpen(!isOpen)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>
-        </button>
+        {isOpened ? 'Close' : 'Open'} drawer
+      </button>
 
-        <ul className="mx-auto mt-20 w-fit">
-          {menuItems.map((m, index) => (
-            <motion.li
-              variants={{
-                hidden: { opacity: 0, x: -30 },
-                visible: { opacity: 1, x: 0 },
-              }}
-              key={index}
-              className="my-5"
-            >
-              {m}
-            </motion.li>
-          ))}
-        </ul>
-      </motion.nav>
+      <motion.div
+        variants={{
+          opened: { opacity: 1, '--x': '0%', '--y': '0%' },
+          closed: { opacity: 0, '--x': '-100%', '--y': '100%' },
+        }}
+        initial="closed"
+        animate={isOpened ? 'opened' : 'closed'}
+        // Use the isOpened boolean for the animations.
+        className="fixed bottom-0 left-0 max-h-[90%] w-[90%] overflow-auto bg-stone-500 p-5 max-sm:translate-y-[--y] md:max-w-[500px] md:translate-x-[--x]"
+      >
+        <Skeleton />
+      </motion.div>
     </div>
   );
-}
+};
 
 export default App;
