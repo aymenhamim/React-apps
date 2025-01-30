@@ -13,8 +13,6 @@ import { Provider } from 'react-redux';
 import store from './redux/store1.js';
 
 const App: React.FC = () => {
-  // const [count, setCount] = useState(0);
-
   return (
     <Provider store={store}>
       <BrowserRouter>

@@ -7,6 +7,7 @@ interface productI {
   price: number;
   discount?: number;
   img: string;
+  images: string[];
   quantity?: number;
   id: string;
 }
@@ -28,6 +29,7 @@ const ProductList: React.FC<ProductListI> = ({ products }) => {
           quantity={p.quantity}
           id={p.id}
           key={p.id}
+          images={p.images}
         />
       ))}
     </div>

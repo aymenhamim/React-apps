@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from '../components/Slider';
 import FiltersList from '../components/FiltersList';
 import ProductList from '../components/ProductList';
-// import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../redux/slices/productsSlice.js';
 
 const productsL = [
   {
@@ -57,12 +58,29 @@ const productsL = [
 ];
 
 const Home: React.FC = () => {
-  // const { isLoading, data } = useSelector(state => state);
+  // 1- Import the dispatcher from react-redux
+  const dispatch = useDispatch();
+
+  // 2- Use state by useSelectore
+  const { isLoading, data } = useSelector(state => state.products);
+
+  useEffect(
+    function () {
+      // fetch data
+      dispatch(fetchProducts());
+    },
+    [dispatch],
+  );
+
   return (
     <div className="w-full">
       <Slider />
       <FiltersList />
-      <ProductList products={productsL} />
+      {isLoading ? (
+        <p className="mx-auto mt-12 w-52">Loading...</p>
+      ) : (
+        <ProductList products={data} />
+      )}
     </div>
   );
 };

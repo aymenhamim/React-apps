@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     <div className="mx-auto flex w-[90dvw] items-center justify-between rounded-lg border border-stone-600 bg-stone-50 px-5 py-2.5 shadow-sm">
       <ul className="flex gap-3">
         <li>
-          <span className="mr-5 font-bold">ThoumiSHOP</span>
+          <span className="mr-5 font-bold">SHOP</span>
         </li>
         <li>
           <NavLink to={'/products'}>Products</NavLink>

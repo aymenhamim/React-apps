@@ -25,7 +25,8 @@ const ProductItem: React.FC<ProductI> = ({
 
   const discountAmount = (price * discount) / 100 || 0;
 
-  const newPrice = price - discountAmount;
+  let newPrice = price - discountAmount;
+  newPrice = newPrice.toFixed(2);
   // console.log(discountAmount, newPrice);
   function handleClick() {
     console.log('clicked');

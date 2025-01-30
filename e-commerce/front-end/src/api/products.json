@@ -1,139 +1,141 @@
-[
-  {
-    "id": 1,
-    "name": "Razer DeathAdder Essential (BLANC)",
-    "description": "Offrant une ergonomie confortable et une durabilité à toute épreuve, la souris Razer DeathAdder Essential 2021 vous suivra partout. Elle est équipée d'un capteur optique de 6400 dpi et de 5 boutons Hyperesponse pour vous donner un avantage absolu sur vos adversaires. Cette souris possède les meilleurs éléments dont un joueur a besoin pour dominer n'importe quel jeu.",
-    "price": 349,
-    "discount": 14,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-22.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-22.pngs",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-23.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-24.png"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 2,
-    "name": "GAMESIRE G7 SE ORANGE (PC/XBOX)",
-    "description": "GameSir G7 SE Wired Xbox Controller for PC, Xbox Series X/S, Xbox One, Officially Licensed Xbox Hall Effect Controller with 3.5mm Headphone Port, 2 Programmable Back Buttons, 1000Hz, Anti-Stick-Drift",
-    "price": 649.99,
-    "discount": 15,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T013232.492.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T013232.492.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T010657.798.jpg",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T010707.028.jpg"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 3,
-    "name": "EPOMAKER x AULA F75 Wireless",
-    "description": "Le F75 est doté d'une conception interne à cinq couches absorbant le son et les chocs, dont deux couches de mousse Poron, un coussinet de commutation IXPE, un coussinet d'amélioration du son PET et un coussinet inférieur en silicone. Cette construction sophistiquée réduit considérablement le bruit et la résonance de la frappe, offrant un environnement de frappe tranquille et concentré.",
-    "price": 799.99,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154018.174.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154018.174.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154120.986.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T172810.385.jpg"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 4,
-    "name": "MOUSEPAD AB 90/40cm",
-    "description": "Améliorez votre expérience de jeu avec nos tapis de jeu professionnels, conçus pour répondre aux attentes des joueurs les plus exigeants. Fabriqués avec des matériaux de haute qualité, nos tapis offrent une surface ultra-lisse et durable, garantissant une précision et un contrôle inégalés. Le revêtement antidérapant sur le dessous assure une adhérence parfaite, même lors des sessions de jeu les plus intenses.",
-    "price": 165,
-    "discount": 33,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5306-1000x1000.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5306-1000x1000.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5289-1000x1000.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5304-1000x1000.png"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 5,
-    "name": "MA68 Wired Full Rgb Mechanical Keyboard",
-    "description": "Ces touches de clavier rétroéclairées gris dégradé sont fabriquées à partir d'un matériau PBT épais de haute qualité et d'une technologie à double injection, ce qui permet aux caractères des touches de conserver leur éclat et leur saturation. Les légendes sont très nettes et propres, excellentes au toucher et ne se décolorent jamais, elles sont plus confortables à utiliser et aucune accumulation de saleté brillante avec une utilisation continue.",
-    "price": 420,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-36.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-36.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-4.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-3.png"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 6,
-    "name": "ATTAQUE REQUIN X6 SANS FIL",
-    "description": "La souris ultra-légère X6 est conçue pour les joueurs qui recherchent un poids extrême. Grâce au moulage par injection innovant à l'azote liquide, le poids de la souris est réduit à 49 g. Elle est 30 % plus légère que la G PRO X et 20 % plus légère que l'Aerox 3, ce qui permet aux joueurs de déplacer la souris plus rapidement pendant les opérations de jeu, accélérant ainsi l'opération et réduisant la fatigue causée par une utilisation à long terme.",
-    "price": 649.99,
-    "discount": 8,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150849.903.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150849.903.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150905.924.jpg",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T151452.979.jpg"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 7,
-    "name": "ZIFRIEND ZA63 (INTERRUPTEUR JAUNE)",
-    "description": "L'une des caractéristiques les plus remarquables du Zifriend ZA63 est ses commutateurs à 5 broches remplaçables à chaud. Cela signifie que le clavier est conçu pour permettre à l'utilisateur de changer facilement de commutateurs sans avoir besoin d'outils spéciaux ni de connaissances techniques. Cette fonctionnalité permet aux joueurs d'expérimenter différents types de commutateurs et de trouver celui qui convient le mieux à leur style de jeu.",
-    "price": 380,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-72.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-72.pngs",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/jmj.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-73.png"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 8,
-    "name": "Elgato Wave1",
-    "description": "Elgato Wave1 : un microphone USB compact et polyvalent conçu pour les streamers et les créateurs de contenu, doté d'une capture audio de haute qualité et de commandes intuitives. Ce microphone est connu pour sa facilité d'utilisation et sa qualité sonore professionnelle, ce qui en fait un choix populaire parmi les diffuseurs et les joueurs.",
-    "price": 1999,
-    "discount": 49,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-2.pngs",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-2.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-1.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/81v5bgkvfqL._AC_UF10001000_QL80_.jpg"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 9,
-    "name": "Razer Blackshark V2 X (NOIR)",
-    "description": "Ultra léger, le Razer Blackshar V2 X est non seulement confortable à porter, mais aussi ultra immersif avec son surround 7.1. Avec ce casque, vous n'aurez qu'à venir à bout de vos adversaires. Ce casque supra-auriculaire est doté d'un rembourrage épais et d'un microphone flexible pour que la communication avec vos coéquipiers soit simple et claire.",
-    "price": 790,
-    "discount": 18,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-43.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-43.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-44.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-45.png"
-    ],
-    "quantity": 10
-  },
-  {
-    "id": 10,
-    "name": "Manette DualSense de Sony pour PS5",
-    "description": "Confort optimal pour de longues sessions de jeu",
-    "price": 799.99,
-    "discount": 12,
-    "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-20.png",
-    "images": [
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-20.png",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/61u6pfUsBBS._SL1500_-1000x1000.jpg",
-      "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/61laWbHwCS._SL1500_-1000x1000.jpg"
-    ],
-    "quantity": 10
-  }
-]
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Razer DeathAdder Essential (BLANC)",
+      "description": "Offrant une ergonomie confortable et une durabilité à toute épreuve, la souris Razer DeathAdder Essential 2021 vous suivra partout. Elle est équipée d'un capteur optique de 6400 dpi et de 5 boutons Hyperesponse pour vous donner un avantage absolu sur vos adversaires. Cette souris possède les meilleurs éléments dont un joueur a besoin pour dominer n'importe quel jeu.",
+      "price": 349,
+      "discount": 14,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-22.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-22.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-23.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-24.png"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "2",
+      "name": "GAMESIRE G7 SE ORANGE (PC/XBOX)",
+      "description": "GameSir G7 SE Wired Xbox Controller for PC, Xbox Series X/S, Xbox One, Officially Licensed Xbox Hall Effect Controller with 3.5mm Headphone Port, 2 Programmable Back Buttons, 1000Hz, Anti-Stick-Drift",
+      "price": 649.99,
+      "discount": 15,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T013232.492.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T013232.492.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T010657.798.jpg",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/10/Untitled-design-2024-10-10T010707.028.jpg"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "3",
+      "name": "EPOMAKER x AULA F75 Wireless",
+      "description": "Le F75 est doté d'une conception interne à cinq couches absorbant le son et les chocs, dont deux couches de mousse Poron, un coussinet de commutation IXPE, un coussinet d'amélioration du son PET et un coussinet inférieur en silicone. Cette construction sophistiquée réduit considérablement le bruit et la résonance de la frappe, offrant un environnement de frappe tranquille et concentré.",
+      "price": 799.99,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154018.174.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154018.174.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T154120.986.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T172810.385.jpg"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "4",
+      "name": "MOUSEPAD AB 90/40cm",
+      "description": "Améliorez votre expérience de jeu avec nos tapis de jeu professionnels, conçus pour répondre aux attentes des joueurs les plus exigeants. Fabriqués avec des matériaux de haute qualité, nos tapis offrent une surface ultra-lisse et durable, garantissant une précision et un contrôle inégalés. Le revêtement antidérapant sur le dessous assure une adhérence parfaite, même lors des sessions de jeu les plus intenses.",
+      "price": 165,
+      "discount": 33,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5306-1000x1000.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5306-1000x1000.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5289-1000x1000.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/IMG_5304-1000x1000.png"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "5",
+      "name": "MA68 Wired Full Rgb Mechanical Keyboard",
+      "description": "Ces touches de clavier rétroéclairées gris dégradé sont fabriquées à partir d'un matériau PBT épais de haute qualité et d'une technologie à double injection, ce qui permet aux caractères des touches de conserver leur éclat et leur saturation. Les légendes sont très nettes et propres, excellentes au toucher et ne se décolorent jamais, elles sont plus confortables à utiliser et aucune accumulation de saleté brillante avec une utilisation continue.",
+      "price": 420,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-36.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-36.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-4.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-3.png"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "6",
+      "name": "ATTAQUE REQUIN X6 SANS FIL",
+      "description": "La souris ultra-légère X6 est conçue pour les joueurs qui recherchent un poids extrême. Grâce au moulage par injection innovant à l'azote liquide, le poids de la souris est réduit à 49 g. Elle est 30 % plus légère que la G PRO X et 20 % plus légère que l'Aerox 3, ce qui permet aux joueurs de déplacer la souris plus rapidement pendant les opérations de jeu, accélérant ainsi l'opération et réduisant la fatigue causée par une utilisation à long terme.",
+      "price": 649.99,
+      "discount": 8,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150849.903.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150849.903.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T150905.924.jpg",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2025/01/Untitled-design-2025-01-20T151452.979.jpg"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "7",
+      "name": "ZIFRIEND ZA63 (INTERRUPTEUR JAUNE)",
+      "description": "L'une des caractéristiques les plus remarquables du Zifriend ZA63 est ses commutateurs à 5 broches remplaçables à chaud. Cela signifie que le clavier est conçu pour permettre à l'utilisateur de changer facilement de commutateurs sans avoir besoin d'outils spéciaux ni de connaissances techniques. Cette fonctionnalité permet aux joueurs d'expérimenter différents types de commutateurs et de trouver celui qui convient le mieux à leur style de jeu.",
+      "price": 380,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-72.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-72.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/jmj.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/08/Untitled-design-73.png"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "8",
+      "name": "Elgato Wave1",
+      "description": "Elgato Wave1 : un microphone USB compact et polyvalent conçu pour les streamers et les créateurs de contenu, doté d'une capture audio de haute qualité et de commandes intuitives. Ce microphone est connu pour sa facilité d'utilisation et sa qualité sonore professionnelle, ce qui en fait un choix populaire parmi les diffuseurs et les joueurs.",
+      "price": 1999,
+      "discount": 49,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-2.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-2.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-1.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/81v5bgkvfqL._AC_UF10001000_QL80_.jpg"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "9",
+      "name": "Razer Blackshark V2 X (NOIR)",
+      "description": "Ultra léger, le Razer Blackshar V2 X est non seulement confortable à porter, mais aussi ultra immersif avec son surround 7.1. Avec ce casque, vous n'aurez qu'à venir à bout de vos adversaires. Ce casque supra-auriculaire est doté d'un rembourrage épais et d'un microphone flexible pour que la communication avec vos coéquipiers soit simple et claire.",
+      "price": 790,
+      "discount": 18,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-43.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-43.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-44.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/06/Design-sans-titre-45.png"
+      ],
+      "quantity": 10
+    },
+    {
+      "id": "10",
+      "name": "Manette DualSense de Sony pour PS5",
+      "description": "Confort optimal pour de longues sessions de jeu",
+      "price": 799.99,
+      "discount": 12,
+      "img": "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-20.png",
+      "images": [
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/Untitled-design-20.png",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/61u6pfUsBBS._SL1500_-1000x1000.jpg",
+        "https://elhaj4gamingstore.com/wp-content/uploads/2024/07/61laWbHwCS._SL1500_-1000x1000.jpg"
+      ],
+      "quantity": 10
+    }
+  ]
+}
