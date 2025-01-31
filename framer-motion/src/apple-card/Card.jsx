@@ -5,8 +5,8 @@ function Card({ title, subtitle, imageUrl }) {
     <motion.div
       className="h-full overflow-clip rounded-2xl bg-white"
       variants={{
-        hidden: { x: -50 },
-        visible: { x: 0 },
+        hidden: { x: -50, scale: 0.6 },
+        visible: { x: 0, scale: 1 },
       }}
     >
       <div className="mb-5 p-4 text-center">
