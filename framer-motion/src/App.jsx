@@ -1,6 +1,27 @@
-import { motion, useInView, useScroll } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Card from './apple-card/Card';
+import { div } from 'framer-motion/client';
+
+function FadeIn({ children, className }) {
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['end start', 'start end'],
+  });
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 360, 360, 0],
+  );
+
+  return (
+    <motion.div className={className} ref={ref} style={{ rotate }}>
+      {children}
+    </motion.div>
+  );
+}
 
 export const App = () => {
   const cardContainer = useRef(null);
@@ -75,13 +96,13 @@ export const App = () => {
           initial="hidden"
           animate={`${inView ? 'visible' : 'hidden'}`}
         >
-          <div className="row-span-2">
+          <FadeIn className="row-span-2">
             <Card
               title="TryPhone 29"
               subtitle="Call me maybe"
               imageUrl="/img/img1.jpg"
             />
-          </div>
+          </FadeIn>
 
           <Card
             title="BearShots Pro"
