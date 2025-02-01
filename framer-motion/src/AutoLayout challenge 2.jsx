@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useMemo } from 'react';
 
 const steps = ['start', 'larger', 'wider'];
 
@@ -18,7 +19,12 @@ export const App = () => {
         }}
         className="cursor-pointer bg-white p-6"
       >
-        <motion.div layout className="h-12 w-12 rounded-full bg-black" />
+        <motion.span
+          layout
+          className="block h-12 w-12 rounded-full bg-black p-4"
+        >
+          👀
+        </motion.span>
       </motion.div>
     </div>
   );
