@@ -42,7 +42,12 @@ const ShowProduct = () => {
               Back
             </Link>
             <div className="flex flex-col content-center gap-3 border bg-stone-50 px-2 py-2">
-              <img src={product.img} alt="" className="mx-auto w-60" />
+              <motion.img
+                layoutId={`animate-img-${id}`}
+                src={product.img}
+                alt=""
+                className="mx-auto w-60"
+              />
               <div className="images flex gap-2">
                 {product.images?.map((img, i) => (
                   <img

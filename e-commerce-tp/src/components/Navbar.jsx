@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import IconButton from './IconButton';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,6 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   }
   function handleLogout() {}
-  console.log(activeIndex);
 
   return (
     <div className="mx-auto flex w-[90dvw] items-center justify-between rounded-lg border border-stone-600 bg-stone-50 px-5 py-2.5 shadow-sm">
@@ -90,14 +89,19 @@ const Navbar = () => {
             <img src="/img/profile1.png" alt="" className="h-full w-full" />
           </div>
 
-          {isOpen && (
-            <button
-              className="absolute right-0 z-10 mt-0.5 translate-x-5 rounded-lg bg-red-500 px-3 py-2 text-stone-50"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          )}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.button
+                initial={{ scale: 0, y: -20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0, y: -20, transition: {} }}
+                className="absolute right-0 z-10 mt-0.5 translate-x-5 rounded-lg bg-red-500 px-3 py-2 text-stone-50"
+                onClick={handleLogout}
+              >
+                Logout
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

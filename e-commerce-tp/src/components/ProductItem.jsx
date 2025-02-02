@@ -19,7 +19,9 @@ const ProductItem = ({
 
   let newPrice = price - discountAmount;
   newPrice = newPrice.toFixed(2);
+
   // console.log(discountAmount, newPrice);
+
   function handleClick() {
     console.log('clicked');
     navigate(`/products/${id}`);
