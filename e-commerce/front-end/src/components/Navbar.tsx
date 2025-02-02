@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import IconButton from './IconButton';
+import { motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +15,15 @@ const Navbar: React.FC = () => {
   return (
     <div className="mx-auto flex w-[90dvw] items-center justify-between rounded-lg border border-stone-600 bg-stone-50 px-5 py-2.5 shadow-sm">
       <ul className="flex gap-3">
-        <li>
+        <li className="relative">
           <span className="mr-5 font-bold">SHOP</span>
         </li>
-        <li>
-          <NavLink to={'/products'}>Products</NavLink>
+        <li className="relative text-white">
+          <motion.span className="absolute top-1/2 z-0 h-full w-full -translate-y-1/2 rounded-md bg-stone-900 px-3 py-5"></motion.span>
+          <NavLink to={'/products'} className="z-20">
+            {' '}
+            Products
+          </NavLink>
         </li>
         <li>
           <NavLink to={'/Category'}>Category</NavLink>

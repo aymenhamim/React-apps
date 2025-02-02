@@ -9,7 +9,7 @@ const App = () => {
   const [selectedSong, setSelectedSong] = useState(null);
 
   return (
-    <div className="min-h-dvh bg-stone-900">
+    <div className="flex min-h-dvh items-center justify-center bg-stone-900">
       <div className="relative mx-auto aspect-[9/16] w-full max-w-[400px] overflow-clip rounded-3xl border border-white/10 bg-white/10 p-2 text-white sm:p-4">
         <div className="mb-6 flex aspect-video flex-col items-start rounded-2xl bg-white/10 p-4 text-2xl font-bold md:p-8">
           <p>Trending music</p>
@@ -27,12 +27,14 @@ const App = () => {
             />
           ))}
         </div>
-        {selectedSong && (
-          <DetailView
-            onClose={() => setSelectedSong(null)}
-            song={selectedSong}
-          />
-        )}
+        <AnimatePresence>
+          {selectedSong && (
+            <DetailView
+              onClose={() => setSelectedSong(null)}
+              song={selectedSong}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

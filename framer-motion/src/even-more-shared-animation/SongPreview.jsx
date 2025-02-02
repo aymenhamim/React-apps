@@ -9,7 +9,6 @@ export const SongPreview = ({ song, setSelectedSong }) => {
       layoutId={`music-wrapper-${song.id}`}
     >
       <motion.img
-        layout
         layoutId={`music-cover-${song.id}`}
         src={song.cover}
         alt={song.title}
@@ -17,18 +16,20 @@ export const SongPreview = ({ song, setSelectedSong }) => {
       />
 
       <motion.div
-        layout
         layoutId={`music-title-${song.id}`}
         className="text-lg font-bold leading-snug"
       >
-        {song.title}
+        <motion.span layout className="block">
+          {song.title}
+        </motion.span>
       </motion.div>
       <motion.div
-        layout
         layoutId={`music-artist-${song.id}`}
         className="text-sm leading-snug"
       >
-        {song.artist}
+        <motion.span layout className="block">
+          {song.artist}
+        </motion.span>
       </motion.div>
     </motion.div>
   );

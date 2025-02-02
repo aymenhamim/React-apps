@@ -20,23 +20,54 @@ export const DetailView = ({ song, onClose }) => {
         layoutId={`music-title-${song.id}`}
         className="text-lg font-bold"
       >
-        {song.title}
+        <motion.span layout className="block">
+          {song.title}
+        </motion.span>
       </motion.div>
       <motion.div
         layout
         layoutId={`music-artist-${song.id}`}
         className="text-sm"
       >
-        {song.artist}
+        <motion.span layout className="block">
+          {song.artist}
+        </motion.span>
       </motion.div>
 
-      <p className="max-w-[80%] text-sm">{song.description}</p>
+      <motion.p
+        className="max-w-[80%] text-sm"
+        variants={{
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              delay: 0.3,
+              type: 'spring',
+            },
+          },
+          hidden: {
+            opacity: 0,
+            y: 20,
+          },
+        }}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+      >
+        {song.description}
+      </motion.p>
       <motion.button
         onClick={onClose}
         className="mt-4 w-full rounded-full bg-black px-4 py-2 text-white"
         variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, scale: 0.8 },
+          visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+              delay: 0.3,
+            },
+          },
         }}
         initial="hidden"
         animate="visible"
