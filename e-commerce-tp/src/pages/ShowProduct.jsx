@@ -29,13 +29,19 @@ const ShowProduct = () => {
   newPrice = newPrice.toFixed(2);
 
   return (
-    <AnimatePresence>
-      <div className="w-full">
-        {isLoading ? (
-          <p className="text-center">loading...</p>
-        ) : (
+    <div className="w-full">
+      {isLoading ? (
+        <p className="text-center">loading...</p>
+      ) : (
+        <AnimatePresence>
           <motion.div
-            layoutId={`product-${id}`}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: -40 },
+            }}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
             className="relative flex justify-evenly rounded-xl bg-stone-100 px-6 py-6 shadow-sm"
           >
             <Link to={'/products'} className="absolute right-12 font-semibold">
@@ -73,9 +79,9 @@ const ShowProduct = () => {
               <Button className="my-3">Add to cart</Button>
             </div>
           </motion.div>
-        )}
-      </div>
-    </AnimatePresence>
+        </AnimatePresence>
+      )}
+    </div>
   );
 };
 

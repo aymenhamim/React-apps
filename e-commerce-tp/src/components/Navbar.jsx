@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import IconButton from './IconButton';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
+  const location = useLocation().pathname;
   const [isOpen, setIsOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(1);
+
+  let index = 1;
+  if (location === '/Contact-us') {
+    index = 3;
+  } else if (location === '/products') {
+    index = 1;
+  } else if (location === '/Category') {
+    index = 2;
+  }
+
+  const [activeIndex, setActiveIndex] = useState(index);
 
   function handleClick() {
     setIsOpen(!isOpen);

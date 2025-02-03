@@ -9,7 +9,7 @@ const Home = () => {
   // 1- Import the dispatcher from react-redux
   const dispatch = useDispatch();
 
-  // 2- Use state by useSelectore
+  // 2- Use state by useSelector
   const { isLoading, data } = useSelector(state => state.products);
 
   useEffect(

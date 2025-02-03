@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from '../components/Button';
 // import IconButton from '../components/IconButton';
 import Input from '../components/Input';
+import { motion } from 'framer-motion';
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState('');
@@ -9,9 +10,17 @@ const ContactUs = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-
   return (
-    <div className="mx-auto my-8 rounded-2xl bg-stone-50 px-16 py-6 shadow-lg">
+    <motion.div
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: -40 },
+      }}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="mx-auto my-8 rounded-2xl bg-stone-50 px-16 py-6 shadow-lg"
+    >
       <form>
         <div className="my-2 flex w-full gap-4">
           <div>
@@ -86,9 +95,9 @@ const ContactUs = () => {
         </div>
       </form>
       <Button size={'full'} rounded="pill">
-        X-large
+        Submitqaza
       </Button>
-    </div>
+    </motion.div>
   );
 };
 

@@ -15,15 +15,11 @@ const ProductItem = ({
   const desc = description.slice(0, 45).padEnd(48, '.');
   const navigate = useNavigate();
 
-  const discountAmount = (price * discount) / 100 || 0;
-
-  let newPrice = price - discountAmount;
-  newPrice = newPrice.toFixed(2);
-
-  // console.log(discountAmount, newPrice);
+  const newPrice = discount
+    ? price - Math.floor(price * (discount / 100))
+    : price;
 
   function handleClick() {
-    console.log('clicked');
     navigate(`/products/${id}`);
   }
 

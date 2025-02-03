@@ -17,20 +17,20 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <AnimatePresence>
-          <Routes location={location} key={location.pathname}>
-            {/* <Route path="/" element={<Navigate to="/products" replace />}> */}
-            <Route path="/" element={<UserLayout />}>
-              <Route index path="products" element={<Products />} />
-              <Route path="products/:id" element={<ShowProduct />} />
-              <Route path="category" element={<Category />} />
-              <Route path="contact-us" element={<ContactUs />} />
-            </Route>
-            <Route path="login" element={<SignIn />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AnimatePresence>
+        <Routes>
+          {/* Redirect root path to /products */}
+          <Route path="/" element={<Navigate to="/products" replace />} />
+
+          <Route path="/" element={<UserLayout />}>
+            <Route path="products" element={<Products />} />
+            <Route path="products/:id" element={<ShowProduct />} />
+            <Route path="category" element={<Category />} />
+            <Route path="contact-us" element={<ContactUs />} />
+          </Route>
+          <Route path="login" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </Provider>
   );
