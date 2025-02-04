@@ -9,11 +9,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   let index = 1;
-  if (location === '/Contact-us') {
+  if (location.includes('Contact-us')) {
     index = 3;
-  } else if (location === '/products') {
+  } else if (location.includes('/products')) {
     index = 1;
-  } else if (location === '/Category') {
+  } else if (location.includes('/Category')) {
     index = 2;
   }
 
