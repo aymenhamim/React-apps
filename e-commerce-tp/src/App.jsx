@@ -12,6 +12,7 @@ import ShowProduct from './pages/ShowProduct.jsx';
 import { Provider } from 'react-redux';
 import store from './redux/store1.js';
 import { AnimatePresence } from 'framer-motion';
+import Cart from './pages/Cart.jsx';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="products/:id" element={<ShowProduct />} />
             <Route path="category" element={<Category />} />
             <Route path="contact-us" element={<ContactUs />} />
+            <Route path="cart" element={<Cart />} />
           </Route>
           <Route path="login" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />

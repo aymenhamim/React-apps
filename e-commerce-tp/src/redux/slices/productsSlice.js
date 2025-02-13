@@ -38,8 +38,20 @@ const productsSlice = createSlice({
     data: [],
     error: '',
     product: {},
+    cart: { cartQuantity: 0, cartItem: [] },
   },
-  reducers: {},
+  reducers: {
+    addToCart(state, action) {
+      const newProduct = state.cart.cartItem.find(
+        cartItem => cartItem.id === action.payload,
+      );
+      if (cartItem) {
+        state.cart.cartQuantity += 1;
+      } else {
+        state.cart.push(cartItem);
+      }
+    },
+  },
 
   // extra reducers
   extraReducers: builder => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import IconButton from './IconButton';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -7,6 +7,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 const Navbar = () => {
   const location = useLocation().pathname;
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   let index = 1;
   if (location.includes('Contact-us')) {
@@ -91,6 +93,7 @@ const Navbar = () => {
           size="lg"
           className="border-none"
           iconSize="w-6"
+          onClick={() => navigate('/cart')}
         />
         <div className="relative">
           <div
