@@ -5,7 +5,7 @@ function UerLayout() {
   return (
     <div>
       <SideBar />
-      <NavLink to="/test">notes of a random notebook</NavLink>
+
       <Outlet />
     </div>
   );

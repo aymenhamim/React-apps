@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<UerLayout />} />
-        <Route path="/:notebook" element={<NotebookNotes />} />
+        <Route path="/notebooks/:id" element={<NotebookNotes />} />
         <Route path="/:notebook/:note" element={<NotePreview />} />
       </Routes>
     </BrowserRouter>

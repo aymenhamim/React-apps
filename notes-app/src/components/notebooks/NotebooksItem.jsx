@@ -34,7 +34,9 @@ function NotebooksItem({ notebook }) {
     <>
       {!isNotebookEdit ? (
         <li>
-          <NavLink to={`/${notebook.notebookId}`}>{notebook?.title}</NavLink>
+          <NavLink to={`/notebooks/${notebook.notebookId}`}>
+            {notebook?.title}
+          </NavLink>
           <button onClick={() => handleDelete(notebook.notebookId)}>X</button>
           <button onClick={() => triggerEditButton(notebook.notebookId)}>
             +
@@ -51,7 +53,9 @@ function NotebooksItem({ notebook }) {
         </form>
       ) : (
         <li>
-          <NavLink to={`/${notebook.notebookId}`}>{notebook?.title}</NavLink>
+          <NavLink to={`/notebooks/${notebook.notebookId}`}>
+            {notebook?.title}
+          </NavLink>
           <button onClick={() => handleDelete(notebook.notebookId)}>X</button>
           <button onClick={() => triggerEditButton(notebook.notebookId)}>
             +
