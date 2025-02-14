@@ -13,9 +13,21 @@ const notebooksSlice = createSlice({
         notebookId: 1,
         title: "Javascript",
         notes: [
-          { noteId: 1, createdAt: Date.now(), note: "This my First note" },
-          { noteId: 2, createdAt: Date.now(), note: "This my Second note" },
-          { noteId: 3, createdAt: Date.now(), note: "This my Third note" },
+          {
+            noteId: 1,
+            createdAt: new Date().toDateString(),
+            note: "This my First note",
+          },
+          {
+            noteId: 2,
+            createdAt: new Date().toDateString(),
+            note: "This my Second note",
+          },
+          {
+            noteId: 3,
+            createdAt: new Date().toDateString(),
+            note: "This my Third note",
+          },
         ],
       },
       {

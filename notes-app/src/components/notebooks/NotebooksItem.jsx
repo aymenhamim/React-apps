@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   deleteNotebook,
   enableEditMode,
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 function NotebooksItem({ notebook }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isNotebookEdit, curNotebook } = useSelector(
     (state) => state.notebooks
   );
@@ -27,6 +28,7 @@ function NotebooksItem({ notebook }) {
   }
 
   function handleDelete(id) {
+    navigate("/");
     dispatch(deleteNotebook(id));
   }
 
