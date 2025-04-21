@@ -20,39 +20,55 @@ function News() {
   const [headline, setHeadline] = useState(null);
   const [news, setNews] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("general");
+  const [searchInput, setSearchInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        // let url = "";
+
+        if (searchQuery) {
+          url = `https://gnews.io/api/v4/search?q=${searchQuery}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        }
 
         const response = await axios.get(url);
         const fetchedNews = response.data.articles;
 
         setHeadline(fetchedNews[0]);
         setNews(fetchedNews.slice(1, 7));
-
-        console.log(fetchedNews);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
     };
 
     fetchNews();
-  }, [selectedCategory]);
+  }, [selectedCategory, searchQuery]);
 
   const handleCategoryChange = (e, category) => {
     e.preventDefault();
     setSelectedCategory(category);
-    console.log(category);
+    setSearchQuery("");
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(searchInput);
+    setSearchInput("");
   };
   return (
     <div className="news">
       <header className="news-header">
         <h1 className="logo">News & Blogs</h1>
         <div className="search-bar">
-          <form>
-            <input type="text" placeholder="Search News..." />
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Search News..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
             <button type="submit">
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
