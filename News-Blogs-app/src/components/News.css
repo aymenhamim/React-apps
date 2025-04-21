@@ -15,6 +15,53 @@
   min-height: 7rem;
   border-radius: 1rem 1rem 0 0;
   background-color: #111214;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0% 4rem;
+
+  .logo {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 5rem;
+    color: #ddd;
+    letter-spacing: 0.2rem;
+  }
+
+  .search-bar input {
+    outline: 0;
+    border: 0;
+    color: lightgray;
+    width: 25rem;
+    height: 4rem;
+    background-color: #060708;
+    border-radius: 5rem;
+    padding: 0 4rem 0 2rem;
+    transition: all 0.3s ease-in-out;
+  }
+  .search-bar input:focus {
+    width: 35rem;
+  }
+
+  .search-bar input:focus::placeholder {
+    color: transparent;
+  }
+
+  .search-bar {
+    position: relative;
+    width: fit-content;
+  }
+  .search-bar button {
+    background-color: transparent;
+    color: lightgray;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+
+    outline: 0;
+    border: 0;
+  }
 }
 
 .news-content {
