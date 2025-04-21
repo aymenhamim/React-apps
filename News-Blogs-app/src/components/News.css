@@ -82,13 +82,67 @@
       width: 100%;
       border-radius: 1rem;
       background-color: #111214;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 1rem;
+      cursor: pointer;
+
+      img {
+        width: 7rem;
+        aspect-ratio: 1; /* ? width & height always be the same*/
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      p {
+        font-family: "Cofmortaa", sans-serif;
+        color: #ddd;
+        font-size: 1.5rem;
+      }
     }
 
     .categories {
       width: 100%;
       height: calc(80% - 2rem);
+      padding: 2rem;
       border-radius: 1rem;
       background-color: #111214;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+
+      .nav-heading {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(1.5rem, 2.5cqi, 3rem);
+        letter-spacing: 0.2rem;
+        color: #ddd;
+        margin-bottom: 1.5rem;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5rem;
+
+        .nav-link {
+          font-size: 1.5rem;
+          color: #ddd;
+          font-weight: 300;
+          text-transform: uppercase;
+          text-decoration: none;
+          letter-spacing: 0.1rem;
+          display: flex;
+          align-items: center;
+
+          i {
+            margin-left: 1rem;
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 

@@ -17,10 +17,52 @@ function News() {
           </form>
         </div>
       </header>
+
       <div className="news-content">
         <div className="navbar">
-          <div className="user">user</div>
-          <nav className="categories">Categories</nav>
+          <div className="user">
+            <img src="/public/images/user.jpg   " alt="User Image" />
+            <p>Ann's Blog</p>
+          </div>
+
+          <nav className="categories">
+            <h1 className="nav-heading">Categories</h1>
+            <div className="nav-links">
+              <a href="#" className="nav-link">
+                General
+              </a>
+              <a href="#" className="nav-link">
+                World
+              </a>
+              <a href="#" className="nav-link">
+                Busniness
+              </a>
+              <a href="#" className="nav-link">
+                Technology
+              </a>
+              <a href="#" className="nav-link">
+                Entertainment
+              </a>
+              <a href="#" className="nav-link">
+                Sport
+              </a>
+              <a href="#" className="nav-link">
+                Sports
+              </a>
+              <a href="#" className="nav-link">
+                Science
+              </a>
+              <a href="#" className="nav-link">
+                Health
+              </a>
+              <a href="#" className="nav-link">
+                Nation
+              </a>
+              <a href="#" className="nav-link">
+                Bockmarks <i className="fa-regular fa-bookmark "></i>
+              </a>
+            </div>
+          </nav>
         </div>
 
         <div className="news-section">
