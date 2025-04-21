@@ -5,30 +5,47 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
+const categories = [
+  "general",
+  "world",
+  "business",
+  "technology",
+  "entertainment",
+  "sports",
+  "science",
+  "health",
+];
+
 function News() {
   const [headline, setHeadline] = useState(null);
   const [news, setNews] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("general");
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // const url = `https://gnews.io/api/v4/top-headlines?technology=sports&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        // const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
 
         const response = await axios.get(url);
         const fetchedNews = response.data.articles;
 
         setHeadline(fetchedNews[0]);
         setNews(fetchedNews.slice(1, 7));
+
+        console.log(fetchedNews);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
     };
 
     fetchNews();
-  }, [news, headline]);
+  }, [selectedCategory]);
 
-  console.log(news);
-
+  const handleCategoryChange = (e, category) => {
+    e.preventDefault();
+    setSelectedCategory(category);
+    console.log(category);
+  };
   return (
     <div className="news">
       <header className="news-header">
@@ -53,36 +70,19 @@ function News() {
           <nav className="categories">
             <h1 className="nav-heading">Categories</h1>
             <div className="nav-links">
-              <a href="#" className="nav-link">
-                General
-              </a>
-              <a href="#" className="nav-link">
-                World
-              </a>
-              <a href="#" className="nav-link">
-                Busniness
-              </a>
-              <a href="#" className="nav-link">
-                Technology
-              </a>
-              <a href="#" className="nav-link">
-                Entertainment
-              </a>
-              <a href="#" className="nav-link">
-                Sport
-              </a>
-              <a href="#" className="nav-link">
-                Sports
-              </a>
-              <a href="#" className="nav-link">
-                Science
-              </a>
-              <a href="#" className="nav-link">
-                Health
-              </a>
-              <a href="#" className="nav-link">
-                Nation
-              </a>
+              {categories.map((category) => (
+                <a
+                  href="#"
+                  className={`nav-link ${
+                    selectedCategory === category ? "active" : ""
+                  }`}
+                  key={category}
+                  onClick={(e) => handleCategoryChange(e, category)}
+                >
+                  {category}
+                </a>
+              ))}
+
               <a href="#" className="nav-link">
                 Bockmarks <i className="fa-regular fa-bookmark "></i>
               </a>
