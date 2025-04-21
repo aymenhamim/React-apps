@@ -1,9 +1,34 @@
 import Calender from "./Calender";
 import Weather from "./Weather";
-
 import "./News.css";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function News() {
+  const [headline, setHeadline] = useState(null);
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        // const url = `https://gnews.io/api/v4/top-headlines?technology=sports&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+
+        const response = await axios.get(url);
+        const fetchedNews = response.data.articles;
+
+        setHeadline(fetchedNews[0]);
+        setNews(fetchedNews.slice(1, 7));
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
+
+    fetchNews();
+  }, [news, headline]);
+
+  console.log(news);
+
   return (
     <div className="news">
       <header className="news-header">
@@ -67,65 +92,30 @@ function News() {
 
         <div className="news-section">
           <div className="headline">
-            <img src="/public/images/tech.jpg" alt="Headline Image" />
+            <img
+              src={headline?.image || "/public/images/no-img.png"}
+              alt={headline?.title}
+            />
 
             <h2 className="headline-title">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero,
-              et. <i className="fa-regular fa-bookmark bookmark"></i>
+              {headline?.title}{" "}
+              <i className="fa-regular fa-bookmark bookmark"></i>
             </h2>
           </div>
 
           <div className="news-grid">
-            <div className="news-grid-item">
-              <img src="/public/images/tech.jpg" alt="News Image" />
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
-
-            <div className="news-grid-item">
-              <img src="/public/images/sports.jpg" alt="Sport Image" />
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
-
-            <div className="news-grid-item">
-              <img src="/public/images/science.jpg" alt="Science Image" />
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
-
-            <div className="news-grid-item">
-              <img src="/public/images/world.jpg" alt="World Image" />
-
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
-
-            <div className="news-grid-item">
-              <img src="/public/images/health.jpg" alt="Health Image" />
-
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
-
-            <div className="news-grid-item">
-              <img src="/public/images/nation.jpg" alt="Nation Image" />
-
-              <h3>
-                Lorem ipsum dolor sit amet.{" "}
-                <i className="fa-regular fa-bookmark bookmark"></i>
-              </h3>
-            </div>
+            {news?.map((item, index) => (
+              <div className="news-grid-item" key={index}>
+                <img
+                  src={item.image || "/public/images/no-img.png"}
+                  alt={item.titile}
+                />
+                <h3>
+                  {item.title}{" "}
+                  <i className="fa-regular fa-bookmark bookmark"></i>
+                </h3>
+              </div>
+            ))}
           </div>
         </div>
 
