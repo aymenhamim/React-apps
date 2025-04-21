@@ -21,7 +21,7 @@ function News() {
       <div className="news-content">
         <div className="navbar">
           <div className="user">
-            <img src="/public/images/user.jpg   " alt="User Image" />
+            <img src="/public/images/user.jpg" alt="User Image" />
             <p>Ann's Blog</p>
           </div>
 
@@ -66,8 +66,67 @@ function News() {
         </div>
 
         <div className="news-section">
-          <div className="headline">Headline</div>
-          <div className="news-grid">News Grid</div>
+          <div className="headline">
+            <img src="/public/images/tech.jpg" alt="Headline Image" />
+
+            <h2 className="headline-title">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero,
+              et. <i className="fa-regular fa-bookmark bookmark"></i>
+            </h2>
+          </div>
+
+          <div className="news-grid">
+            <div className="news-grid-item">
+              <img src="/public/images/tech.jpg" alt="News Image" />
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+
+            <div className="news-grid-item">
+              <img src="/public/images/sports.jpg" alt="Sport Image" />
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+
+            <div className="news-grid-item">
+              <img src="/public/images/science.jpg" alt="Science Image" />
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+
+            <div className="news-grid-item">
+              <img src="/public/images/world.jpg" alt="World Image" />
+
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+
+            <div className="news-grid-item">
+              <img src="/public/images/health.jpg" alt="Health Image" />
+
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+
+            <div className="news-grid-item">
+              <img src="/public/images/nation.jpg" alt="Nation Image" />
+
+              <h3>
+                Lorem ipsum dolor sit amet.{" "}
+                <i className="fa-regular fa-bookmark bookmark"></i>
+              </h3>
+            </div>
+          </div>
         </div>
 
         <div className="my-blogs">Myblogs</div>
