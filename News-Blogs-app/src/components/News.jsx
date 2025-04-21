@@ -1,3 +1,8 @@
+import Calender from "./Calender";
+import Weather from "./Weather";
+
+import "./News.css";
+
 function News() {
   return (
     <div className="news">
@@ -14,7 +19,14 @@ function News() {
         </div>
 
         <div className="my-blogs">Myblogs</div>
+
+        <div className="calender-weather">
+          <Weather />
+          <Calender />
+        </div>
       </div>
+
+      <footer className="news-footer">Footer </footer>
     </div>
   );
 }

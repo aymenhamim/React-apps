@@ -1,5 +1,7 @@
+import "./Weather.css";
+
 function Weather() {
-  return <div>Weather</div>;
+  return <div className="weather">Weather</div>;
 }
 
 export default Weather;
