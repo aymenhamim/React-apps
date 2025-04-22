@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import NewsModal from "./NewsModal";
+import Bookmark from "./Bookmark";
 
 const categories = [
   "general",
@@ -157,6 +158,8 @@ function News() {
           article={selectedArticle}
           onClose={() => setShowModal(false)}
         />
+
+        <Bookmark />
 
         <div className="my-blogs">Myblogs</div>
 
