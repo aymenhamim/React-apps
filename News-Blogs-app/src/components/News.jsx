@@ -4,6 +4,7 @@ import "./News.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import NewsModal from "./NewsModal";
 
 const categories = [
   "general",
@@ -134,6 +135,8 @@ function News() {
             ))}
           </div>
         </div>
+
+        <NewsModal />
 
         <div className="my-blogs">Myblogs</div>
 
