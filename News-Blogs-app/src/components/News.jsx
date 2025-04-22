@@ -24,10 +24,13 @@ function News() {
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        // let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
         // let url = "";
 
         if (searchQuery) {
@@ -58,6 +61,12 @@ function News() {
     setSearchQuery(searchInput);
     setSearchInput("");
   };
+
+  const handleArticleClick = (article) => {
+    setSelectedArticle(article);
+    setShowModal(true);
+  };
+
   return (
     <div className="news">
       <header className="news-header">
@@ -108,7 +117,10 @@ function News() {
         </div>
 
         <div className="news-section">
-          <div className="headline">
+          <div
+            className="headline"
+            onClick={() => handleArticleClick(headline)}
+          >
             <img
               src={headline?.image || "/public/images/no-img.png"}
               alt={headline?.title}
@@ -122,7 +134,11 @@ function News() {
 
           <div className="news-grid">
             {news?.map((item, index) => (
-              <div className="news-grid-item" key={index}>
+              <div
+                className="news-grid-item"
+                key={index}
+                onClick={() => handleArticleClick(item)}
+              >
                 <img
                   src={item.image || "/public/images/no-img.png"}
                   alt={item.titile}
@@ -136,7 +152,11 @@ function News() {
           </div>
         </div>
 
-        <NewsModal />
+        <NewsModal
+          show={showModal}
+          article={selectedArticle}
+          onClose={() => setShowModal(false)}
+        />
 
         <div className="my-blogs">Myblogs</div>
 

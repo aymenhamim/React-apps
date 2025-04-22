@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0; /* ? to-bo-le-ri: 0*/
   background-color: rgba(0, 0, 0, 0.7);
-  /* backdrop-filter: blur(1px); */
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
