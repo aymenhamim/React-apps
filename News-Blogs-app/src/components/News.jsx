@@ -34,7 +34,7 @@ function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+        let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
         // let url = "";
 
         if (searchQuery) {
@@ -46,6 +46,10 @@ function News() {
 
         setHeadline(fetchedNews[0]);
         setNews(fetchedNews.slice(1, 7));
+
+        const savedBookmarks = localStorage.getItem("bookmarks") || "[]";
+
+        setBookmarks(savedBookmarks);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -78,6 +82,8 @@ function News() {
       )
         ? prevBookmarks.filter((bookmark) => bookmark.title !== article.title)
         : [...prevBookmarks, article];
+
+      localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
 
       return updatedBookmarks;
     });
@@ -154,7 +160,7 @@ function News() {
                   handleBookmarkClick(headline);
                 }}
                 className={`${
-                  bookmarks.some(
+                  bookmarks?.some(
                     (bookmark) => bookmark.title === headline.title
                   )
                     ? "fa-solid"
