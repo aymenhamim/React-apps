@@ -1,19 +1,30 @@
 import axios from "axios";
 import "./Weather.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Weather() {
   const [data, setData] = useState([]);
-  const [location, setLocation] = useState("Casablanca");
+  const [location, setLocation] = useState();
 
   const search = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=923f8161dd4aa267d7d3f2fab7808987&units=metric`;
 
-    const response = await axios.get(url);
+    try {
+      const response = await axios.get(url);
 
-    setData(response.data);
-    console.log(response.data);
-    setLocation("");
+      if (response.status !== 200) {
+        setData({ notFound: true });
+      } else {
+        setData(response.data);
+        setLocation("");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setData({ notFound: true });
+      } else {
+        console.error("Error fetching weather data:", error);
+      }
+    }
   };
 
   const getWeatherIcon = (weatherType) => {
@@ -36,6 +47,20 @@ function Weather() {
     }
   };
 
+  useEffect(() => {
+    async function fetchWeather() {
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=Casablanca&appid=923f8161dd4aa267d7d3f2fab7808987&units=metric`;
+        const response = await axios.get(url);
+
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    }
+    fetchWeather();
+  }, []);
+
   return (
     <div className="weather">
       <div className="search">
@@ -54,18 +79,21 @@ function Weather() {
           <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
         </div>
       </div>
-      <div className="weather-data">
-        {/* {getWeatherIcon(data.weather ? data.weather[0].main : "")} */}
-        <i
-          className={getWeatherIcon(data.weather ? data.weather[0].main : "")}
-        ></i>
-        <div className="weather-type">
-          {data.weather ? data.weather[0].main : null}
+      {data.notFound ? (
+        <div className="not-found">Not Found 😒</div>
+      ) : (
+        <div className="weather-data">
+          <i
+            className={getWeatherIcon(data.weather ? data.weather[0].main : "")}
+          ></i>
+          <div className="weather-type">
+            {data.weather ? data.weather[0].main : null}
+          </div>
+          <div className="temp">
+            {data.main ? Math.floor(data.main.temp) : null}°
+          </div>
         </div>
-        <div className="temp">
-          {data.main ? Math.floor(data.main.temp) : null}°
-        </div>
-      </div>
+      )}
     </div>
   );
 }
