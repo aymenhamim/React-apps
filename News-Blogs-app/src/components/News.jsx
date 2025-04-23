@@ -38,7 +38,7 @@ function News() {
         // let url = "";
 
         if (searchQuery) {
-          url = `https://gnews.io/api/v4/search?q=${searchQuery}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+          // url = `https://gnews.io/api/v4/search?q=${searchQuery}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
         }
 
         const response = await axios.get(url);
@@ -47,7 +47,8 @@ function News() {
         setHeadline(fetchedNews[0]);
         setNews(fetchedNews.slice(1, 7));
 
-        const savedBookmarks = localStorage.getItem("bookmarks") || "[]";
+        const savedBookmarks =
+          JSON.parse(localStorage.getItem("bookmarks")) || [];
 
         setBookmarks(savedBookmarks);
       } catch (error) {

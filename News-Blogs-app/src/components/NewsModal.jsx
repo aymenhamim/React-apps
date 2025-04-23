@@ -5,8 +5,9 @@ function NewsModal({ show, article, onClose }) {
     return null;
   }
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-background"></div>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {article && (
           <>
             <span className="close-button" onClick={onClose}>

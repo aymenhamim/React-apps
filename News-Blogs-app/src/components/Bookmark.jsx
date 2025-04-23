@@ -14,8 +14,8 @@ function Bookmark({
 
   return (
     <div>
-      <div className="modal-overlay">
-        <div className="modal-content">
+      <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           {bookmarks.length >= 0 ? (
             <>
               <span className="close-button" onClick={onClose}>
