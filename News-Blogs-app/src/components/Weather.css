@@ -72,6 +72,22 @@
   .bxs-sun {
     color: #ffc87c;
   }
+
+  .bxs-cloud {
+    color: #fff;
+  }
+
+  .bxs-sun-rain {
+    color: #5fd1f9;
+  }
+
+  .bxs-cloud-lightning {
+    color: #154abc;
+  }
+
+  .bxs-cloud {
+    color: #52e5e7;
+  }
 }
 
 .weather-type,

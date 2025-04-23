@@ -34,11 +34,10 @@ function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
-        // let url = "";
+        let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
 
         if (searchQuery) {
-          // url = `https://gnews.io/api/v4/search?q=${searchQuery}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
+          url = `https://gnews.io/api/v4/search?q=${searchQuery}&apikey=ff9c59b6516d2c85ef81f34be2c46319&lang=en`;
         }
 
         const response = await axios.get(url);
