@@ -61,6 +61,12 @@ function Weather() {
     fetchWeather();
   }, []);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      search();
+    }
+  };
+
   return (
     <div className="weather">
       <div className="search">
@@ -75,6 +81,7 @@ function Weather() {
             placeholder="Enter Location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
         </div>
