@@ -224,7 +224,12 @@ function News() {
         </div>
       </div>
 
-      <footer className="news-footer">Footer </footer>
+      <footer className="news-footer">
+        <p>
+          <span>News & Blogs App</span>
+        </p>
+        <p>&copy; All Right Reserved. By Code & Create </p>
+      </footer>
     </div>
   );
 }
