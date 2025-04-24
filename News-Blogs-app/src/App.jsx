@@ -1,10 +1,12 @@
+import Blogs from "./Components/Blogs";
 import News from "./components/News";
 
 function App() {
   return (
     <div className="container">
-      <div className="news-blog-app">
-        <News />
+      <div className="news-blogs-app">
+        {/* <News /> */}
+        <Blogs />
       </div>
     </div>
   );
