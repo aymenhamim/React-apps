@@ -18,7 +18,7 @@ const categories = [
   "health",
 ];
 
-function News() {
+function News({ onShowBlogs }) {
   const [headline, setHeadline] = useState(null);
   const [news, setNews] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("general");
@@ -110,7 +110,7 @@ function News() {
 
       <div className="news-content">
         <div className="navbar">
-          <div className="user">
+          <div className="user" onClick={onShowBlogs}>
             <img src="/public/images/user.jpg" alt="User Image" />
             <p>Ann's Blog</p>
           </div>
