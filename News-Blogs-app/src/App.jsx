@@ -5,6 +5,7 @@ import News from "./components/News";
 function App() {
   const [showNews, setShowNews] = useState(true);
   const [showBlogs, setShowBlogs] = useState(false);
+  const [blogs, setBlogs] = useState([]);
 
   const handleShowBlogs = () => {
     setShowNews(false);
@@ -16,11 +17,17 @@ function App() {
     setShowBlogs(false);
   };
 
+  const handleCreateBlog = (newBlog) => {
+    setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
+  };
+
   return (
     <div className="container">
       <div className="news-blogs-app">
-        {showNews && <News onShowBlogs={handleShowBlogs} />}
-        {showBlogs && <Blogs onBack={handleBackToNews} />}
+        {showNews && <News onShowBlogs={handleShowBlogs} blogs={blogs} />}
+        {showBlogs && (
+          <Blogs onBack={handleBackToNews} onCreateBlog={handleCreateBlog} />
+        )}
       </div>
     </div>
   );

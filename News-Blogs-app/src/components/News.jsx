@@ -18,7 +18,7 @@ const categories = [
   "health",
 ];
 
-function News({ onShowBlogs }) {
+function News({ onShowBlogs, blogs }) {
   const [headline, setHeadline] = useState(null);
   const [news, setNews] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("general");
@@ -219,56 +219,23 @@ function News({ onShowBlogs }) {
         <div className="my-blogs">
           <h1 className="my-blogs-heading">My Blogs</h1>
           <div className="blog-posts">
-            <div className="blog-post">
-              <img src="/public/images/blog1.jpg" alt="Post Image" />
-              <h3>Lorem ipsum dolor sit.</h3>
-              <div className="post-buttons">
-                <button className="edit-post">
-                  <i className="bx bxs-edit"></i>
-                </button>
-                <button className="delete-post">
-                  <i className="bx bxs-trash"></i>
-                </button>
+            {blogs?.map((blog, index) => (
+              <div className="blog-post" key={index}>
+                <img
+                  src={blog.image || "/public/images/no-img.png"}
+                  alt={blog.title}
+                />
+                <h3>{blog.title}</h3>
+                <div className="post-buttons">
+                  <button className="edit-post">
+                    <i className="bx bxs-edit"></i>
+                  </button>
+                  <button className="delete-post">
+                    <i className="bx bxs-trash"></i>
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="blog-post">
-              <img src="/public/images/blog2.jpg" alt="Post Image" />
-              <h3>Lorem ipsum dolor sit.</h3>
-              <div className="post-buttons">
-                <button className="edit-post">
-                  <i className="bx bxs-edit"></i>
-                </button>
-                <button className="delete-post">
-                  <i className="bx bxs-trash"></i>
-                </button>
-              </div>
-            </div>
-
-            <div className="blog-post">
-              <img src="/public/images/blog3.jpg" alt="Post Image" />
-              <h3>Lorem ipsum dolor sit.</h3>
-              <div className="post-buttons">
-                <button className="edit-post">
-                  <i className="bx bxs-edit"></i>
-                </button>
-                <button className="delete-post">
-                  <i className="bx bxs-trash"></i>
-                </button>
-              </div>
-            </div>
-
-            <div className="blog-post">
-              <img src="/public/images/blog4.jpg" alt="Post Image" />
-              <h3>Lorem ipsum dolor sit.</h3>
-              <div className="post-buttons">
-                <button className="edit-post">
-                  <i className="bx bxs-edit"></i>
-                </button>
-                <button className="delete-post">
-                  <i className="bx bxs-trash"></i>
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
