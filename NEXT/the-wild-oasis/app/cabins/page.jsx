@@ -1,6 +1,10 @@
 import Counter from "../_components/Counter";
 import Navigation from "../_components/Navigation";
 
+export const metadata = {
+  title: "Cabins",
+};
+
 function cabins() {
   return (
     <div>
