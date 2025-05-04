@@ -6,9 +6,7 @@ export default function Home() {
     <div>
       <h1>The Wild Oasis. Welcome to Paradise.</h1>
 
-      <div className="flex gap-10">
-        <Navigation />
-      </div>
+      <div className="flex gap-10"></div>
     </div>
   );
 }

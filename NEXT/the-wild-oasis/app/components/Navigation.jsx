@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function Navigation() {
   return (
-    <ul>
+    <ul className="flex gap-10 text-2xl font-bold text-gray-800">
       <li>
         <Link href="/">home</Link>
       </li>
