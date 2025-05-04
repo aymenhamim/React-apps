@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Logo from "./components/Logo";
-import Navigation from "./components/Navigation";
+import Logo from "@/app/_components/Logo";
+import Navigation from "@/app/_components/Navigation";
 
 export const metadata = {
   title: "The Wild Oasis",
@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
       <body>
         <header>
           <Logo />
-          <Link href='/'>The Wild Oasis</Link>
           <Navigation />
         </header>
         <main>{children}</main>
