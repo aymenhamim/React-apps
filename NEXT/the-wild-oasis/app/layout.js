@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "./components/Logo";
 import Navigation from "./components/Navigation";
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <header>
           <Logo />
+          <Link href='/'>The Wild Oasis</Link>
           <Navigation />
         </header>
         <main>{children}</main>
