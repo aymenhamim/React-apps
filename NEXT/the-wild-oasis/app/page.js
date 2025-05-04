@@ -1,3 +1,14 @@
+import Link from "next/link";
+import Navigation from "./components/Navigation";
+
 export default function Home() {
-  return <h1>The Wild Oasis. Welcome to Paradise.</h1>;
+  return (
+    <div>
+      <h1>The Wild Oasis. Welcome to Paradise.</h1>
+
+      <div className="flex gap-10">
+        <Navigation />
+      </div>
+    </div>
+  );
 }
