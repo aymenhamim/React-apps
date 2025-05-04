@@ -1,3 +1,4 @@
+import Counter from "../components/Counter";
 import Navigation from "../components/Navigation";
 
 async function cabins() {
@@ -15,6 +16,8 @@ async function cabins() {
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
+      <p>There is {data.length} users.</p>
+      <Counter />
     </div>
   );
 }
