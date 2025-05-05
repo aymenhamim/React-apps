@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-// NB: this is how we can generate static pages for dynamic routes in Next.js
+// NB: this is how we can generate static params for dynamic routes in Next.js
 export async function generateStaticParams() {
   const cabins = await getCabins();
 
