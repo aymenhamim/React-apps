@@ -1,4 +1,4 @@
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
@@ -9,6 +9,17 @@ export async function generateMetadata({ params }) {
   return {
     title: `Cabin ${name} `,
   };
+}
+
+// NB: this is how we can generate static pages for dynamic routes in Next.js
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+
+  const IDs = cabins.map((cabin) => ({
+    cabinId: String(cabin.id),
+  }));
+  console.log(IDs);
+  return IDs;
 }
 
 export default async function Page({ params }) {
