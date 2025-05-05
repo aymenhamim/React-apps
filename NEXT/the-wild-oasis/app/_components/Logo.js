@@ -6,7 +6,7 @@ function Logo() {
   return (
     <Link
       href="/"
-      className="text-xl font-semibold text-primary-100 flex justify-center items-center gap-3"
+      className="text-xl font-semibold text-primary-100 flex justify-center items-center gap-3 z-10"
     >
       {/* <Image src="/logo.png" height="60" width="60" alt="The Wild Oasis logo" /> */}
       <Image
