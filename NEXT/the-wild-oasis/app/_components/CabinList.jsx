@@ -1,7 +1,10 @@
+import { unstable_noStore as noStore } from "next/cache";
 import CabinCard from "../_components/CabinCard";
 import { getCabins } from "../_lib/data-service";
 
 async function CabinList() {
+  //noStore(); // ? This will prevent the component from being cached in component level
+
   const cabins = await getCabins();
 
   if (!cabins || cabins.length === 0) null;

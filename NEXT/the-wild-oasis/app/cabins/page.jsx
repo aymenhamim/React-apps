@@ -5,6 +5,9 @@ import Spinner from "../_components/Spinner";
 export const metadata = {
   title: "Cabins",
 };
+
+export const revalidate = 3600; // ? use ISR to revalidate the page every hour in route level
+
 function Page() {
   // CHANGE
 
@@ -21,6 +24,7 @@ function Page() {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+
       <Suspense fallback={<Spinner />}>
         <CabinList />
       </Suspense>
