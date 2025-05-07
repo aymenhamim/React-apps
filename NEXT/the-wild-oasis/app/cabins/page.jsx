@@ -1,14 +1,22 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
 
 export const metadata = {
   title: "Cabins",
 };
 
-export const revalidate = 3600; // ? use ISR to revalidate the page every hour in route level
+// NB: after using searchParams the page becames dynamic so no need to use revalidate because it will be revalidated every time the page is loaded
+// export const revalidate = 3600; // ? use ISR to revalidate the page every hour in route level
 
-function Page() {
+// note: the searchParams is used to get the query string from the URL
+
+function Page({ searchParams }) {
+  console.log(searchParams);
+
+  const filter = searchParams?.capacity ?? "all";
+
   // CHANGE
 
   return (
@@ -25,8 +33,12 @@ function Page() {
         Welcome to paradise.
       </p>
 
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
+
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
