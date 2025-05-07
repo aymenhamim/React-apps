@@ -13,7 +13,7 @@ export const metadata = {
 // note: the searchParams is used to get the query string from the URL
 
 function Page({ searchParams }) {
-  console.log(searchParams);
+  // note: when ever the searchParams changes the CabinList component will be re-rendered because it is server component
 
   const filter = searchParams?.capacity ?? "all";
 
@@ -37,7 +37,10 @@ function Page({ searchParams }) {
         <Filter />
       </div>
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense
+        fallback={<Spinner />}
+        key={filter} // ? The key is used to re-render the component when the filter changes (the spinner)
+      >
         <CabinList filter={filter} />
       </Suspense>
     </div>
