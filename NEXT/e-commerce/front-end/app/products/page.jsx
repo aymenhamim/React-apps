@@ -7,7 +7,9 @@ function page() {
   return (
     <div>
       {products.map((p) => (
-        <div key={p.id}>{p.name}</div>
+        <div key={p.id} className="bg-black text-white">
+          {p.name}
+        </div>
       ))}
     </div>
   );
