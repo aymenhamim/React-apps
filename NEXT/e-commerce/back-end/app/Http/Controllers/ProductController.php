@@ -7,43 +7,48 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Product::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Product $product)
     {
-        //
+        return $product;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|string',
+        ]);
+
+        return Product::create($validated);
+    }
+
     public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|string',
+        ]);
+
+        $product->update($validated);
+        return $product;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response()->json(['message' => 'Deleted']);
     }
 }
