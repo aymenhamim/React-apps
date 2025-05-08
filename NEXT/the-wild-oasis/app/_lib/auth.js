@@ -14,9 +14,21 @@ const authConfig = {
       return !!auth?.user; // ! use !! to convert to boolean - check if user is logged in
     },
   },
+  pages: {
+    signIn: "/login",
+    signOut: "/auth/signout",
+
+    /* 
+    error: "/auth/error", // Error code passed in query string as ?error=
+    verifyRequest: "/auth/verify-request", // (used for check email message)
+    newUser: null, // Will disable the new account creation screen
+    */
+  },
 };
 
 export const {
   auth,
+  signIn,
+  signOut,
   handlers: { GET, POST },
 } = NextAuth(authConfig);
