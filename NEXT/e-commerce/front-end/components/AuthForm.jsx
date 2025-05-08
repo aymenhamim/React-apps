@@ -21,8 +21,8 @@ export default function AuthForm({ type = "login", onSubmit }) {
 
   return (
     <form
-      onSubmit={handleSubmit}
       className="space-y-4 max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md"
+      onSubmit={handleSubmit}
     >
       <h2 className="text-2xl font-bold text-center mb-4 capitalize">{type}</h2>
 

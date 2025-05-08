@@ -1,3 +1,4 @@
+"use client";
 import AuthForm from "@/components/AuthForm";
 
 function Login() {
@@ -8,7 +9,7 @@ function Login() {
 
   return (
     <div className="mt-20 relative">
-      <AuthForm />
+      <AuthForm onSubmit={handleLogin} />
     </div>
   );
 }

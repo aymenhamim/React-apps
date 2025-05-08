@@ -14,7 +14,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+    <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md min-lg:px-28">
       <h1 className="text-2xl font-bold">🛒 SHOP</h1>
       <ul className="flex space-x-6 items-center">
         {navLinks.map((link) => (

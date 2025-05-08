@@ -1,5 +1,15 @@
-function Register() {
-  return <h1 className="text-xl">Register Page</h1>;
-}
+"use client";
+import AuthForm from "@/components/AuthForm";
 
-export default Register;
+export default function RegisterPage() {
+  const handleRegister = (data) => {
+    console.log("Register form submitted:", data);
+    // Later: call backend API here
+  };
+
+  return (
+    <div className="mt-12">
+      <AuthForm type="register" onSubmit={handleRegister} />
+    </div>
+  );
+}
