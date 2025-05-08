@@ -1,5 +1,16 @@
+import AuthForm from "@/components/AuthForm";
+
 function Login() {
-  return <h1 className="text-xl">Login Page</h1>;
+  const handleLogin = (data) => {
+    console.log("Login form submitted:", data);
+    // Later: call backend API here
+  };
+
+  return (
+    <div className="mt-20 relative">
+      <AuthForm />
+    </div>
+  );
 }
 
 export default Login;
