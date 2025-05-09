@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', [AuthController::class, 'me']);
+    Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
@@ -31,6 +31,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update']);
     Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 });
+
 
 // Route::middleware('auth:sanctum')->group(function () {
 // // Protected (admin required later)
