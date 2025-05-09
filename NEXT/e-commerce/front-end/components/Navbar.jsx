@@ -1,7 +1,10 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
+import { useDispatch } from "react-redux";
+import { openAuthModal } from "@/redux/slices/authSlice";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -12,6 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const dispatch = useDispatch();
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md min-lg:px-28">
@@ -30,9 +34,10 @@ export default function Navbar() {
           </li>
         ))}
         <li>
-          <Link href="/login">
+          {/* <Link href="/login">
             <Button>Login</Button>
-          </Link>
+          </Link> */}
+          <Button onClick={() => dispatch(openAuthModal())}>Login</Button>
         </li>
       </ul>
     </nav>
