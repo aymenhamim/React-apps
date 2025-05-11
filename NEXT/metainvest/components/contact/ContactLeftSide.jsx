@@ -24,17 +24,11 @@ function ContactLeftSide() {
             <HomeIcon />
           </ContactIcon>
 
-          <ContactIcon
-            title="Notre emplacement"
-            value=" Zone Industrielle, Casablanca, "
-          >
+          <ContactIcon title="Numéro de Téléphone" value="(+212) 646055092 ">
             <PhoneIcon />
           </ContactIcon>
 
-          <ContactIcon
-            title="Notre emplacement"
-            value=" Zone Industrielle, Casablanca, "
-          >
+          <ContactIcon title="Adresse Email" value="contact@metainvest.ma">
             <MailIcon />
           </ContactIcon>
         </div>
