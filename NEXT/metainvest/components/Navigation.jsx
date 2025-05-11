@@ -21,7 +21,7 @@ function Navigation() {
   return (
     <nav
       className={cn(
-        "text-2xl bg-transparent text-stone-50 py-5  max-sm:px-4 max-md:px-8 max-2xl:px-24 px-52 z-10",
+        "text-2xl bg-transparent text-stone-50 py-5  max-sm:px-4 max-md:px-8 max-2xl:px-24 px-52 z-30",
         pathname === "/about" ? "bg-stone-950 " : ""
       )}
     >
