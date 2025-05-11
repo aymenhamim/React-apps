@@ -3,7 +3,7 @@ import ContactIcon from "@/components/ContactIcon";
 
 function ContactLeftSide() {
   return (
-    <div className="h-dvh max-lg:h-[50rem] w-[60%] max-lg:w-full flex items-center max-lg:justify-center">
+    <div className="h-dvh max-sm:h-[70dvh] max-lg:h-[50rem] w-[60%] max-lg:w-full flex items-center max-lg:justify-center">
       <div className=" xl:max-w-2xl lg:w-full max-md:mx-4 ">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-wrap mb-6 text-white">
           Contactez-nous
