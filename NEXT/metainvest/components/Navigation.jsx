@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/about", label: "About" },
-  { href: "/cart", label: "Produits" },
-  { href: "/demende-devis", label: "Demande de devis" },
+  { href: "/produits", label: "Produits" },
+  { href: "/demande-devis", label: "Demande de devis" },
   //   { href: "/login", label: "Login" },
 ];
 
@@ -19,31 +20,34 @@ function Navigation() {
 
   return (
     <div
-      className={`${
+      className={cn(
+        "text-2xl bg-transparent text-stone-50 py-5  max-sm:px-4 max-md:px-8 max-2xl:px-24 px-52",
         pathname !== "/about" ? "bg-stone-950 " : ""
-      } text-2xl bg-transparent text-stone-50 py-5 px-30`}
+      )}
     >
       <ul className="flex items-center justify-between">
         <div>
-          <Link href="/Home" className="font-bold text-2xl">
+          <Link href="/" className="font-bold text-2xl">
             Meta Invest
           </Link>
         </div>
 
-        <div className="flex gap-10">
+        <div className="max-lg:block hidden">burger menu</div>
+        <div className="flex gap-10 items-center max-lg:hidden">
           {navLinks.map((link) => (
             <li
               key={link.href}
-              className={`${
-                link.href === pathname ? "font-bold underline" : ""
-              } text-white text-sm`}
+              className={cn(
+                "text-white text-sm ",
+                link.href === pathname ? " font-bold underline" : ""
+              )}
             >
               <Link href={link.href}>{link.label}</Link>
             </li>
           ))}
 
-          <Button variant="secondary">
-            <Link href="contact-us">Contact</Link>
+          <Button variant="default" className={"rounded-full"}>
+            <Link href="contact">Contact</Link>
           </Button>
         </div>
       </ul>
