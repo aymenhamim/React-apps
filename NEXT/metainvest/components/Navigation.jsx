@@ -19,10 +19,10 @@ function Navigation() {
   // console.log(pathname);
 
   return (
-    <div
+    <nav
       className={cn(
-        "text-2xl bg-transparent text-stone-50 py-5  max-sm:px-4 max-md:px-8 max-2xl:px-24 px-52",
-        pathname !== "/about" ? "bg-stone-950 " : ""
+        "text-2xl bg-transparent text-stone-50 py-5  max-sm:px-4 max-md:px-8 max-2xl:px-24 px-52 z-10",
+        pathname === "/about" ? "bg-stone-950 " : ""
       )}
     >
       <ul className="flex items-center justify-between">
@@ -46,12 +46,12 @@ function Navigation() {
             </li>
           ))}
 
-          <Button variant="default" className={"rounded-full"}>
+          <Button variant="secondary" className={"rounded-full"}>
             <Link href="contact">Contact</Link>
           </Button>
         </div>
       </ul>
-    </div>
+    </nav>
   );
 }
 
