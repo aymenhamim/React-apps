@@ -21,8 +21,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`min-h-full bg-stone-950  ${poppins.className}`}>
-        <Navigation />
+      <body className={`min-h-full bg-stone-950 relative ${poppins.className}`}>
+        <header className="absolute top-0 left-0 right-0 z-20">
+          <Navigation />
+        </header>
         {children}
       </body>
     </html>
