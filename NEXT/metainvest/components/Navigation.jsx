@@ -27,7 +27,7 @@ function Navigation() {
     >
       <ul className="flex items-center justify-between">
         <div>
-          <Link href="/" className="font-bold text-2xl">
+          <Link href="/" className="font-bold text-2xl max-md:text-xl">
             Meta Invest
           </Link>
         </div>
