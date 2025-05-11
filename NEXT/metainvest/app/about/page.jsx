@@ -1,4 +1,9 @@
 import Image1 from "@/public/images/project-imgs/about/main-1.jpg";
+
+import Image2 from "@/public/images/project-imgs/about/pic-2.jpg";
+import Image3 from "@/public/images/project-imgs/about/pic-3.jpg";
+import Image4 from "@/public/images/project-imgs/about/pic-4.jpg";
+
 import Image from "next/image";
 
 function About() {
@@ -84,23 +89,42 @@ function About() {
           Nos valeurs
         </h3>
 
-        <div className="valeurs">
-          <div className="flex max-md:flex-col w-[80dvw] max-lg:w-[90dvw] mx-auto gap-20 my-20 justify-evenly">
-            <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
-              <h3 className="absolute left-1/2 top-1/2 translatex-[-50%] translatey-[-50%] text-white">
-                Intégrité dans la production.
-              </h3>
-            </div>
-            <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
-              <h3 className="absolute left-1/2 top-1/2 translatex-[-50%] translatey-[-50%] text-white">
-                Intégrité dans la production.
-              </h3>
-            </div>
-            <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
-              <h3 className="absolute left-1/2 top-1/2 translatex-[-50%] translatey-[-50%] text-white">
-                Intégrité dans la production.
-              </h3>
-            </div>
+        <div className="flex max-md:flex-col w-[80dvw] max-lg:w-[90dvw] mx-auto gap-20 my-20 justify-evenly items-center max-md:gap-8">
+          <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
+            <h3 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+              Intégrité dans la production.
+            </h3>
+            <Image
+              src={Image2}
+              alt="main image"
+              fill
+              priority
+              className="object-cover brightness-[46%] max-md:object-bottom-left"
+            />
+          </div>
+          <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
+            <h3 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+              Intégrité dans la production.
+            </h3>
+            <Image
+              src={Image3}
+              alt="main image"
+              fill
+              priority
+              className="object-cover brightness-[46%] max-md:object-bottom-left"
+            />
+          </div>
+          <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold ">
+            <h3 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+              Intégrité dans la production.
+            </h3>
+            <Image
+              src={Image4}
+              alt="main image"
+              fill
+              priority
+              className="object-cover brightness-[46%] max-md:object-bottom-left"
+            />
           </div>
         </div>
       </div>
