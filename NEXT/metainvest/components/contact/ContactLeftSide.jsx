@@ -1,5 +1,5 @@
 import { HomeIcon, MailIcon, PhoneIcon } from "lucide-react";
-import ContactIcon from "@/components/ContactIcon";
+import ContactIcon from "@/components/contact/ContactIcon";
 
 function ContactLeftSide() {
   return (

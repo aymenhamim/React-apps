@@ -1,4 +1,5 @@
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/contact/ContactForm";
+import DemandeDevisForm from "@/components/demande-devis/DemandeDevisForm";
 import HeroSection from "@/components/HeroSection";
 import Image1 from "@/public/images/project-imgs/demande-devis/hero1.jpg";
 
@@ -23,9 +24,7 @@ function DemendeDevis() {
         </div>
       </HeroSection>
 
-      <div className="min-h-dvh bg-stone-50 py-20 mx-auto">
-        <ContactForm />
-      </div>
+      <DemandeDevisForm></DemandeDevisForm>
     </div>
   );
 }

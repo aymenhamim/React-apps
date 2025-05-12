@@ -1,5 +1,5 @@
 import ContactLeftSide from "@/components/contact/ContactLeftSide";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/contact/ContactForm";
 
 function Contact() {
   return (
