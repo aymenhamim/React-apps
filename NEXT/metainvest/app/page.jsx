@@ -2,12 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Image1 from "@/public/images/project-imgs/home/main.1.png";
-import pic1 from "@/public/images/project-imgs/home/pic-1.jpg";
 
-import { Button } from "@/components/ui/button";
-import { HeaderTitle2 } from "@/components/HeaderTitle";
 import Section2 from "@/components/home/Section2";
 import Section3 from "@/components/home/Section3";
+import { Button } from "@/components/ui/button";
+import Section4 from "@/components/home/Section4";
 
 const metaData = {
   title: "Home",
@@ -62,8 +61,8 @@ export default function Home() {
       </div>
 
       <Section2 />
-
       <Section3 />
+      <Section4 />
     </div>
   );
 }
