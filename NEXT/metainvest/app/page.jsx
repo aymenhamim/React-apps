@@ -8,6 +8,7 @@ import Section3 from "@/components/home/Section3";
 import { Button } from "@/components/ui/button";
 import Section4 from "@/components/home/Section4";
 import Section5 from "@/components/home/Section5";
+import Footer from "@/components/Footer";
 
 const metaData = {
   title: "Home",
@@ -65,6 +66,7 @@ export default function Home() {
       <Section3 />
       <Section4 />
       <Section5 />
+      <Footer />
     </div>
   );
 }

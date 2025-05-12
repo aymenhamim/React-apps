@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Image1 from "@/public/images/project-imgs/about/main-1.jpg";
 
 import Image2 from "@/public/images/project-imgs/about/pic-2.jpg";
@@ -80,7 +81,7 @@ function About() {
         </ul>
       </div>
 
-      <div className="bg-stone-300 min-h-dvh flex flex-col py-30">
+      <div className="bg-stone-300 min-h-[80dvh] flex flex-col py-30">
         <h3
           className="text-center font-bold border-b-3 px-2 py-1 border-red-600 w-fit mx-auto
         text-5xl max-xl:text-4xl max-lg:text-3xl 
@@ -102,6 +103,7 @@ function About() {
               className="object-cover brightness-[46%] max-md:object-bottom-left hover:scale-110 hover:saturate-50 hover:rotate-3 transition-all duration-200"
             />
           </div>
+
           <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold overflow-hidden">
             <h3 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10 ">
               Précision dans le design
@@ -114,6 +116,7 @@ function About() {
               className="object-cover brightness-[46%] max-md:object-bottom-left hover:scale-110 hover:saturate-50 hover:rotate-3 transition-all duration-200 "
             />
           </div>
+
           <div className="w-92 h-92 bg-stone-800 rounded-md relative font-semibold overflow-hidden ">
             <h3 className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10 ">
               Respect de chaque client.
@@ -128,6 +131,7 @@ function About() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

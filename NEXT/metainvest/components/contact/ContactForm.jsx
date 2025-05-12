@@ -37,7 +37,7 @@ function ContactForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white w-[30rem] max-xl:w-[25rem] max-lg:w-[30rem] max-sm:w-[28rem]  rounded-2xl "
       >
-        <h2 className="text-center my-10 text-3xl font-bold">Get In Touch</h2>
+        <h2 className="text-center my-10 text-3xl font-bold">Contactez-nous</h2>
 
         <div className="my-10 w-[80%] mx-auto flex flex-col gap-5">
           <div>

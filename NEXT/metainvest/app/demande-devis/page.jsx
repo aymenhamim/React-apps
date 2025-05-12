@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact/ContactForm";
 import DemandeDevisForm from "@/components/demande-devis/DemandeDevisForm";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Image1 from "@/public/images/project-imgs/demande-devis/hero1.jpg";
 
@@ -24,7 +25,8 @@ function DemendeDevis() {
         </div>
       </HeroSection>
 
-      <DemandeDevisForm></DemandeDevisForm>
+      <DemandeDevisForm />
+      <Footer />
     </div>
   );
 }
