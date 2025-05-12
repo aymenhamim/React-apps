@@ -4,8 +4,10 @@ import Link from "next/link";
 
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { usePathname } from "next/navigation";
 
-const navLinks = [
+const navLinksArr = [
   { href: "/", label: "Accueil" },
   { href: "/about", label: "About" },
   { href: "/produits", label: "Produits" },
@@ -13,11 +15,33 @@ const navLinks = [
   //   { href: "/login", label: "Login" },
 ];
 
-const Logo = () => {
-  return <div className="logo  font-bold text-2xl text-white">MetaInvest</div>;
+const NavLinks = () => {
+  const pathname = usePathname();
+
+  {
+    return (
+      <>
+        {navLinksArr.map((link, i) => (
+          <Link
+            href={link.href}
+            key={i}
+            className={`dsq ${
+              pathname === link.href ? "font-bold underline" : ""
+            }`}
+          >
+            {link.label}
+          </Link>
+        ))}
+
+        <Button variant="secondary" className={"rounded-full max-md:mt-4"}>
+          <Link href="contact">Contact</Link>
+        </Button>
+      </>
+    );
+  }
 };
 
-const NavLink = () => {
+const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
@@ -26,13 +50,9 @@ const NavLink = () => {
 
   return (
     <>
-      <nav className="w-1/3 flex justify-end">
-        <div className="hidden md:flex justify-between w-full">
-          {navLinks.map((link, i) => (
-            <Link href={link.href} key={i}>
-              {link.label}
-            </Link>
-          ))}
+      <nav className=" flex justify-end ">
+        <div className="hidden md:flex justify-between w-full items-center text-sm gap-10">
+          <NavLinks />
         </div>
 
         <div className="md:hidden">
@@ -44,11 +64,7 @@ const NavLink = () => {
 
       {isOpen && (
         <div className="flex flex-col items-center basis-full">
-          {navLinks.map((link, i) => (
-            <Link href={link.href} key={i}>
-              {link.label}
-            </Link>
-          ))}
+          <NavLinks />
         </div>
       )}
     </>
@@ -57,9 +73,17 @@ const NavLink = () => {
 
 function Navbar() {
   return (
-    <header className="bg-black sticky top-0 z-20 mx-auto flex w-full items-center justify-between border-gray-500 text-white flex-wrap">
-      <Logo />
-      <NavLink />
+    <header
+      className="bg-black sticky top-0 z-20 mx-auto flex w-full items-center justify-between border-gray-500 text-white flex-wrap
+    py-5 
+    px-52 max-xl:px-20 max-lg:px-10"
+    >
+      <div>
+        <Link href="/" className="font-bold text-2xl max-md:text-xl">
+          Meta Invest
+        </Link>
+      </div>
+      <Nav />
     </header>
   );
 }
