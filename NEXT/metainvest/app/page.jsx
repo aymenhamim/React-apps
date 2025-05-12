@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Image1 from "@/public/images/project-imgs/home/main.1.png";
 import { Button } from "@/components/ui/button";
+import { HeaderTitle2 } from "@/components/HeaderTitle";
 
 const metaData = {
   title: "Home",
@@ -55,7 +56,25 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-white h-[400rem] text-white">vkxh</div>
+      <div className="bg-white min-h-[70dvh] py-32 flex max-md:flex-col items-center justify-center px-[15dvw] max-xl:px-[10dvw] max-lg:px-[5dvw] max-md:px-4">
+        <div className="w-[40%] min-md:w-full h-72 bg-red-700"></div>
+
+        {/* font-semibold 
+         text-4xl max-xl:text-3xl max-lg:text-xl max-md:text-lg text-center 
+         py-20 max-lg:py-12 min-xl:py-26 */}
+
+        <div className="flex flex-col gap-3 w-[60%] min-md:w-full">
+          <h3 className="font-semibold text-red-600 text-3xl">MetaInvest</h3>
+          <p>
+            Chez MetaInvest, nous allions robustesse, savoir-faire et utilité.
+            Reconnue dans le domaine de la fabrication métallique, notre
+            entreprise est spécialisée dans la production de chaises, de bureaux
+            scolaires et de sièges de transport de haute qualité. Chaque produit
+            que nous concevons porte la signature d’une fabrication soignée,
+            d’un design fonctionnel et d’un engagement envers la durabilité.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
