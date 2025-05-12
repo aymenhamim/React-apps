@@ -13,6 +13,69 @@ const navLinks = [
   //   { href: "/login", label: "Login" },
 ];
 
+const Navlink = () => {
+  const pathname = usePathname();
+
+  return (
+    <>
+      {navLinks.map((link, i) => (
+        <Link
+          href={link.href}
+          key={i}
+          className={cn(
+            "text-white text-sm ",
+            link.href === pathname ? " font-bold underline" : ""
+          )}
+        >
+          {link.label}
+        </Link>
+      ))}
+
+      <Button variant="secondary" className={"rounded-full"}>
+        <Link href="contact">Contact</Link>
+      </Button>
+    </>
+  );
+};
+
+const Nav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <>
+      <nav className="w-1/3 flex justify-end">
+        <div className="hidden md:flex justify-between w-full">
+          {navLinks.map((link, i) => (
+            <Link href={link.href} key={i}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="md:hidden">
+          <button onClick={toggleNavbar}>
+            {isOpen ? <XIcon /> : <MenuIcon />}
+          </button>
+        </div>
+      </nav>
+
+      {isOpen && (
+        <div className="flex flex-col items-center basis-full">
+          {navLinks.map((link, i) => (
+            <Link href={link.href} key={i}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
+  );
+};
+
 function Navigation() {
   const pathname = usePathname();
 
