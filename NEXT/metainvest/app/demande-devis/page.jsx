@@ -14,7 +14,7 @@ function DemendeDevis() {
               Une solution sur mesure
             </h2>
 
-            <p className="text-stone-300 text-lg max-lg:text-md max-sm:text-sm mb-6 text-center text-shadow-lg text-shadow-black">
+            <p className="text-stone-100 text-lg max-lg:text-md max-sm:text-sm mb-6 text-center text-shadow-lg ">
               Une question, une demande de devis ou une visite à planifier ?
               Nous sommes à votre écoute. Chez MetaInvest, la communication est
               au cœur de notre service client. Que vous souhaitiez équiper une

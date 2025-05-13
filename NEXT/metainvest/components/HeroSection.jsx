@@ -1,5 +1,11 @@
 import Image from "next/image";
 
+const metaData = {
+  title: "MetaInvest - Demande de devis",
+  description:
+    "Demandez un devis personnalisé pour votre projet de mobilier métallique.",
+};
+
 function HeroSection({ image, postion = "left", children }) {
   return (
     <>
@@ -8,7 +14,6 @@ function HeroSection({ image, postion = "left", children }) {
           src={image}
           alt="main image"
           fill
-          priority
           className={`object-cover brightness-[30%] max-md:object-bottom-${postion}`}
         />
       </div>
