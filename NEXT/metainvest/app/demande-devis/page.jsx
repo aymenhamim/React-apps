@@ -6,7 +6,7 @@ import Image1 from "@/public/images/project-imgs/demande-devis/hero1.jpg";
 
 function DemendeDevis() {
   return (
-    <div className="relative w-full h-screen overflow-x-hidden">
+    <div className="relative w-full h-dvh overflow-x-hidden">
       <HeroSection image={Image1} postion="right">
         <div className="relative z-10 container px-4 h-dvh flex flex-col justify-center text-white mx-auto ">
           <div className="max-w-4xl mx-auto w-fit min-xl:mb-32">
