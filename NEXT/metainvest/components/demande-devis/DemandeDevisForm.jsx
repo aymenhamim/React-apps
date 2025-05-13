@@ -3,6 +3,16 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui//textarea";
@@ -22,13 +32,13 @@ const formSchema = z.object({
     .min(3, { message: "Entreprise / Organisation invalide" }),
   lieu: z.string().min(8, { message: "Lieu de livraison est invalide" }),
   details: z.string().min(10, { message: "Message trop court" }),
-  type: z.string().min(3, { message: "Type de produit est invalide" }),
+  // type: z.string().min(3, { message: "Type de produit est invalide" }),
   quantity: z
     .string()
     .min(2, { message: "Quantité doit être supérieur à 10" })
     .max(5, { message: "Quantité trop grande" }),
   delay: z.string().min(3, { message: "Délai est invalide" }),
-  budget: z.string().min(3, { message: "Budget est invalide" }),
+  // budget: z.string().min(3, { message: "Budget est invalide" }),
 });
 
 function DemandeDevisForm() {
@@ -101,7 +111,30 @@ function DemandeDevisForm() {
               <Label htmlFor="type" className="text-sm">
                 Type de produit souhaité
               </Label>
-              <Input type={"text"} {...register("type")} />
+
+              <Select {...register("type")}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a type" />
+                </SelectTrigger>
+
+                <SelectContent {...register("type")}>
+                  <SelectGroup>
+                    <SelectLabel>Types</SelectLabel>
+
+                    <SelectItem value="chaises de transport">
+                      Chaises de transport
+                    </SelectItem>
+
+                    <SelectItem value="table de transport">
+                      Table de transport
+                    </SelectItem>
+
+                    <SelectItem value="aure">autre...</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+
+              {/* <Input type={"text"} {...register("type")} /> */}
               {errors.type && (
                 <p className="text-red-500 text-sm">{errors.type.message}</p>
               )}
