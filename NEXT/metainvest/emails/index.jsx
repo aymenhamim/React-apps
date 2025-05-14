@@ -42,9 +42,21 @@ export const KoalaWelcomeEmail = ({ userFirstname }) => (
           uncover qualified leads and close deals faster.
         </Text> */}
         <Text style={paragraph}>
-          <b>Email: </b>{" "}
+          <b>CustomerEmail: </b>{" "}
         </Text>
-        <Section style={btnContainer}>
+        <Text style={paragraph}>
+          <b>Télephone: </b>{" "}
+        </Text>
+        <Text style={paragraph}>
+          <b>Adresse: </b>{" "}
+        </Text>
+        <Text style={paragraph}>
+          <b>Message : </b>{" "}
+        </Text>
+        <Text style={paragraph}>
+          <b>Date d’envoi : </b> {new Date().toLocaleString("fr-FR")}
+        </Text>
+        {/* <Section style={btnContainer}>
           <Button style={button} href="https://getkoala.com">
             Get started
           </Button>
@@ -57,7 +69,7 @@ export const KoalaWelcomeEmail = ({ userFirstname }) => (
         <Hr style={hr} />
         <Text style={footer}>
           470 Noor Ave STE B #1148, South San Francisco, CA 94080
-        </Text>
+        </Text> */}
       </Container>
     </Body>
   </Html>

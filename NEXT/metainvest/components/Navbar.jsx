@@ -35,7 +35,7 @@ const NavLinks = () => {
         ))}
 
         <Button variant="secondary" className={"rounded-full max-md:mt-4"}>
-          <Link href="contact">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </Button>
       </>
     );

@@ -63,7 +63,7 @@ function ContactForm() {
           </div>
           <div>
             <Label htmlFor="text">Comment pouvons-nous vous aider ?</Label>
-            <Textarea {...register("text")} />
+            <Input {...register("text")} />
             {errors.text && (
               <p className="text-red-500 text-sm">{errors.text.message}</p>
             )}
