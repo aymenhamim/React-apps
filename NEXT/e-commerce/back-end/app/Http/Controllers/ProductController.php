@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -29,28 +30,14 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0|max:100',
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         return Product::create($validated);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0|max:100',
-            'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable|string',
-        ]);
+        $validated = $request->validated();
 
         $product->update($validated);
         return $product;
