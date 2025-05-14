@@ -8,7 +8,6 @@ function HeroSection({ image, postion = "left", children }) {
           src={image}
           alt="main image"
           fill
-          priority
           className={`object-cover brightness-[30%] max-md:object-bottom-${postion}`}
         />
       </div>

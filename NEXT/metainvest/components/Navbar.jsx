@@ -76,40 +76,13 @@ function Navbar() {
   const pathname = usePathname();
   const isTranspart = pathname === "/" || pathname === "/demande-devis";
 
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if page is scrolled more than 1px
-      const isScrolled = window.scrollY > 1;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
-
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
-    console.log(scrolled);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrolled]);
-
-  // console.log("rhis navbar", isTranspart);
-
   return (
     <motion.header
       className={`bg-black ${
-        isTranspart ? "min-md:bg-transparent" : "bg-black"
+        isTranspart ? "bg-stone-950" : "bg-stone-950"
       }  sticky top-0 z-20 mx-auto flex w-full items-center justify-between border-gray-500 text-white flex-wrap
     py-5 
     px-52 max-xl:px-20 max-lg:px-10`}
-      animate={{
-        backgroundColor: scrolled ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0)",
-      }}
-      transition={{ duration: 0.3 }}
     >
       <div>
         <Link href="/" className="font-bold text-2xl max-md:text-xl">

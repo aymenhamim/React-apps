@@ -99,7 +99,6 @@ function About() {
               src={Image2}
               alt="main image"
               fill
-              priority
               className="object-cover brightness-[46%] max-md:object-bottom-left hover:scale-110 hover:saturate-50 hover:rotate-3 transition-all duration-200"
             />
           </div>
@@ -112,7 +111,6 @@ function About() {
               src={Image3}
               alt="main image"
               fill
-              priority
               className="object-cover brightness-[46%] max-md:object-bottom-left hover:scale-110 hover:saturate-50 hover:rotate-3 transition-all duration-200 "
             />
           </div>

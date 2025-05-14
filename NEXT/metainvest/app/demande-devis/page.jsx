@@ -4,6 +4,12 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Image1 from "@/public/images/project-imgs/demande-devis/hero1.jpg";
 
+const metaData = {
+  title: "MetaInvest - Demande de devis",
+  description:
+    "Demandez un devis personnalisé pour votre projet de mobilier métallique.",
+};
+
 function DemendeDevis() {
   return (
     <div className="relative w-full h-dvh overflow-x-hidden">
@@ -14,7 +20,7 @@ function DemendeDevis() {
               Une solution sur mesure
             </h2>
 
-            <p className="text-stone-300 text-lg max-lg:text-md max-sm:text-sm mb-6 text-center text-shadow-lg text-shadow-black">
+            <p className="text-stone-100 text-lg max-lg:text-md max-sm:text-sm mb-6 text-center text-shadow-lg ">
               Une question, une demande de devis ou une visite à planifier ?
               Nous sommes à votre écoute. Chez MetaInvest, la communication est
               au cœur de notre service client. Que vous souhaitiez équiper une
