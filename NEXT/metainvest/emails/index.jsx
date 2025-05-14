@@ -15,7 +15,12 @@ const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const KoalaWelcomeEmail = ({ userFirstname }) => (
+export const KoalaWelcomeEmail = ({
+  telephone,
+  adresse,
+  CustomerEmail,
+  message,
+}) => (
   <Html>
     <Head />
     <Body style={main}>
@@ -42,19 +47,19 @@ export const KoalaWelcomeEmail = ({ userFirstname }) => (
           uncover qualified leads and close deals faster.
         </Text> */}
         <Text style={paragraph}>
-          <b>CustomerEmail: </b>{" "}
+          <b>CustomerEmail: {CustomerEmail}</b>{" "}
         </Text>
         <Text style={paragraph}>
-          <b>Télephone: </b>{" "}
+          <b>Télephone: {telephone}</b>{" "}
         </Text>
         <Text style={paragraph}>
-          <b>Adresse: </b>{" "}
+          <b>Adresse: {adresse}</b>{" "}
         </Text>
         <Text style={paragraph}>
-          <b>Message : </b>{" "}
+          <b>Message : {message}</b>{" "}
         </Text>
         <Text style={paragraph}>
-          <b>Date d’envoi : </b> {new Date().toLocaleString("fr-FR")}
+          <b>Date d'envoi : </b> {new Date().toLocaleString("fr-FR")}
         </Text>
         {/* <Section style={btnContainer}>
           <Button style={button} href="https://getkoala.com">
@@ -90,10 +95,6 @@ const main = {
 const container = {
   margin: "0 auto",
   padding: "20px 0 48px",
-};
-
-const logo = {
-  margin: "0 auto",
 };
 
 const paragraph = {
