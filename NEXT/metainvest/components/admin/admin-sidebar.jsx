@@ -3,19 +3,19 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { logout } from "@/lib/redux/slices/authSlice";
-import { logoutUser } from "@/lib/actions/auth";
+//Fixme:  import { logout } from "@/lib/redux/slices/authSlice";
+// Fixme: import { logoutUser } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Package, LogOut } from "lucide-react";
 
 export default function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleLogout = async () => {
-    await logoutUser();
-    dispatch(logout());
+    // await logoutUser();
+    // dispatch(logout());
     router.push("/login");
   };
 

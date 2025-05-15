@@ -1,9 +1,9 @@
-import { getSession } from "@/lib/actions/auth";
-import { redirect } from "next/navigation";
-import ProductForm from "@/components/product-form";
+// import { getSession } from "@/lib/actions/auth";
+// import { redirect } from "next/navigation";
+// import ProductForm from "@/components/admin/product-form";
 
 export default async function NewProductPage() {
-  const session = await getSession();
+  // const session = await getSession();
 
   // fixme: uncomment this when auth is implemented
 
@@ -14,7 +14,7 @@ export default async function NewProductPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Add New Product</h1>
-      <ProductForm />
+      {/* <ProductForm /> */}
     </div>
   );
 }
