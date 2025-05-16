@@ -7,7 +7,6 @@ const initialState = {
   isLoading: false,
   isAdmin: false,
   error: null,
-  counter: 0,
 };
 
 // Async thunk for login
@@ -53,14 +52,6 @@ const authSlice = createSlice({
     reset: (state) => {
       state.isLoading = false;
       state.error = null;
-    },
-
-    increment: (state) => {
-      state.counter += 1;
-    },
-
-    decrement: (state) => {
-      state.counter -= 1;
     },
   },
   // extraReducers: (builder) => {
@@ -108,5 +99,5 @@ const authSlice = createSlice({
   // },
 });
 
-export const { reset, increment, decrement } = authSlice.actions;
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;
