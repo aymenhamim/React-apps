@@ -1,9 +1,12 @@
 // import { getSession } from "@/lib/actions/auth";
 // import { redirect } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
+
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlusCircle } from "lucide-react";
+import Link from "next/link";
 
 export default async function Dashboard() {
   //   const session = await getSession();

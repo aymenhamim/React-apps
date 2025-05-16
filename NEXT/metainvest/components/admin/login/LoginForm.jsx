@@ -8,8 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Adresse e-mail invalide" }),
@@ -53,8 +53,8 @@ function LoginForm() {
             )}
           </div>
 
-          <Link href="/admin/dashboard">Login</Link>
           <div>
+            <Link href="/admin/dashboard">Login</Link>
             <Button type="submit" className="w-full cursor-pointer"></Button>
           </div>
         </div>
