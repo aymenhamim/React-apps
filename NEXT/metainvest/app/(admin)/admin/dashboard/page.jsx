@@ -1,8 +1,7 @@
 // import { getSession } from "@/lib/actions/auth";
 // import { redirect } from "next/navigation";
 
-"use client";
-
+import TotalProducts from "@/components/admin/dashboard/TotalProducts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlusCircle } from "lucide-react";
@@ -30,14 +29,7 @@ export default async function Dashboard() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>Total Products</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-3xl font-bold">0</p>
-          </CardContent>
-        </Card>
+        <TotalProducts />
 
         <Card>
           <CardHeader>
