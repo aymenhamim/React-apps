@@ -28,16 +28,45 @@ class ProductController extends Controller
         return $product;
     }
 
+    // public function store(ProductRequest $request)
+    // {
+    //     $validated = $request->validated();
+
+    //     return Product::create($validated);
+    // }
+
     public function store(Request $request)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|string',
+        ]);
 
         return Product::create($validated);
     }
 
-    public function update(ProductRequest $request, Product $product)
+    // public function update(ProductRequest $request, Product $product)
+    // {
+    //     $validated = $request->validated();
+
+    //     $product->update($validated);
+    //     return $product;
+    // }
+
+    public function update(Request $request, Product $product)
     {
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'category_id' => 'nullable|exists:categories,id',
+            'image' => 'nullable|string',
+        ]);
 
         $product->update($validated);
         return $product;
