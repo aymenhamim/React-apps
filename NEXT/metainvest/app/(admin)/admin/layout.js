@@ -1,6 +1,6 @@
 // import { getSession } from "@/lib/actions/auth";
 import { redirect } from "next/navigation";
-import AdminSidebar from "@/components/admin/admin-sidebar";
+import AdminSidebar from "@/components/admin/login/admin-sidebar";
 
 export default async function AdminLayout({ children }) {
   //   const session = await getSession();

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import defaultImg from "@/public/images/project-imgs/product-default.jpg";
 // import { setProducts, setLoading } from "@/lib/redux/slices/productsSlice";
 import {
   Table,
@@ -14,13 +15,14 @@ import {
 import { Card } from "@/components/ui/card";
 import { fetchProducts } from "@/store/slices/productsSlice";
 import { number } from "framer-motion";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
+import Image from "next/image";
+import DeleteProduct from "@/components/admin/DeleteProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
   // const { products, loading } = useSelector((state) => state.products);
   const { products, isLoading } = useSelector((state) => state.products);
-  console.log(products);
 
   useEffect(() => {
     const getData = async () => {
@@ -71,14 +73,18 @@ export default function ProductsList() {
             products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>
-                  {/* {product.image || "empty"} */}
-
-                  <div className="w-32 h-28 bg-slate-600 rounded-lg"></div>
+                  <Image
+                    src={product.image || defaultImg}
+                    alt={product.name}
+                    width={100}
+                    height={100}
+                    className="w-32 h-28 object-cover rounded-lg"
+                  />
                 </TableCell>
                 <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>${parseFloat(product.price).toFixed(2)}</TableCell>
-                <TableCell className={""}>
+                <TableCell className={"flex items-center h-30"}>
                   <Button size={"sm"}>View</Button>
                   <Button
                     size={"sm"}
@@ -87,9 +93,7 @@ export default function ProductsList() {
                   >
                     Edit
                   </Button>
-                  <Button size={"sm"} variant={"destructive"}>
-                    Delete
-                  </Button>
+                  <DeleteProduct id={product.id}>Delete</DeleteProduct>
                 </TableCell>
                 {/* <TableCell>{product.stock}</TableCell> */}
                 <TableCell>{/* Actions would go here */}</TableCell>
