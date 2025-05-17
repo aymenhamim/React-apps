@@ -5,6 +5,7 @@
 "use client";
 
 import DeleteProduct from "@/components/admin/DeleteProduct";
+import HomeImage from "@/components/admin/ImageUpload";
 import LoginForm from "@/components/admin/login/LoginForm";
 import ProductForm from "@/components/admin/product-form";
 import Modal from "@/components/Modal";
@@ -25,7 +26,9 @@ export default function NewProductPage() {
       <h1 className="text-3xl font-bold">Add New Product</h1>
       {/* <DeleteProduct id="1">Delete</DeleteProduct> */}
 
-      <ProductForm />
+      <HomeImage />
+
+      {/* <ProductForm /> */}
     </div>
   );
 }
