@@ -26,9 +26,9 @@ export default function NewProductPage() {
       <h1 className="text-3xl font-bold">Add New Product</h1>
       {/* <DeleteProduct id="1">Delete</DeleteProduct> */}
 
-      <HomeImage />
+      {/* <HomeImage /> */}
 
-      {/* <ProductForm /> */}
+      <ProductForm />
     </div>
   );
 }

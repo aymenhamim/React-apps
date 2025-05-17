@@ -71,6 +71,27 @@ export const editProduct = createAsyncThunk(
   }
 );
 
+export const createProduct = createAsyncThunk(
+  "products/createProduct",
+  async (productData, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}products`,
+        productData,
+        axiosConfig
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to create product");
+      }
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -98,7 +119,7 @@ const productsSlice = createSlice({
         state.error = action.payload;
       });
 
-    // ? Delete item
+    // ? Delete product
 
     builder
       .addCase(deleteProduct.pending, (state) => {
@@ -106,14 +127,16 @@ const productsSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = state.products.filter(
-          (product) => product.id !== action.payload
-        );
+        // state.products = state.products.filter(
+        //   (product) => product.id !== action.payload
+        // );
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    // ? Edit product
 
     builder
       .addCase(editProduct.pending, (state) => {
@@ -122,22 +145,27 @@ const productsSlice = createSlice({
       })
       .addCase(editProduct.fulfilled, (state, action) => {
         state.isLoading = false;
-        // Find the index of the product being updated
-        // const index = state.products.findIndex(
-        //   (product) => product.id === action.payload.id
-        // );
-
-        // If the product exists in the state, update it
-        // if (index !== -1) {
-        //   state.products[index] = action.payload;
-        // }
       })
       .addCase(editProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
 
-    // ? Edit item
+    // ? Create product
+
+    builder
+      .addCase(createProduct.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload.message;
+      });
   },
 });
 

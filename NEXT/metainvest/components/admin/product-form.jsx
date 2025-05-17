@@ -9,7 +9,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from "@/store/slices/productsSlice";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -28,50 +29,26 @@ const formSchema = z.object({
 
 export default function ProductForm() {
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.products.error);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
+  const onSubmit = async (data) => {
     try {
-      // Validate form
-      if (!formData.name || !formData.price) {
-        throw new Error("Name and price are required");
-      }
+      // console.log(data);
+      dispatch(createProduct(data));
 
-      const productData = {
-        ...formData,
-        price: Number.parseFloat(formData.price),
-        stock: Number.parseInt(formData.stock, 10) || 0,
-        id: Date.now().toString(), // In a real app, the ID would come from the database
-      };
-
-      // In a real app, you would call your API here
-      const result = await createProduct(productData);
-
-      if (result.success) {
-        // Update Redux store
-        dispatch(addProduct(productData));
-
-        // Redirect to products page
-        router.push("/admin/products");
-      } else {
-        setError(result.error || "Failed to create product");
-      }
+      // Reset the form after successful submission
+      reset();
     } catch (err) {
-      setError(err.message || "An error occurred");
-      console.error(err);
-    } finally {
-      setLoading(false);
+      console.error(err.message);
     }
   };
 
@@ -79,12 +56,6 @@ export default function ProductForm() {
     <Card>
       <CardContent className="pt-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* {error && (
-            <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-              {error}
-            </div>
-          )} */}
-
           {/* Name */}
 
           <div className="space-y-2">
@@ -128,34 +99,13 @@ export default function ProductForm() {
             </div>
           </div>
 
-          {/* <div className="space-y-2">
-            <Label htmlFor="image">Image URL</Label>
-            <Input
-              id="image"
-              name="image"
-              type="url"
-              value={formData.image}
-              onChange={handleChange}
-              placeholder="https://example.com/image.jpg"
-            />
-          </div> */}
+          {/* Image URL */}
 
           <div className="flex justify-end space-x-4">
-            <Button
-              type="button"
-              variant="outline"
-              // onClick={() => router.push("/admin/products")}
-              // disabled={loading}
-            >
+            <Button type="button" variant="outline">
               Cancel
             </Button>
-            <Button
-              type="submit"
-              //  disabled={loading}
-            >
-              {/* {loading ? "Creating..." : "Create Product"} */}
-              Create Product
-            </Button>
+            <Button type="submit">Create Product</Button>
           </div>
         </form>
       </CardContent>

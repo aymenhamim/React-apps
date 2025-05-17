@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { Button } from "../ui/button";
-import { deleteProduct } from "@/store/slices/productsSlice";
+import { deleteProduct, fetchProducts } from "@/store/slices/productsSlice";
 import { useDispatch } from "react-redux";
 
 function DeleteProduct({ id, children }) {
@@ -13,6 +13,10 @@ function DeleteProduct({ id, children }) {
   async function deleteData() {
     dispatch(deleteProduct(id));
     setIsOpen(false);
+
+    setInterval(() => {
+      dispatch(fetchProducts());
+    }, 400);
   }
 
   return (
