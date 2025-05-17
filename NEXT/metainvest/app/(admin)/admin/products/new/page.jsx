@@ -6,6 +6,7 @@
 
 import DeleteProduct from "@/components/admin/DeleteProduct";
 import LoginForm from "@/components/admin/login/LoginForm";
+import ProductForm from "@/components/admin/product-form";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 
@@ -22,9 +23,9 @@ export default function NewProductPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Add New Product</h1>
-      <DeleteProduct id="1">Delete</DeleteProduct>
+      {/* <DeleteProduct id="1">Delete</DeleteProduct> */}
 
-      {/* <ProductForm /> */}
+      <ProductForm />
     </div>
   );
 }

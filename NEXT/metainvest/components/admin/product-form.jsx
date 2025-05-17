@@ -1,35 +1,43 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { addProduct } from "@/lib/redux/slices/productsSlice";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
-import { createProduct } from "@/lib/actions/products";
+import { useDispatch } from "react-redux";
+
+const formSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  description: z.string().min(1, { message: "Description is required" }),
+  price: z
+    .string()
+    .transform((val) => parseFloat(val))
+    .refine((val) => !isNaN(val) && val >= 0, {
+      message: "Price must be a positive number",
+    })
+    .refine((val) => val <= 10000, {
+      message: "Price must be less than 10000",
+    }),
+  //FIXME: imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
+});
 
 export default function ProductForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    stock: "",
-    image: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(formSchema),
+  });
 
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -70,64 +78,57 @@ export default function ProductForm() {
   return (
     <Card>
       <CardContent className="pt-6">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {error && (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* {error && (
             <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
               {error}
             </div>
-          )}
+          )} */}
+
+          {/* Name */}
 
           <div className="space-y-2">
             <Label htmlFor="name">Product Name *</Label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+            <Input type="text" {...register("name")} />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
           </div>
 
+          {/* Description */}
+
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">Description *</Label>
             <Textarea
               id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={4}
-            />
+              className="max-h-[35rem] overflow-y-auto resize-none"
+              {...register("description")}
+            ></Textarea>
+            {errors.description && (
+              <p className="text-red-500 text-sm">
+                {errors.description.message}
+              </p>
+            )}
           </div>
+
+          {/* Price */}
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="price">Price ($) *</Label>
+              <Label htmlFor="price">Price (dh) *</Label>
               <Input
                 id="price"
-                name="price"
                 type="number"
                 step="0.01"
-                min="0"
-                value={formData.price}
-                onChange={handleChange}
-                required
+                {...register("price")}
               />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="stock">Stock</Label>
-              <Input
-                id="stock"
-                name="stock"
-                type="number"
-                min="0"
-                value={formData.stock}
-                onChange={handleChange}
-              />
+              {errors.price && (
+                <p className="text-red-500 text-sm">{errors.price.message}</p>
+              )}
             </div>
           </div>
 
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="image">Image URL</Label>
             <Input
               id="image"
@@ -137,19 +138,23 @@ export default function ProductForm() {
               onChange={handleChange}
               placeholder="https://example.com/image.jpg"
             />
-          </div>
+          </div> */}
 
           <div className="flex justify-end space-x-4">
             <Button
               type="button"
               variant="outline"
-              onClick={() => router.push("/admin/products")}
-              disabled={loading}
+              // onClick={() => router.push("/admin/products")}
+              // disabled={loading}
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={loading}>
-              {loading ? "Creating..." : "Create Product"}
+            <Button
+              type="submit"
+              //  disabled={loading}
+            >
+              {/* {loading ? "Creating..." : "Create Product"} */}
+              Create Product
             </Button>
           </div>
         </form>
