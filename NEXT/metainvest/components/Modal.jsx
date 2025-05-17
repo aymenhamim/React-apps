@@ -6,7 +6,7 @@ function Modal({ children, isOpen, onClose }) {
     <>
       {isOpen && (
         <div
-          className="overlay  fixed left-0 top-0 w-full h-dvh backdrop-blur-[3px] backdrop-brightness-75 z-50"
+          className="overlay fixed left-0 top-0 w-full h-dvh backdrop-blur-[3px] backdrop-brightness-75 z-50"
           onClick={onClose}
         >
           <motion.div

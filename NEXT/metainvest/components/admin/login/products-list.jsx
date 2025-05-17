@@ -18,11 +18,12 @@ import { number } from "framer-motion";
 import { Button } from "../../ui/button";
 import Image from "next/image";
 import DeleteProduct from "@/components/admin/DeleteProduct";
+import EditProduct from "../EditProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
   // const { products, loading } = useSelector((state) => state.products);
-  const { products, isLoading } = useSelector((state) => state.products);
+  const { products, isLoading, error } = useSelector((state) => state.products);
 
   useEffect(() => {
     const getData = async () => {
@@ -49,6 +50,11 @@ export default function ProductsList() {
 
   return (
     <Card>
+      {error && (
+        <div className="text-red-500 text-center p-4">
+          <p>{error}</p>
+        </div>
+      )}
       <Table>
         <TableHeader>
           <TableRow>
@@ -59,7 +65,7 @@ export default function ProductsList() {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
-        <>
+        {/* <>
           {isLoading && (
             <TableBody>
               <TableRow>
@@ -67,7 +73,7 @@ export default function ProductsList() {
               </TableRow>
             </TableBody>
           )}
-        </>
+        </> */}
         <TableBody>
           {products &&
             products.map((product) => (
@@ -83,16 +89,12 @@ export default function ProductsList() {
                 </TableCell>
                 <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
-                <TableCell>${parseFloat(product.price).toFixed(2)}</TableCell>
+                <TableCell>{parseFloat(product.price).toFixed(2)} dh</TableCell>
                 <TableCell className={"flex items-center h-30"}>
                   <Button size={"sm"}>View</Button>
-                  <Button
-                    size={"sm"}
-                    variant={"outline"}
-                    className={"border-stone-700 mx-3"}
-                  >
-                    Edit
-                  </Button>
+
+                  <EditProduct id={product.id}>Edit</EditProduct>
+
                   <DeleteProduct id={product.id}>Delete</DeleteProduct>
                 </TableCell>
                 {/* <TableCell>{product.stock}</TableCell> */}

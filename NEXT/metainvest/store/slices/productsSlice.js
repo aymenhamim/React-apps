@@ -50,14 +50,38 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const editProduct = createAsyncThunk(
+  "products/editProduct",
+  async ({ id, productData }, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        `${API_BASE_URL}products/${id}/`,
+        productData,
+        axiosConfig
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to update product");
+      }
+
+      fetchProducts();
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
     findProduct: (state, action) => {
-      const product = state.products.find(
+      const product = state.products?.find(
         (product) => product.id === action.payload
       );
+
       return product;
     },
   },
@@ -77,6 +101,7 @@ const productsSlice = createSlice({
       });
 
     // ? Delete item
+
     builder
       .addCase(deleteProduct.pending, (state) => {
         state.isLoading = true;
@@ -91,9 +116,33 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(editProduct.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // Find the index of the product being updated
+        // const index = state.products.findIndex(
+        //   (product) => product.id === action.payload.id
+        // );
+
+        // If the product exists in the state, update it
+        // if (index !== -1) {
+        //   state.products[index] = action.payload;
+        // }
+      })
+      .addCase(editProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    // ? Edit item
   },
 });
 
 export default productsSlice.reducer;
 
-const { findProduct } = productsSlice.actions;
+export const { findProduct } = productsSlice.actions;

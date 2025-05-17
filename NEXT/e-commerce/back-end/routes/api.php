@@ -26,10 +26,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+Route::put('/products/{product}', [ProductController::class, 'update']);
 
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
     Route::post('/products', [ProductController::class, 'store']);
-    Route::put('/products/{product}', [ProductController::class, 'update']);
     // fixme Route::delete('/products/{product}', [ProductController::class, 'destroy']);
 
 });

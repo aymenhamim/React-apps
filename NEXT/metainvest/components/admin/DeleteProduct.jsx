@@ -11,7 +11,6 @@ function DeleteProduct({ id, children }) {
   const dispatch = useDispatch();
 
   async function deleteData() {
-    console.log(id);
     dispatch(deleteProduct(id));
     setIsOpen(false);
   }
