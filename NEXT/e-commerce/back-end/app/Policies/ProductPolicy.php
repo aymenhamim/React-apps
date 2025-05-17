@@ -66,4 +66,10 @@ class ProductPolicy
     {
         return $user->isAdmin();
     }
+
+    public function count(?User $user): bool
+    {
+        // return $user->isAdmin();
+        return true;
+    }
 }

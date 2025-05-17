@@ -59,7 +59,7 @@ function EditProductForm({ product, setIsOpen }) {
 
       setTimeout(() => {
         dispatch(fetchProducts());
-      }, 500);
+      }, 300);
     } catch (error) {
       console.error("Failed to update product:", error);
     }

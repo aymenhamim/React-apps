@@ -22,6 +22,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 // !Product routes
+Route::get('/products/count', [ProductController::class, 'count']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);

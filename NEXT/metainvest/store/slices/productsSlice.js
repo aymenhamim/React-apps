@@ -64,8 +64,6 @@ export const editProduct = createAsyncThunk(
         throw new Error("Failed to update product");
       }
 
-      fetchProducts();
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

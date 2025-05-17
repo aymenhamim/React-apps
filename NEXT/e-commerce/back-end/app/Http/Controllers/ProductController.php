@@ -77,4 +77,12 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(['message' => 'Deleted']);
     }
+
+    public function count()
+    {
+
+        return response()->json([
+            'count' => Product::count(),
+        ]);
+    }
 }
