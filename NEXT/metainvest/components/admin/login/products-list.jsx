@@ -1,9 +1,11 @@
 "use client";
 
+import defaultImg from "@/public/images/project-imgs/product-default.jpg";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import defaultImg from "@/public/images/project-imgs/product-default.jpg";
 // import { setProducts, setLoading } from "@/lib/redux/slices/productsSlice";
+import DeleteProduct from "@/components/admin/DeleteProduct";
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -12,31 +14,48 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card } from "@/components/ui/card";
-import { fetchProducts } from "@/store/slices/productsSlice";
-import { number } from "framer-motion";
-import { Button } from "../../ui/button";
+import { fetchProducts, setPage } from "@/store/slices/productsSlice";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import DeleteProduct from "@/components/admin/DeleteProduct";
+import { Button } from "../../ui/button";
 import EditProduct from "../EditProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
   // const { products, loading } = useSelector((state) => state.products);
-  const { products, isLoading, error } = useSelector((state) => state.products);
+  const { products, isLoading, error, currentPage, lastPage } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
-    const getData = async () => {
-      dispatch(fetchProducts());
-    };
+    dispatch(fetchProducts(currentPage));
+  }, [currentPage, dispatch]);
 
-    getData();
-    // }, [dispatch]);
-  }, [dispatch]);
-
-  // if (loading) {
+  // if (isLoading) {
   //   return <div>Loading products...</div>;
   // }
+
+  if (products?.length === 0) {
+    return (
+      <Card className="p-6 text-center">
+        <p className="text-gray-500">
+          No products found. Create your first product!
+        </p>
+      </Card>
+    );
+  }
+
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      dispatch(setPage(currentPage - 1));
+    }
+  }
+
+  function handleNextPage() {
+    if (currentPage < lastPage) {
+      dispatch(setPage(currentPage + 1));
+    }
+  }
 
   // if (products.length === 0) {
   //   return (
@@ -103,6 +122,31 @@ export default function ProductsList() {
             ))}
         </TableBody>
       </Table>
+      <div className="flex space-x-2 mt-4 mx-10 justify-end">
+        <button
+          onClick={handlePrevPage}
+          className={`px-1 py-1 rounded  transition duration-200 cursor-pointer ${currentPage === 1 ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
+        >
+          <ChevronLeft />
+        </button>
+        {Array.from({ length: lastPage }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => dispatch(setPage(i + 1))}
+            className={`px-3 py-1 rounded cursor-pointer  ${
+              currentPage === i + 1 ? "bg-stone-950 text-white" : "bg-gray-200"
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+        <button
+          onClick={handleNextPage}
+          className={`px-1 py-1 rounded  transition  duration-200 cursor-pointer ${currentPage === lastPage ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
+        >
+          <ChevronRight />
+        </button>
+      </div>
     </Card>
   );
 }

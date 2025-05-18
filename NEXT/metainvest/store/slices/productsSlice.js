@@ -5,6 +5,8 @@ const initialState = {
   products: null,
   isLoading: false,
   error: null,
+  currentPage: 1,
+  lastPage: 1,
 };
 
 const API_BASE_URL = "http://127.0.0.1:8000/api/";
@@ -20,9 +22,12 @@ const axiosConfig = {
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await fetch(`${API_BASE_URL}products/`, axiosConfig);
+      const response = await fetch(
+        `${API_BASE_URL}products?page=${page}`,
+        axiosConfig
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -103,8 +108,13 @@ const productsSlice = createSlice({
 
       return product;
     },
+    setPage(state, action) {
+      state.currentPage = action.payload;
+    },
   },
+
   extraReducers: (builder) => {
+    // ! Fetch products
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.isLoading = true;
@@ -112,7 +122,10 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = action.payload;
+        state.products = action.payload.data;
+
+        state.currentPage = action.payload.current_page;
+        state.lastPage = action.payload.last_page;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.isLoading = false;
@@ -171,4 +184,4 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 
-export const { findProduct } = productsSlice.actions;
+export const { findProduct, setPage } = productsSlice.actions;
