@@ -72,7 +72,7 @@ export default function HomeImage({ setImagesArray }) {
           }
         ).then((r) => r.json());
 
-        imageSrcs.push(data.secure_url);
+        // Don't add to imageSrcs here, only to uploadedUrls
         uploadedUrls.push(data.secure_url);
       } catch (error) {
         console.error("Upload failed:", error);
@@ -83,6 +83,17 @@ export default function HomeImage({ setImagesArray }) {
     setImagesArray((prev) => [...prev, ...uploadedUrls]);
     setUploadData({ success: true });
     setIsUploading(false);
+  }
+
+  /**
+   * resetUploader
+   * @description Resets the uploader state
+   */
+  function resetUploader() {
+    setImageSrcs([]);
+    setUploadData(undefined);
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput) fileInput.value = "";
   }
 
   return (
@@ -130,8 +141,16 @@ export default function HomeImage({ setImagesArray }) {
         )}
 
         {uploadData && uploadData.success && (
-          <div className="mt-4 text-green-600 font-medium">
-            ✅ Upload successful!
+          <div className="mt-4">
+            <div className="text-green-600 font-medium">
+              ✅ Upload successful!
+            </div>
+            <button
+              onClick={resetUploader}
+              className="mt-2 bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300"
+            >
+              Upload More Images
+            </button>
           </div>
         )}
       </div>
