@@ -9,7 +9,7 @@ export const KoalaWelcomeEmail = ({
   adresse,
   CustomerEmail,
   message,
-  Name,
+  name,
 }) => (
   <Html>
     <Head />
@@ -40,7 +40,7 @@ export const KoalaWelcomeEmail = ({
             <th style={th}>
               <span>👤 </span> <span>Name</span>
             </th>
-            <td style={rightTd}>{Name} </td>
+            <td style={rightTd}>{name} </td>
           </tr>
 
           <tr>

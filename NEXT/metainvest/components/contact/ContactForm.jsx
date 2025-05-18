@@ -9,8 +9,14 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
+import axios from "axios";
+import { useEffect } from "react";
 
 const formSchema = z.object({
+  name: z
+    .string()
+    .min(4, { message: "Nom invalide" })
+    .max(50, { message: "Nom trop long" }),
   email: z.string().email({ message: "Adresse e-mail invalide" }),
   telephone: z
     .string()
@@ -24,11 +30,32 @@ function ContactForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
 
   const onSubmit = (data) => {
     console.log(data);
+
+    const sendEmail = async () => {
+      try {
+        const response = await axios.post("http://localhost:3001/api/mail", {
+          email: "cnlff21@gmail.com",
+          CustomerEmail: data.email,
+          telephone: data.telephone,
+          adresse: data.adresse,
+          message: data.text,
+          name: data.name,
+        });
+
+        console.log("Email sent successfully:", response.data);
+        reset();
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    };
+
+    sendEmail();
   };
 
   return (
@@ -40,6 +67,14 @@ function ContactForm() {
         <h2 className="text-center my-10 text-3xl font-bold">Contactez-nous</h2>
 
         <div className="my-10 w-[80%] mx-auto flex flex-col gap-5">
+          <div>
+            <Label htmlFor="name">Name</Label>
+            <Input type={"text"} {...register("name")} />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
+          </div>
+
           <div>
             <Label htmlFor="email">Email</Label>
             <Input type={"email"} {...register("email")} />

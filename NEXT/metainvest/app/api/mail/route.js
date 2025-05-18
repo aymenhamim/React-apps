@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
-    const { email, CustomerEmail, telephone, adresse, message } =
+    const { email, CustomerEmail, telephone, adresse, message, name } =
       await request.json();
 
     // Log what we're working with
@@ -15,7 +15,13 @@ export async function POST(request) {
       from: "MetaInvest <onboarding@resend.dev>",
       to: [email],
       subject: "MetaInvest — Contact Form 📩",
-      react: KoalaWelcomeEmail({ CustomerEmail, telephone, adresse, message }),
+      react: KoalaWelcomeEmail({
+        CustomerEmail,
+        telephone,
+        adresse,
+        message,
+        name,
+      }),
     });
 
     if (error) {
