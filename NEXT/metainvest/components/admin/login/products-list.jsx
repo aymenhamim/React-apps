@@ -27,13 +27,11 @@ export default function ProductsList() {
     (state) => state.products
   );
 
+  console.log(products);
+
   useEffect(() => {
     dispatch(fetchProducts(currentPage));
   }, [currentPage, dispatch]);
-
-  // if (isLoading) {
-  //   return <div>Loading products...</div>;
-  // }
 
   if (products?.length === 0) {
     return (
@@ -57,16 +55,6 @@ export default function ProductsList() {
     }
   }
 
-  // if (products.length === 0) {
-  //   return (
-  //     <Card className="p-6 text-center">
-  //       <p className="text-gray-500">
-  //         No products found. Create your first product!
-  //       </p>
-  //     </Card>
-  //   );
-  // }
-
   return (
     <Card>
       {error && (
@@ -84,27 +72,22 @@ export default function ProductsList() {
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
-        {/* <>
-          {isLoading && (
-            <TableBody>
-              <TableRow>
-                <TableCell>Loading data..</TableCell>
-              </TableRow>
-            </TableBody>
-          )}
-        </> */}
+
         <TableBody>
           {products &&
             products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell>
-                  <Image
-                    src={product.image || defaultImg}
-                    alt={product.name}
-                    width={100}
-                    height={100}
-                    className="w-32 h-28 object-cover rounded-lg"
-                  />
+                  <div className="relative aspect-video w-36">
+                    <Image
+                      priority
+                      fill
+                      quality={70}
+                      src={product.images[0]}
+                      alt={product.name}
+                      className="absolute object-cover rounded-lg"
+                    />
+                  </div>
                 </TableCell>
                 <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
@@ -122,31 +105,36 @@ export default function ProductsList() {
             ))}
         </TableBody>
       </Table>
-      <div className="flex space-x-2 mt-4 mx-10 justify-end">
-        <button
-          onClick={handlePrevPage}
-          className={`px-1 py-1 rounded  transition duration-200 cursor-pointer ${currentPage === 1 ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
-        >
-          <ChevronLeft />
-        </button>
-        {Array.from({ length: lastPage }, (_, i) => (
+
+      {lastPage !== 1 && (
+        <div className="flex space-x-2 mt-4 mx-10 justify-end">
           <button
-            key={i + 1}
-            onClick={() => dispatch(setPage(i + 1))}
-            className={`px-3 py-1 rounded cursor-pointer  ${
-              currentPage === i + 1 ? "bg-stone-950 text-white" : "bg-gray-200"
-            }`}
+            onClick={handlePrevPage}
+            className={`px-1 py-1 rounded  transition duration-200 cursor-pointer ${currentPage === 1 ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
           >
-            {i + 1}
+            <ChevronLeft />
           </button>
-        ))}
-        <button
-          onClick={handleNextPage}
-          className={`px-1 py-1 rounded  transition  duration-200 cursor-pointer ${currentPage === lastPage ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
-        >
-          <ChevronRight />
-        </button>
-      </div>
+          {Array.from({ length: lastPage }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => dispatch(setPage(i + 1))}
+              className={`px-3 py-1 rounded cursor-pointer  ${
+                currentPage === i + 1
+                  ? "bg-stone-950 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            onClick={handleNextPage}
+            className={`px-1 py-1 rounded transition  duration-200 cursor-pointer ${currentPage === lastPage ? "bg-white text-gray-500 border" : "bg-gray-200 text-black hover:bg-gray-300"}`}
+          >
+            <ChevronRight />
+          </button>
+        </div>
+      )}
     </Card>
   );
 }

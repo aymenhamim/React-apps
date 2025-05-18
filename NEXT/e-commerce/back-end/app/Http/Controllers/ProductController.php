@@ -43,7 +43,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|min:0|max:100',
             'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable',
+            'images' => 'array',
         ]);
 
         return Product::create($validated);
@@ -65,7 +65,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|min:0|max:100',
             'category_id' => 'nullable|exists:categories,id',
-            'image' => 'nullable',
+            'images' => 'nullable',
         ]);
 
         $product->update($validated);

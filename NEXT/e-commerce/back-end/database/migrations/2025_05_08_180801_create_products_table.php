@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->decimal('discount', 5, 2)->default(0); // % or fixed amount
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('image')->nullable();
+            $table->json('images')->nullable();
 
             $table->timestamps();
         });

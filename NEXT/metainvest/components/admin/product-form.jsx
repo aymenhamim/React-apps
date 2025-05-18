@@ -12,6 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { createProduct } from "@/store/slices/productsSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
+import HomeImage from "./ImageUpload";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -30,6 +33,8 @@ const formSchema = z.object({
 
 export default function ProductForm() {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const [imagesArray, setImagesArray] = useState([]);
 
   const {
     register,
@@ -40,13 +45,28 @@ export default function ProductForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    dispatch(createProduct(data));
+  const onSubmit = async (data) => {
+    const finalData = { ...data, images: imagesArray };
 
-    reset();
-    toast.success("The product has been created successfully.", {
-      description: "The product name is " + data.name,
-    });
+    try {
+      // Dispatch the action and wait for it to complete
+      await dispatch(createProduct(finalData));
+
+      // Show success toast
+      toast.success("The product has been created successfully.", {
+        description: "The product name is " + data.name,
+      });
+
+      // Reset the form
+      reset();
+
+      // Redirect to dashboard
+      router.push("/admin/dashboard");
+    } catch (error) {
+      toast.error("Failed to create product", {
+        description: error.message || "Something went wrong",
+      });
+    }
   };
 
   return (
@@ -98,8 +118,14 @@ export default function ProductForm() {
 
           {/* Image URL */}
 
+          <HomeImage setImagesArray={setImagesArray} />
+
           <div className="flex justify-end space-x-4">
-            <Button type="button" variant="outline">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => router.push("/dashboard")}
+            >
               Cancel
             </Button>
             <Button type="submit">Create Product</Button>

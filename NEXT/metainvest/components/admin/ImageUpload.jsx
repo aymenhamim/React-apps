@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function HomeImage() {
+export default function HomeImage({ setImagesArray }) {
   const [imageSrcs, setImageSrcs] = useState([]);
   const [uploadData, setUploadData] = useState();
   const [isUploading, setIsUploading] = useState(false);
@@ -72,6 +72,7 @@ export default function HomeImage() {
           }
         ).then((r) => r.json());
 
+        imageSrcs.push(data.secure_url);
         uploadedUrls.push(data.secure_url);
       } catch (error) {
         console.error("Upload failed:", error);
@@ -79,7 +80,7 @@ export default function HomeImage() {
     }
 
     // Update the state with all uploaded image URLs
-    setImageSrcs(uploadedUrls);
+    setImagesArray((prev) => [...prev, ...uploadedUrls]);
     setUploadData({ success: true });
     setIsUploading(false);
   }
