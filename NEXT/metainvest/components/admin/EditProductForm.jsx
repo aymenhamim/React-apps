@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { editProduct, fetchProducts } from "@/store/slices/productsSlice";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -44,25 +45,24 @@ function EditProductForm({ product, setIsOpen }) {
   });
 
   const onSubmit = async (data) => {
-    try {
-      if (
-        product.name === data.name &&
-        product.description === data.description &&
-        product.price == parseFloat(data.price) &&
-        product.imageUrl === data.imageUrl
-      ) {
-        setIsOpen(false);
-        return;
-      }
-      dispatch(editProduct({ id: product.id, productData: data }));
+    if (
+      product.name === data.name &&
+      product.description === data.description &&
+      product.price == parseFloat(data.price) &&
+      product.imageUrl === data.imageUrl
+    ) {
       setIsOpen(false);
-
-      setTimeout(() => {
-        dispatch(fetchProducts());
-      }, 300);
-    } catch (error) {
-      console.error("Failed to update product:", error);
+      return;
     }
+    dispatch(editProduct({ id: product.id, productData: data }));
+    setIsOpen(false);
+    toast.success("The product has been updated successfully.", {
+      description: "The product name is " + data.name,
+    });
+
+    setTimeout(() => {
+      dispatch(fetchProducts());
+    }, 300);
   };
 
   const handleCancel = (e) => {
