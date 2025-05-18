@@ -39,7 +39,7 @@ function ContactForm() {
 
     const sendEmail = async () => {
       try {
-        const response = await axios.post("http://localhost:3001/api/mail", {
+        const response = await axios.post("http://localhost:3000/api/mail", {
           email: "cnlff21@gmail.com",
           CustomerEmail: data.email,
           telephone: data.telephone,
@@ -48,7 +48,7 @@ function ContactForm() {
           name: data.name,
         });
 
-        console.log("Email sent successfully:", response.data);
+        // console.log("Email sent successfully:", response.data);
         reset();
       } catch (error) {
         console.error("Error sending email:", error);
@@ -62,11 +62,11 @@ function ContactForm() {
     <div className="max-sm:h-fit w-[60%] max-lg:w-full flex items-center justify-center max-lg:pb-20">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white w-[30rem] max-xl:w-[25rem] max-lg:w-[30rem] max-sm:w-[28rem]  rounded-2xl "
+        className="bg-white w-[30rem] max-xl:w-[25rem] max-lg:w-[30rem] max-sm:w-[28rem] rounded-2xl "
       >
         <h2 className="text-center my-10 text-3xl font-bold">Contactez-nous</h2>
 
-        <div className="my-10 w-[80%] mx-auto flex flex-col gap-5">
+        <div className="my-10 w-[80%] mx-auto flex flex-col gap-2">
           <div>
             <Label htmlFor="name">Name</Label>
             <Input type={"text"} {...register("name")} />
@@ -98,7 +98,7 @@ function ContactForm() {
           </div>
           <div>
             <Label htmlFor="text">Comment pouvons-nous vous aider ?</Label>
-            <Input {...register("text")} />
+            <Textarea {...register("text")} className="max-h-[7rem]" />
             {errors.text && (
               <p className="text-red-500 text-sm">{errors.text.message}</p>
             )}

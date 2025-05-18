@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "@/store/slices/productsSlice";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -44,9 +45,9 @@ export default function ProductForm() {
     try {
       // console.log(data);
       dispatch(createProduct(data));
-
-      // Reset the form after successful submission
       reset();
+
+      // redirect("/admin/products");
     } catch (err) {
       console.error(err.message);
     }
