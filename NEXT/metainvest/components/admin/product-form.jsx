@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "@/store/slices/productsSlice";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -30,7 +31,6 @@ const formSchema = z.object({
 
 export default function ProductForm() {
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.products.error);
 
   const {
     register,
@@ -41,16 +41,13 @@ export default function ProductForm() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = async (data) => {
-    try {
-      // console.log(data);
-      dispatch(createProduct(data));
-      reset();
+  const onSubmit = (data) => {
+    dispatch(createProduct(data));
 
-      // redirect("/admin/products");
-    } catch (err) {
-      console.error(err.message);
-    }
+    reset();
+    toast.success("The product has been created successfully.", {
+      description: "The product name is " + data.name,
+    });
   };
 
   return (

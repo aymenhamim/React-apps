@@ -42,7 +42,7 @@ function ContactForm() {
       const toastId = toast.loading("Sending message...");
 
       try {
-        const response = await axios.post("http://localhost:3000/api/mailss", {
+        const response = await axios.post("http://localhost:3000/api/mail", {
           email: "cnlff21@gmail.com",
           CustomerEmail: data.email,
           telephone: data.telephone,
