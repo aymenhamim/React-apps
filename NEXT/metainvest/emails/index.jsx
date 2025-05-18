@@ -1,15 +1,4 @@
-import {
-  Body,
-  Button,
-  Container,
-  Head,
-  Hr,
-  Html,
-  Img,
-  Preview,
-  Section,
-  Text,
-} from "@react-email/components";
+import { Body, Container, Head, Html } from "@react-email/components";
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,61 +9,86 @@ export const KoalaWelcomeEmail = ({
   adresse,
   CustomerEmail,
   message,
+  Name,
 }) => (
   <Html>
     <Head />
     <Body style={main}>
-      <Preview>
-        The sales intelligence platform that helps you uncover qualified leads.
-      </Preview>
-
       <Container style={container}>
-        {/* <Img
-          src={`${baseUrl}/static/koala-logo.png`}
-          width="170"
-          height="50"
-          alt="Koala"
-          style={logo}
-        /> */}
-        <h1>
+        <h1 style={{ textAlign: "center", margin: "1rem 0 3rem " }}>
           📩 Contact Form —
-          <span style={{ color: "oklch(58.5% 0.233 277.117)" }}> Meta</span>
+          <span
+            style={{
+              color: "oklch(58.5% 0.233 277.117) ",
+            }}
+          >
+            {" "}
+            Meta
+          </span>
           Invest
-        </h1>{" "}
-        <br />
-        {/* <Text style={paragraph}>
-          Welcome to Koala, the sales intelligence platform that helps you
-          uncover qualified leads and close deals faster.
-        </Text> */}
-        <Text style={paragraph}>
-          <b>CustomerEmail: {CustomerEmail}</b>{" "}
-        </Text>
-        <Text style={paragraph}>
-          <b>Télephone: {telephone}</b>{" "}
-        </Text>
-        <Text style={paragraph}>
-          <b>Adresse: {adresse}</b>{" "}
-        </Text>
-        <Text style={paragraph}>
-          <b>Message : {message}</b>{" "}
-        </Text>
-        <Text style={paragraph}>
-          <b>Date d'envoi : </b> {new Date().toLocaleString("fr-FR")}
-        </Text>
-        {/* <Section style={btnContainer}>
-          <Button style={button} href="https://getkoala.com">
-            Get started
-          </Button>
-        </Section>
-        <Text style={paragraph}>
-          Best,
-          <br />
-          The Koala team
-        </Text>
-        <Hr style={hr} />
-        <Text style={footer}>
-          470 Noor Ave STE B #1148, South San Francisco, CA 94080
-        </Text> */}
+        </h1>
+        {/* Table */}
+        <table
+          border={"1"}
+          style={{
+            borderCollapse: "collapse",
+            width: "90%",
+            margin: "0 auto",
+          }}
+        >
+          <tr>
+            <th style={th}>
+              <span>👤 </span> <span>Name</span>
+            </th>
+            <td style={rightTd}>{Name} </td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>📧 </span> <span>CustomerEmail</span>
+            </th>
+            <td style={rightTd}>{CustomerEmail} </td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>📞 </span> <span>Telephone</span>
+            </th>
+            <td style={rightTd}>{telephone} </td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>📍 </span> <span>Adresse</span>
+            </th>
+            <td style={rightTd}>{adresse}</td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>🗓️ </span> <span>Date d'envoi</span>
+            </th>
+            <td style={rightTd}>{new Date().toLocaleString("fr-FR")}</td>
+          </tr>
+
+          <tr>
+            <th
+              style={{
+                border: "2px solid black",
+                borderTop: "1px solid gray",
+                textAlign: "left",
+                padding: "10px 20px",
+              }}
+            >
+              <span>📝</span> <span>Message</span>
+            </th>
+            <td style={rightTd}>{message} </td>
+          </tr>
+        </table>
+        <p style={{ margin: "3rem 1rem" }}>
+          🔗 <a href="http://localhost:3000">metalinvest.com</a> | 📞 +212 6 64
+          05 50 92 | ✉️ support@metalinvest.com
+        </p>
       </Container>
     </Body>
   </Html>
@@ -85,6 +99,17 @@ KoalaWelcomeEmail.PreviewProps = {
 };
 
 export default KoalaWelcomeEmail;
+
+const rightTd = {
+  padding: "10px 20px",
+  border: "1px solid black",
+};
+
+const th = {
+  border: "1px solid black",
+  padding: "10px 20px",
+  display: "flex",
+};
 
 const main = {
   backgroundColor: "#ffffff",
@@ -102,27 +127,7 @@ const paragraph = {
   lineHeight: "26px",
 };
 
-const btnContainer = {
-  textAlign: "center",
-};
-
-const button = {
-  backgroundColor: "#5F51E8",
-  borderRadius: "3px",
-  color: "#fff",
-  fontSize: "16px",
-  textDecoration: "none",
-  textAlign: "center",
-  display: "block",
-  padding: "12px",
-};
-
 const hr = {
   borderColor: "#cccccc",
   margin: "20px 0",
-};
-
-const footer = {
-  color: "#8898aa",
-  fontSize: "12px",
 };
