@@ -11,6 +11,7 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z
@@ -38,8 +39,10 @@ function ContactForm() {
     console.log(data);
 
     const sendEmail = async () => {
+      const toastId = toast.loading("Sending message...");
+
       try {
-        const response = await axios.post("http://localhost:3000/api/mail", {
+        const response = await axios.post("http://localhost:3000/api/mailss", {
           email: "cnlff21@gmail.com",
           CustomerEmail: data.email,
           telephone: data.telephone,
@@ -47,11 +50,15 @@ function ContactForm() {
           message: data.text,
           name: data.name,
         });
+        toast.success("Message sent successfully!");
 
         // console.log("Email sent successfully:", response.data);
         reset();
       } catch (error) {
-        console.error("Error sending email:", error);
+        // Show error toast
+        toast.error("Failed to send message. Please try again.");
+      } finally {
+        toast.dismiss(toastId);
       }
     };
 

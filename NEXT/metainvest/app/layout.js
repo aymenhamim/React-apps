@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: ["400", "600", "700", "800"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* <body className={`min-h-full bg-stone-950 relative ${poppins.className}`}> */}
       <body className={`min-h-full bg-stone-950 relative ${poppins.className}`}>
+        <Toaster position="top-center" />
         {children}
       </body>
     </html>
