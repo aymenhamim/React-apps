@@ -5,6 +5,7 @@ import Modal from "../Modal";
 import { Button } from "../ui/button";
 import { deleteProduct, fetchProducts } from "@/store/slices/productsSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 function DeleteProduct({ id, children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ function DeleteProduct({ id, children }) {
   async function deleteData() {
     dispatch(deleteProduct(id));
     setIsOpen(false);
+    toast.success("Product deleted successfully");
 
     setInterval(() => {
       dispatch(fetchProducts());

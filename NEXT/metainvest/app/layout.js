@@ -1,8 +1,6 @@
-import Navigation from "@/components/Navigation";
 import "./globals.css";
 
 import { Poppins } from "next/font/google";
-import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
 
 const poppins = Poppins({
