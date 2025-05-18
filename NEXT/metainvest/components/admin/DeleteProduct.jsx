@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { Button } from "../ui/button";
 import { deleteProduct, fetchProducts } from "@/store/slices/productsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
 function DeleteProduct({ id, children }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.products.currentPage);
 
   async function deleteData() {
     dispatch(deleteProduct(id));
@@ -17,7 +18,7 @@ function DeleteProduct({ id, children }) {
     toast.success("Product deleted successfully");
 
     setTimeout(() => {
-      dispatch(fetchProducts());
+      dispatch(fetchProducts(currentPage));
     }, 400);
   }
 

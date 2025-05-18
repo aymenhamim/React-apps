@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editProduct, fetchProducts } from "@/store/slices/productsSlice";
 import { toast } from "sonner";
 
@@ -28,6 +28,7 @@ const formSchema = z.object({
 });
 
 function EditProductForm({ product, setIsOpen }) {
+  const currentPage = useSelector((state) => state.products.currentPage);
   const dispatch = useDispatch();
 
   const {
@@ -54,6 +55,7 @@ function EditProductForm({ product, setIsOpen }) {
       setIsOpen(false);
       return;
     }
+
     dispatch(editProduct({ id: product.id, productData: data }));
     setIsOpen(false);
     toast.success("The product has been updated successfully.", {
@@ -61,7 +63,7 @@ function EditProductForm({ product, setIsOpen }) {
     });
 
     setTimeout(() => {
-      dispatch(fetchProducts());
+      dispatch(fetchProducts(currentPage));
     }, 300);
   };
 
