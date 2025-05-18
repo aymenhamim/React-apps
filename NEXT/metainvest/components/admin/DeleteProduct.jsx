@@ -16,7 +16,7 @@ function DeleteProduct({ id, children }) {
     setIsOpen(false);
     toast.success("Product deleted successfully");
 
-    setInterval(() => {
+    setTimeout(() => {
       dispatch(fetchProducts());
     }, 400);
   }
