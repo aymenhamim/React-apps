@@ -19,6 +19,8 @@ import { Textarea } from "@/components/ui//textarea";
 import { Button } from "@/components/ui//button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MoveRight } from "lucide-react";
+import { toast } from "sonner";
+import axios from "axios";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Adresse e-mail invalide" }),
@@ -32,24 +34,51 @@ const formSchema = z.object({
     .min(3, { message: "Entreprise / Organisation invalide" }),
   lieu: z.string().min(8, { message: "Lieu de livraison est invalide" }),
   details: z.string().min(10, { message: "Message trop court" }),
-  // type: z.string().min(3, { message: "Type de produit est invalide" }),
+  // type: z.string().nullable(),
   quantity: z
     .string()
     .min(2, { message: "Quantité doit être supérieur à 10" })
     .max(5, { message: "Quantité trop grande" }),
   delay: z.string().min(3, { message: "Délai est invalide" }),
-  // budget: z.string().min(3, { message: "Budget est invalide" }),
+  budget: z.string().nullable(),
 });
 
 function DemandeDevisForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const toastId = toast.loading("Sending message...");
+
     console.log(data);
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/devis", {
+        email: "cnlff21@gmail.com",
+        name: data.name,
+        CustomerEmail: data.email,
+        entreprise: data.entreprise,
+        telephone: data.telephone,
+        // type: data.type,
+        quantity: data.quantity,
+        lieu: data.lieu,
+        delay: data.delay,
+        budget: data.budget,
+        detail: data.details,
+      });
+
+      toast.success("Message sent successfully!");
+      reset();
+    } catch (err) {
+      toast.error("Failed to send message. Please try again.");
+      console.log(err);
+    } finally {
+      toast.dismiss(toastId);
+    }
   };
   return (
     <div className="min-h-dvh bg-stone-50 py-20">
@@ -112,12 +141,14 @@ function DemandeDevisForm() {
                 Type de produit souhaité
               </Label>
 
-              <Select {...register("type")}>
+              <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a type" />
                 </SelectTrigger>
 
-                <SelectContent {...register("type")}>
+                <SelectContent
+                // {...register("type")}
+                >
                   <SelectGroup>
                     <SelectLabel>Types</SelectLabel>
 

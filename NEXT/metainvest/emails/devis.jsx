@@ -4,28 +4,25 @@ const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const KoalaWelcomeEmail = ({
-  telephone,
-  adresse,
+export const DemandeDevisEmail = ({
+  // name,
+  entreprise,
   CustomerEmail,
-  message,
-  name,
+  telephone,
+  // type,
+  quantity,
+  lieu,
+  delay,
+  budget,
+  detail,
 }) => (
   <Html>
     <Head />
     <Body style={main}>
       <Container style={container}>
         <h1 style={{ textAlign: "center", margin: "1rem 0 3rem " }}>
-          📩 Contact Form —
-          <span
-            style={{
-              color: "oklch(58.5% 0.233 277.117) ",
-            }}
-          >
-            {" "}
-            Meta
-          </span>
-          Invest
+          <span style={{ color: "oklch(58.5% 0.233 277.117) " }}>Meta </span>
+          Invest — 📩 Demande Devis Form
         </h1>
         {/* Table */}
         <table
@@ -36,46 +33,81 @@ export const KoalaWelcomeEmail = ({
             margin: "0 auto",
           }}
         >
-          <tr>
+          {/* <tr>
             <th style={th}>
-              <span>👤 </span> <span>Name</span>
+              <span>Name</span>
             </th>
             <td style={rightTd}>{name} </td>
+          </tr> */}
+
+          <tr>
+            <th style={th}>
+              <span>Entreprise</span>
+            </th>
+            <td style={rightTd}>{entreprise} </td>
           </tr>
 
           <tr>
             <th style={th}>
-              <span>📧 </span> <span>CustomerEmail</span>
+              <span>CustomerEmail</span>
             </th>
             <td style={rightTd}>{CustomerEmail} </td>
           </tr>
 
           <tr>
             <th style={th}>
-              <span>📞 </span> <span>Telephone</span>
+              <span>Telephone</span>
             </th>
             <td style={rightTd}>{telephone} </td>
           </tr>
 
+          {/* <tr>
+            <th style={th}>
+              <span>Type</span>
+            </th>
+            <td style={rightTd}>{type}</td>
+          </tr> */}
+
           <tr>
             <th style={th}>
-              <span>📍 </span> <span>Adresse</span>
+              <span>Quantity</span>
             </th>
-            <td style={rightTd}>{adresse}</td>
+            <td style={rightTd}>{quantity}</td>
           </tr>
 
           <tr>
             <th style={th}>
-              <span>🗓️ </span> <span>Date d'envoi</span>
+              <span>Lieu</span>
+            </th>
+            <td style={rightTd}>{lieu}</td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>Delay</span>
+            </th>
+            <td style={rightTd}>{delay}</td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>Budget</span>
+            </th>
+            <td style={rightTd}>{budget}</td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>Detail</span>
+            </th>
+            <td style={rightTd}>{detail}</td>
+          </tr>
+
+          <tr>
+            <th style={th}>
+              <span>Date d'envoi</span>
             </th>
             <td style={rightTd}>{new Date().toLocaleString("fr-FR")}</td>
-          </tr>
-
-          <tr>
-            <th style={th}>
-              <span>📝</span> <span>Message</span>
-            </th>
-            <td style={rightTd}>{message} </td>
           </tr>
         </table>
         <p style={{ margin: "3rem 1rem" }}>
@@ -87,11 +119,11 @@ export const KoalaWelcomeEmail = ({
   </Html>
 );
 
-KoalaWelcomeEmail.PreviewProps = {
+DemandeDevisEmail.PreviewProps = {
   userFirstname: "Alan",
 };
 
-export default KoalaWelcomeEmail;
+export default DemandeDevisEmail;
 
 const rightTd = {
   padding: "10px 20px",

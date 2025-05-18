@@ -50,6 +50,7 @@ function ContactForm() {
           message: data.text,
           name: data.name,
         });
+
         toast.success("Message sent successfully!");
 
         // console.log("Email sent successfully:", response.data);
