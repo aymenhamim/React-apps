@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Label } from "@radix-ui/react-label";
@@ -11,6 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 import { editProduct, fetchProducts } from "@/store/slices/productsSlice";
 import { toast } from "sonner";
+import { PlusCircleIcon, XIcon } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -40,6 +43,7 @@ const formSchema = z.object({
 function EditProductForm({ product, setIsOpen }) {
   const currentPage = useSelector((state) => state.products.currentPage);
   const dispatch = useDispatch();
+  const [images, setImages] = useState(product.images || []);
 
   const {
     register,
@@ -67,9 +71,11 @@ function EditProductForm({ product, setIsOpen }) {
       setIsOpen(false);
       return;
     }
-    console.log(data);
-    dispatch(editProduct({ id: product.id, productData: data }));
+
+    dispatch(editProduct({ id: product.id, productData: { ...data, images } }));
+
     setIsOpen(false);
+
     toast.success("The product has been updated successfully.", {
       description: "The product name is " + data.name,
     });
@@ -86,7 +92,50 @@ function EditProductForm({ product, setIsOpen }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[50rem]">
-      <div className="mt-4 w-[80%] mx-auto flex flex-col gap-5">
+      <div className="mt-4 w-[80%] mx-auto flex flex-col gap-8">
+        {/* Images */}
+
+        <h2 className="text-xl font-semibold my-4">Product Images</h2>
+
+        <div className="flex flex-wrap gap-4">
+          {images.length > 0 && (
+            <>
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className="w-[10rem] h-[10rem] relative overflow-hidden shadow-lg border border-stone-700 rounded-md"
+                >
+                  <div className="w-full h-full  flex items-center justify-center  ">
+                    <Image
+                      src={image}
+                      alt={`Product Image ${index + 1}`}
+                      className="object-cover"
+                      fill
+                      quality={70}
+                    />
+                  </div>
+                  <button
+                    className="absolute top-1 right-1 rounded-full text-red-500 bg-white p-0.5 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setImages((prev) => prev.filter((_, i) => i !== index));
+                      // Handle image removal logic here
+                    }}
+                  >
+                    <XIcon size={16} />
+                  </button>
+                </div>
+              ))}
+            </>
+          )}
+          <div className="bg-transparent rounded-md flex items-center justify-center overflow-hidden shadow-lg w-[10rem] h-[10rem] relative border border-stone-700">
+            <PlusCircleIcon
+              size={40}
+              className="text-stone-900 cursor-pointer"
+            />
+          </div>
+        </div>
+
         <div>
           <Label htmlFor="name">Name</Label>
           <Input id="name" type="text" {...register("name")} />
