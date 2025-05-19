@@ -14,7 +14,11 @@ function Modal({ children, isOpen, onClose }) {
             initial={{ opacity: 0, scale: 0.6 }}
             exit={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="modal fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-stone-50 rounded-xl shadow-lg  py-14 px-16"
+            className="modal fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-stone-50 rounded-xl shadow-lg  py-14 px-16 overflow-auto max-h-[90dvh]"
+            style={{
+              msOverflowStyle: "none" /* IE and Edge */,
+              scrollbarWidth: "none" /* Firefox */,
+            }}
           >
             <button
               className="bg-none border-0 p-1.5 rounded-sm transform translate-x-[0.8rem] absolute top-[1.2rem] right-[1.9rem] cursor-pointer"
