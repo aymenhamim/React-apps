@@ -78,6 +78,7 @@ export default function ProductsList() {
                 <TableCell>
                   <div className="relative aspect-video w-36">
                     <Image
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                       fill
                       quality={70}

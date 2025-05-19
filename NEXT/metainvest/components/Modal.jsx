@@ -21,7 +21,7 @@ function Modal({ children, isOpen, onClose }) {
             }}
           >
             <button
-              className="bg-none border-0 p-1.5 rounded-sm transform translate-x-[0.8rem] absolute top-[1.2rem] right-[1.9rem] cursor-pointer"
+              className="bg-none border-0 p-1.5 rounded-sm transform translate-x-[0.8rem] fixed  top-[1.2rem] right-[1.9rem] cursor-pointer"
               onClick={onClose}
             >
               <XIcon />

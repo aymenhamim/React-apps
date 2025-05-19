@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { PlusCircleIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import ProductImageUploaderV2 from "./ImageUpload-v2";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -36,8 +37,6 @@ const formSchema = z.object({
     .refine((val) => val <= 10000, {
       message: "Quantity must be less than 10000",
     }),
-
-  //FIXME: imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
 });
 
 function EditProductForm({ product, setIsOpen }) {
@@ -61,16 +60,16 @@ function EditProductForm({ product, setIsOpen }) {
   });
 
   const onSubmit = async (data) => {
-    if (
-      product.name === data.name &&
-      product.description === data.description &&
-      product.price == parseFloat(data.price) &&
-      product.quantity == parseInt(data.quantity) &&
-      product.imageUrl === data.imageUrl
-    ) {
-      setIsOpen(false);
-      return;
-    }
+    // if (
+    //   product.name === data.name &&
+    //   product.description === data.description &&
+    //   product.price == parseFloat(data.price) &&
+    //   product.quantity == parseInt(data.quantity) &&
+    //   product.imageUrl === data.imageUrl
+    // ) {
+    //   setIsOpen(false);
+    //   return;
+    // }
 
     dispatch(editProduct({ id: product.id, productData: { ...data, images } }));
 
@@ -95,7 +94,7 @@ function EditProductForm({ product, setIsOpen }) {
       <div className="mt-4 w-[80%] mx-auto flex flex-col gap-8">
         {/* Images */}
 
-        <h2 className="text-xl font-semibold my-4">Product Images</h2>
+        <h2 className="text-xl font-semibold mt-4">Product Images</h2>
 
         <div className="flex flex-wrap gap-4">
           {images.length > 0 && (
@@ -105,15 +104,13 @@ function EditProductForm({ product, setIsOpen }) {
                   key={index}
                   className="w-[10rem] h-[10rem] relative overflow-hidden shadow-lg border border-stone-700 rounded-md"
                 >
-                  <div className="w-full h-full  flex items-center justify-center  ">
-                    <Image
-                      src={image}
-                      alt={`Product Image ${index + 1}`}
-                      className="object-cover"
-                      fill
-                      quality={70}
-                    />
-                  </div>
+                  <Image
+                    src={image}
+                    alt={`Product Image ${index + 1}`}
+                    className="object-cover"
+                    fill
+                    quality={70}
+                  />
                   <button
                     className="absolute top-1 right-1 rounded-full text-red-500 bg-white p-0.5 cursor-pointer"
                     onClick={(e) => {
@@ -128,12 +125,8 @@ function EditProductForm({ product, setIsOpen }) {
               ))}
             </>
           )}
-          <div className="bg-transparent rounded-md flex items-center justify-center overflow-hidden shadow-lg w-[10rem] h-[10rem] relative border border-stone-700">
-            <PlusCircleIcon
-              size={40}
-              className="text-stone-900 cursor-pointer"
-            />
-          </div>
+
+          <ProductImageUploaderV2 onImagesUploaded={setImages} />
         </div>
 
         <div>
@@ -177,14 +170,6 @@ function EditProductForm({ product, setIsOpen }) {
               <p className="text-red-500 text-sm">{errors.quantity.message}</p>
             )}
           </div>
-        </div>
-
-        <div>
-          <Label htmlFor="imageUrl">Image URL</Label>
-          <Input id="imageUrl" type="url" {...register("imageUrl")} />
-          {errors.imageUrl && (
-            <p className="text-red-500 text-sm">{errors.imageUrl.message}</p>
-          )}
         </div>
       </div>
 

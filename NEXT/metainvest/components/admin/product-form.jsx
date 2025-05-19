@@ -10,11 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { createProduct } from "@/store/slices/productsSlice";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import HomeImage from "./ImageUpload";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import ProductImageUploaderV2 from "./ImageUpload-v2";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -38,7 +38,6 @@ const formSchema = z.object({
     .refine((val) => val <= 10000, {
       message: "Quantity must be less than 10000",
     }),
-  //FIXME: imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
 });
 
 export default function ProductForm() {
@@ -59,20 +58,15 @@ export default function ProductForm() {
     const finalData = { ...data, images: imagesArray };
 
     try {
-      // Dispatch the action and wait for it to complete
-      await dispatch(createProduct(finalData));
+      await dispatch(createProduct({ ...finalData, images: imagesArray }));
 
-      // console.log(finalData);
-
-      // Show success toast
       toast.success("The product has been created successfully.", {
         description: "The product name is " + data.name,
       });
 
-      // Reset the form
       reset();
 
-      // Redirect to dashboard
+      // redirect to dashboard
       router.push("/admin/dashboard");
     } catch (error) {
       toast.error("Failed to create product", {
@@ -145,8 +139,14 @@ export default function ProductForm() {
           {/* Price */}
 
           {/* Image URL */}
+          <p className="font-bold text-2xl">Add Product Images</p>
 
-          <HomeImage setImagesArray={setImagesArray} />
+          <ProductImageUploaderV2
+            onImagesUploaded={setImagesArray}
+            autoReset={false}
+          />
+
+          {/* <HomeImage setImagesArray={setImagesArray} /> */}
 
           <div className="flex justify-end space-x-4">
             <Button
