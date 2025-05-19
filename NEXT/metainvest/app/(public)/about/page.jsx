@@ -26,7 +26,7 @@ function About() {
         </div>
 
         <div
-          className="bg-black/80 absolute text-white font-bold flex items-center       justify-center w-fit 
+          className="bg-black/80 absolute text-white font-bold flex items-center  justify-center w-fit 
         left-10 max-xl:left-8 max-lg:left-6 max-md:left-4 max-sm:left-2
         bottom-10 max-xl:bottom-8 max-lg:bottom-6 max-md:bottom-4 max-sm:bottom-2
         px-20 max-xl:px-12 max-lg:px-8 max-md:px-4 

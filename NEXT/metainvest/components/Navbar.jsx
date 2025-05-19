@@ -80,7 +80,7 @@ function Navbar() {
     <motion.header
       className={`bg-black ${
         isTranspart ? "bg-stone-950" : "bg-stone-950"
-      }  sticky top-0 z-20 mx-auto flex w-full items-center justify-between border-gray-500 text-white flex-wrap
+      }  sticky  top-0 mx-auto flex w-full items-center justify-between border-gray-500 text-white flex-wrap
     py-5 
     px-52 max-xl:px-20 max-lg:px-10`}
     >

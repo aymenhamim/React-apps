@@ -18,9 +18,10 @@ class ProductController extends Controller
         $this->authorizeResource(Product::class, 'product');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return Product::paginate(5);
+        $pagination = $request->query('pagination');
+        return Product::paginate($pagination > 0 ? $pagination : 5);
     }
 
     public function show(Product $product)
