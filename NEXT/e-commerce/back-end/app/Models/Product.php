@@ -9,7 +9,7 @@ class Product extends Model
     protected $casts = [
         'images' => 'array'
     ];
-    protected $fillable = ['name', 'description', 'price', 'discount', 'images', 'category_id'];
+    protected $fillable = ['name', 'description', 'price', 'images', 'category_id', 'quantity'];
 
     public function category()
     {

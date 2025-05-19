@@ -41,7 +41,8 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'nullable',
             'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0|max:100',
+            'quantity' => 'nullable|integer',
+            // 'discount' => 'nullable|numeric|min:0|max:100',
             'category_id' => 'nullable|exists:categories,id',
             'images' => 'array',
         ]);
@@ -63,9 +64,10 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'nullable',
             'price' => 'required|numeric',
-            'discount' => 'nullable|numeric|min:0|max:100',
+            'quantity' => 'nullable|integer',
+            // 'discount' => 'nullable|numeric|min:0|max:100',
             'category_id' => 'nullable|exists:categories,id',
-            'images' => 'nullable',
+            'images' => 'array',
         ]);
 
         $product->update($validated);

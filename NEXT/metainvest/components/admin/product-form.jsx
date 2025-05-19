@@ -28,6 +28,16 @@ const formSchema = z.object({
     .refine((val) => val <= 10000, {
       message: "Price must be less than 10000",
     }),
+
+  quantity: z
+    .string()
+    .transform((val) => parseInt(val))
+    .refine((val) => !isNaN(val) && val >= 0, {
+      message: "Quantity must be a positive number",
+    })
+    .refine((val) => val <= 10000, {
+      message: "Quantity must be less than 10000",
+    }),
   //FIXME: imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
 });
 
@@ -52,7 +62,7 @@ export default function ProductForm() {
       // Dispatch the action and wait for it to complete
       await dispatch(createProduct(finalData));
 
-      console.log(finalData);
+      // console.log(finalData);
 
       // Show success toast
       toast.success("The product has been created successfully.", {
@@ -103,8 +113,10 @@ export default function ProductForm() {
 
           {/* Price */}
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
+          <div className="flex flex-wrap justify-between">
+            {/* Price */}
+
+            <div className="space-y-2 w-[48%]">
               <Label htmlFor="price">Price (dh) *</Label>
               <Input
                 id="price"
@@ -116,7 +128,21 @@ export default function ProductForm() {
                 <p className="text-red-500 text-sm">{errors.price.message}</p>
               )}
             </div>
+
+            {/* Quantity */}
+
+            <div className="space-y-2  w-[48%]">
+              <Label htmlFor="quantity">Quantity *</Label>
+              <Input type="number" step="1" {...register("quantity")} />
+              {errors.quantity && (
+                <p className="text-red-500 text-sm">
+                  {errors.quantity.message}
+                </p>
+              )}
+            </div>
           </div>
+
+          {/* Price */}
 
           {/* Image URL */}
 
@@ -126,7 +152,7 @@ export default function ProductForm() {
             <Button
               type="button"
               variant="outline"
-              onClick={() => router.push("/dashboard")}
+              onClick={() => router.push("/admin/dashboard")}
             >
               Cancel
             </Button>

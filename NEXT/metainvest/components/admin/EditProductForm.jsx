@@ -24,6 +24,16 @@ const formSchema = z.object({
     .refine((val) => val <= 10000, {
       message: "Price must be less than 10000",
     }),
+  quantity: z
+    .string()
+    .transform((val) => parseInt(val))
+    .refine((val) => !isNaN(val) && val >= 0, {
+      message: "Quantity must be a positive number",
+    })
+    .refine((val) => val <= 10000, {
+      message: "Quantity must be less than 10000",
+    }),
+
   //FIXME: imageUrl: z.string().url({ message: "Invalid URL" }).optional(),
 });
 
@@ -41,6 +51,7 @@ function EditProductForm({ product, setIsOpen }) {
       name: product.name || "",
       description: product.description || "",
       price: product.price?.toString() || "0",
+      quantity: product.quantity?.toString() || "0",
       imageUrl: product.imageUrl || "",
     },
   });
@@ -50,12 +61,13 @@ function EditProductForm({ product, setIsOpen }) {
       product.name === data.name &&
       product.description === data.description &&
       product.price == parseFloat(data.price) &&
+      product.quantity == parseInt(data.quantity) &&
       product.imageUrl === data.imageUrl
     ) {
       setIsOpen(false);
       return;
     }
-
+    console.log(data);
     dispatch(editProduct({ id: product.id, productData: data }));
     setIsOpen(false);
     toast.success("The product has been updated successfully.", {
@@ -95,12 +107,27 @@ function EditProductForm({ product, setIsOpen }) {
           )}
         </div>
 
-        <div>
-          <Label htmlFor="price">Price</Label>
-          <Input id="price" type="number" step="0.01" {...register("price")} />
-          {errors.price && (
-            <p className="text-red-500 text-sm">{errors.price.message}</p>
-          )}
+        <div className="flex flex-wrap justify-between">
+          <div className="w-[48%]">
+            <Label htmlFor="price">Price</Label>
+            <Input type="number" step="0.01" {...register("price")} />
+            {errors.price && (
+              <p className="text-red-500 text-sm">{errors.price.message}</p>
+            )}
+          </div>
+
+          <div className="w-[48%]">
+            <Label htmlFor="price">Quantity *</Label>
+            <Input
+              type="number"
+              step="1"
+              id="quantity"
+              {...register("quantity")}
+            />
+            {errors.quantity && (
+              <p className="text-red-500 text-sm">{errors.quantity.message}</p>
+            )}
+          </div>
         </div>
 
         <div>
