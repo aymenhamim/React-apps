@@ -1,9 +1,14 @@
 // import { getSession } from "@/lib/actions/auth";
 // import { redirect } from "next/navigation";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import ProductsList from "@/components/admin/login/products-list";
+
+export const metadata = {
+  title: "Products",
+};
 
 export default async function ProductsPage() {
   // fixme: uncomment this when auth is implemented

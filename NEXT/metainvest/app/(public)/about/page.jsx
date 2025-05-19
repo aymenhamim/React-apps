@@ -7,6 +7,10 @@ import Image4 from "@/public/images/project-imgs/about/pic-4.jpg";
 
 import Image from "next/image";
 
+export const metadata = {
+  title: "About",
+};
+
 function About() {
   return (
     <>

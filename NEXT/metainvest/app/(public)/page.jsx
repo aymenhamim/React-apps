@@ -10,11 +10,6 @@ import Section4 from "@/components/home/Section4";
 import Section5 from "@/components/home/Section5";
 import Footer from "@/components/Footer";
 
-const metaData = {
-  title: "Home",
-  // description: "MetaInvest - build steel chairs and tables ",
-};
-
 export default function Home() {
   return (
     <div className="relative w-full h-screen overflow-x-hidden">

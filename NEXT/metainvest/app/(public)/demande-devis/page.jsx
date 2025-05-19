@@ -4,10 +4,8 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Image1 from "@/public/images/project-imgs/demande-devis/hero1.jpg";
 
-const metaData = {
-  title: "MetaInvest - Demande de devis",
-  description:
-    "Demandez un devis personnalisé pour votre projet de mobilier métallique.",
+export const metadata = {
+  title: "Demande de devis",
 };
 
 function DemendeDevis() {

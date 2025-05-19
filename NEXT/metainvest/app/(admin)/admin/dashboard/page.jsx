@@ -1,6 +1,10 @@
 // import { getSession } from "@/lib/actions/auth";
 // import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "Dashboard",
+};
+
 import TotalProducts from "@/components/admin/dashboard/TotalProducts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

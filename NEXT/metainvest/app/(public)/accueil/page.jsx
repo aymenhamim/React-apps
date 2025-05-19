@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Accueil",
+};
+
 function Accueil() {
   return (
     <div>

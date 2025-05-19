@@ -10,7 +10,6 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  // title: "The Wild Oasis",
   title: {
     default: "Metainvest",
     template: "%s | Metainvest",
