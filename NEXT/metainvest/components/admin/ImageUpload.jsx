@@ -98,17 +98,29 @@ export default function HomeImage({ setImagesArray }) {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold my-10">Multi-Image Uploader</h1>
-
       <div>
-        <div className="mb-4">
-          <input
-            type="file"
-            name="file"
-            multiple
-            className="bg-stone-800 text-white p-2 rounded"
-            onChange={handleOnChange}
-          />
+        <div className="flex items-center gap-10 mb-4">
+          <div className="">
+            <input
+              type="file"
+              name="file"
+              multiple
+              className="bg-stone-800 text-white p-2 rounded text-sm"
+              onChange={handleOnChange}
+            />
+          </div>
+
+          {imageSrcs.length > 0 && !uploadData && (
+            <div className="">
+              <button
+                onClick={handleOnSubmit}
+                disabled={isUploading}
+                className="text-stone-950 bg-stone-50 border border-stone-950 px-4 py-2 rounded hover:bg-stone-200 disabled:bg-blue-300 text-sm"
+              >
+                {isUploading ? "Uploading..." : "Upload Files"}
+              </button>
+            </div>
+          )}
         </div>
 
         {imageSrcs.length > 0 && (
@@ -125,18 +137,6 @@ export default function HomeImage({ setImagesArray }) {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {imageSrcs.length > 0 && !uploadData && (
-          <div className="mt-6">
-            <button
-              onClick={handleOnSubmit}
-              disabled={isUploading}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-blue-300"
-            >
-              {isUploading ? "Uploading..." : "Upload Files"}
-            </button>
           </div>
         )}
 

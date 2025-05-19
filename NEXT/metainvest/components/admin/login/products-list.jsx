@@ -27,8 +27,6 @@ export default function ProductsList() {
     (state) => state.products
   );
 
-  console.log(products);
-
   useEffect(() => {
     dispatch(fetchProducts(currentPage));
   }, [currentPage, dispatch]);
@@ -83,7 +81,7 @@ export default function ProductsList() {
                       priority
                       fill
                       quality={70}
-                      src={product.images[0]}
+                      src={product.images[0] || defaultImg}
                       alt={product.name}
                       className="absolute object-cover rounded-lg"
                     />

@@ -52,6 +52,8 @@ export default function ProductForm() {
       // Dispatch the action and wait for it to complete
       await dispatch(createProduct(finalData));
 
+      console.log(finalData);
+
       // Show success toast
       toast.success("The product has been created successfully.", {
         description: "The product name is " + data.name,
