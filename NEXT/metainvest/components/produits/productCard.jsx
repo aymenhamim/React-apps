@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
+import { useState } from "react";
 import { Badge } from "../ui/badge";
 // import { Badge } from "@/components/ui/badge";
 
@@ -23,7 +21,7 @@ export default function ProductCard({ product }) {
           src={product.images[0] || "/placeholder.svg"}
           alt={product.name}
           fill
-          className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"}`}
+          className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"} ${product.quantity > 0 ? "" : "grayscale"}`}
         />
         <Badge className="absolute top-2 right-2">
           {product.quantity > 0 ? "disponible" : "out of stock"}

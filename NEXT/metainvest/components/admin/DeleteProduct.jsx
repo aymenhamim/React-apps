@@ -7,7 +7,7 @@ import { deleteProduct, fetchProducts } from "@/store/slices/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
-function DeleteProduct({ id, children }) {
+function DeleteProduct({ id, children, lastProductInList }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.products.currentPage);
@@ -18,7 +18,11 @@ function DeleteProduct({ id, children }) {
     toast.success("Product deleted successfully");
 
     setTimeout(() => {
-      dispatch(fetchProducts(currentPage));
+      dispatch(
+        fetchProducts(
+          lastProductInList && currentPage !== 1 ? currentPage - 1 : currentPage
+        )
+      );
     }, 400);
   }
 

@@ -96,7 +96,12 @@ export default function ProductsList() {
 
                   <EditProduct id={product.id}>Edit</EditProduct>
 
-                  <DeleteProduct id={product.id}>Delete</DeleteProduct>
+                  <DeleteProduct
+                    id={product.id}
+                    lastProductInList={products.length === 1}
+                  >
+                    Delete
+                  </DeleteProduct>
                 </TableCell>
                 {/* <TableCell>{product.stock}</TableCell> */}
                 <TableCell>{/* Actions would go here */}</TableCell>

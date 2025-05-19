@@ -13,13 +13,13 @@ const capacities = [
   },
   {
     title: "Fabrication Métallique de Petite Série",
-    text: "Nous réalisons des structures métalliques légères comme des chaises, des bancs ou des cadres, souvent destinées à l’usage scolaire ou au transport, en respectant les normes de solidité et de confort.",
+    text: "Nous réalisons des structures métalliques légères comme des chaises, des bancs ou des cadres, souvent destinées à l'usage scolaire ou au transport, en respectant les normes de solidité et de confort.",
     icon: <HammerIcon size={35} />,
     img: capacity2,
   },
   {
     title: "Finitions",
-    text: "Nous collaborons avec des partenaires pour appliquer des traitements de surface adaptés : peinture, zingage, nickelage, ou d’autres finitions sur demande.",
+    text: "Nous collaborons avec des partenaires pour appliquer des traitements de surface adaptés : peinture, zingage, nickelage, ou d'autres finitions sur demande.",
     icon: <CircleArrowLeftIcon size={35} />,
     img: capacity3,
   },
