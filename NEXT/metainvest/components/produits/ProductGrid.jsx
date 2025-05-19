@@ -4,7 +4,13 @@ import { set } from "react-hook-form";
 import ProductCard from "./productCard";
 
 export default async function ProductGrid() {
-  const res = await fetch("http://127.0.0.1:8000/api/products?pagination=10");
+  const res = await fetch("http://127.0.0.1:8000/api/products?pagination=10", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+    cache: "no-store",
+  });
 
   const data = await res.json();
   const products = data?.data || [];

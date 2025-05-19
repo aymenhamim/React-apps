@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "../ui/badge";
 // import { Badge } from "@/components/ui/badge";
 
 export default function ProductCard({ product }) {
@@ -24,7 +25,9 @@ export default function ProductCard({ product }) {
           fill
           className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"}`}
         />
-        <Badge className="absolute top-2 right-2">{product.category}</Badge>
+        <Badge className="absolute top-2 right-2">
+          {product.quantity > 0 ? "disponible" : "out of stock"}
+        </Badge>
       </div>
       <CardContent className="pt-4 flex-grow">
         <h3 className="font-medium text-lg mb-1 line-clamp-1">

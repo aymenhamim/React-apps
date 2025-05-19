@@ -58,7 +58,7 @@ function Section3() {
 
             {/*  Capacity Icon */}
 
-            <div className="absolute top-0 left-1/2 transform -translate-1/2 w-18 aspect-square rounded-full bg-stone-50 border border-stone-900 z-20 flex items-center justify-center shadow-2xl ">
+            <div className="absolute top-0 left-1/2 transform -translate-1/2 w-18 aspect-square rounded-full bg-stone-50 border border-stone-900  flex items-center justify-center shadow-2xl ">
               {capacity.icon}
             </div>
 
