@@ -45,7 +45,7 @@ class ProductPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(?User $user, Product $product): bool
+    public function delete(User $user, Product $product): bool
     {
         return true;
         // return $user->isAdmin();

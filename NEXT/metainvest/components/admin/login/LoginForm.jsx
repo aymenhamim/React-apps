@@ -10,6 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
 import { redirect } from "next/dist/server/api-utils";
+import { axiosInstance } from "@/store/slices/productsSlice";
+
+const API_BASE_URL = "/backend";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Adresse e-mail invalide" }),
@@ -23,9 +26,11 @@ function LoginForm() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    await axiosInstance.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
+
     console.log(data);
-    redirect("/admin/dahboard");
+    // redirect("/admin/dahboard");
   };
 
   return (
@@ -54,8 +59,9 @@ function LoginForm() {
           </div>
 
           <div>
-            <Link href="/admin/dashboard">Login</Link>
-            <Button type="submit" className="w-full cursor-pointer"></Button>
+            <Button type="submit" className="w-full cursor-pointer">
+              <Link href="/admin/dashboard">Login</Link>
+            </Button>
           </div>
         </div>
       </form>

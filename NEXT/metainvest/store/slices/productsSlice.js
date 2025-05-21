@@ -9,11 +9,18 @@ const initialState = {
   lastPage: 1,
 };
 
+export const axiosInstance = axios.create({
+  withCredentials: true,
+  withXSRFToken: true,
+  xsrfCookieName: "XSRF-TOKEN",
+  xsrfHeaderName: "X-XSRF-TOKEN",
+});
+
 const API_BASE_URL = "http://127.0.0.1:8000/api/";
 // const token = localStorage.getItem('authToken');
 
 // ! Common headers
-const axiosConfig = {
+export const axiosConfig = {
   headers: {
     // Authorization: `Bearer ${token}`,
     Accept: "application/json",

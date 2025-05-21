@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    use AuthorizesRequests;
 
-    public function __construct()
-    {
-
-        $this->authorizeResource(Product::class, 'product');
-    }
+    public function __construct() {}
 
     public function index(Request $request)
     {
@@ -78,7 +73,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return response()->json(['message' => 'Deleted']);
+        return response()->json(['message' => Auth::user()]);
     }
 
     public function count()

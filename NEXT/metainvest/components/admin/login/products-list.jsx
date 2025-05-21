@@ -19,6 +19,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../../ui/button";
 import EditProduct from "../EditProduct";
+import ViewProduct from "../ViewProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
@@ -91,8 +92,11 @@ export default function ProductsList() {
                 <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{parseFloat(product.price).toFixed(2)} dh</TableCell>
+
+                {/* Button */}
+
                 <TableCell className={"flex items-center h-30"}>
-                  <Button size={"sm"}>View</Button>
+                  <ViewProduct id={product.id}>View</ViewProduct>
 
                   <EditProduct id={product.id}>Edit</EditProduct>
 
