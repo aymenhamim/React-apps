@@ -37,7 +37,7 @@ export default function ProductCard({ product }) {
         {/* <p className="font-bold text-lg">${product.price.toFixed(2)}</p> */}
       </CardContent>
       <CardFooter className="pt-0">
-        <Button className="w-full">Affichier le produit</Button>
+        <Button className="w-full">Afficher le produit</Button>
       </CardFooter>
     </Card>
   );
