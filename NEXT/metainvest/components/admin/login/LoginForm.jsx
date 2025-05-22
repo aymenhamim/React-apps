@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
-import { redirect } from "next/dist/server/api-utils";
+// import { redirect } from "next/dist/server/api-utils";
 import { axiosInstance } from "@/store/slices/productsSlice";
+import { createKey } from "next/dist/shared/lib/router/router";
+import { useRouter } from "next/router";
 
 const API_BASE_URL = "/backend";
 
@@ -29,8 +31,15 @@ function LoginForm() {
   const onSubmit = async (data) => {
     await axiosInstance.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
 
-    console.log(data);
-    // redirect("/admin/dahboard");
+    await axiosInstance.post(`${API_BASE_URL}/login`, data);
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Now make the user request
+    const response = await axiosInstance.get(`${API_BASE_URL}/user`);
+    const user = response.data;
+
+    console.log(user);
   };
 
   return (

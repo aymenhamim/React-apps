@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import authService from "../../services/authService";
 
+const API_BASE_URL = "/backend";
+
 const initialState = {
   user: null,
   isAuthenticated: false,
@@ -8,37 +10,11 @@ const initialState = {
   isAdmin: false,
   error: null,
 };
-
-// Async thunk for login
-// export const loginAdmin = createAsyncThunk(
-//   "auth/loginAdmin",
-//   async (credentials, thunkAPI) => {
-//     try {
-//       return await authService.login(credentials);
-//     } catch (error) {
-//       const message =
-//         (error.response &&
-//           error.response.data &&
-//           error.response.data.message) ||
-//         error.message ||
-//         error.toString();
-
-//       return thunkAPI.rejectWithValue(message);
-//     }
-//   }
-// );
-
-// Async thunk for logout
-export const logoutAdmin = createAsyncThunk("auth/logoutAdmin", async () => {
-  await authService.logout();
-});
-
-// Async thunk for checking admin status
-// export const checkAdminStatus = createAsyncThunk(
-//   "auth/checkAdminStatus",
+// export const checkUserStatus = createAsyncThunk(
+//   "auth/checkUserStatus",
 //   async (_, thunkAPI) => {
 //     try {
-//       return await authService.checkAdminStatus();
+//       axiosInstance.get(`${API_BASE_URL}/user`);
 //     } catch (error) {
 //       return thunkAPI.rejectWithValue("Failed to verify admin status");
 //     }

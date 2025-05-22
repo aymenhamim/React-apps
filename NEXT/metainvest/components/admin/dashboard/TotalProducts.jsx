@@ -1,13 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { axiosInstance } from "@/store/slices/productsSlice";
+
+const API_BASE_URL = "/backend";
 
 async function TotalProducts() {
   let totalProducts = 0;
   let error = null;
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/products/count", {
-      cache: "no-store",
-    });
+    const response = await axiosInstance.get(
+      `${API_BASE_URL}/api/products/count`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

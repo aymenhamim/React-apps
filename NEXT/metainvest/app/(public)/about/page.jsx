@@ -1,3 +1,4 @@
+import MetaInvestInfos from "@/components/about/MetaInvestInfos";
 import Footer from "@/components/Footer";
 import Image1 from "@/public/images/project-imgs/about/main-1.jpg";
 
@@ -48,41 +49,7 @@ function About() {
         >
           À propos — L'histoire de MetaInvest
         </h3>
-        <ul
-          className="
-          flex flex-col gap-10 mx-auto 
-          text-lg max-md:text-sm
-          w-[50dvw] max-xl:w-[60dvw] max-lg:w-[70dvw] max-md:w-[70dvw] max-sm:w-[90dvw]
-          list-inside list-disc 
-        "
-        >
-          <li>
-            <b>Fondée en 2013,</b> MetaInvest est née d'une idée simple mais
-            essentielle : fournir du mobilier métallique robuste et fonctionnel
-            pour répondre aux besoins réels des institutions. D'un petit atelier
-            local, nous sommes devenus un partenaire fiable pour de nombreuses
-            écoles et entreprises de transport à travers la région.
-          </li>
-          <li>
-            Notre équipe est composée de soudeurs, de techniciens et de
-            concepteurs passionnés par leur métier. Nous ne produisons pas en
-            masse : chaque commande est traitée avec soin, précision et respect
-            du client. Chaque chaise, chaque bureau ou siège est le reflet de
-            nos valeurs : solidité, qualité et durabilité.
-          </li>
-          <li>
-            Nous sommes fiers de contribuer à l'amélioration de l'éducation et
-            du service public. Quand un élève s'assoit sur une de nos chaises ou
-            qu'un passager voyage confortablement grâce à nos sièges, nous
-            savons que notre travail a un véritable impact.
-          </li>
-          <li>
-            Notre atelier est équipé de machines modernes et respecte des normes
-            strictes en matière de sécurité et de qualité. Nous invitons les
-            directeurs d'écoles, responsables d'achats et partenaires à visiter
-            nos locaux pour découvrir notre savoir-faire.
-          </li>
-        </ul>
+        <MetaInvestInfos />
       </div>
 
       <div className="bg-stone-300 min-h-[80dvh] flex flex-col py-30">
