@@ -78,10 +78,13 @@ export const editProduct = createAsyncThunk(
   "products/editProduct",
   async ({ id, productData }, thunkAPI) => {
     try {
-      const response = await axios.put(
-        `${API_BASE_URL}products/${id}/`,
-        productData,
-        axiosConfig
+      await axiosInstance.get(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
+      );
+
+      const response = await axiosInstance.put(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/products/${id}`,
+        productData
       );
 
       if (response.status !== 200) {
@@ -99,10 +102,13 @@ export const createProduct = createAsyncThunk(
   "products/createProduct",
   async (productData, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}products`,
-        productData,
-        axiosConfig
+      await axiosInstance.get(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
+      );
+
+      const response = await axiosInstance.post(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/products`,
+        productData
       );
 
       if (response.status !== 200) {
