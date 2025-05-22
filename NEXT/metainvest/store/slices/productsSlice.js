@@ -15,10 +15,10 @@ export const axiosInstance = axios.create({
   xsrfCookieName: "XSRF-TOKEN",
   xsrfHeaderName: "X-XSRF-TOKEN",
 
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   Accept: "application/json",
+  //   "Content-Type": "application/json",
+  // },
 });
 
 const API_BASE_URL = "http://127.0.0.1:8000/api/";

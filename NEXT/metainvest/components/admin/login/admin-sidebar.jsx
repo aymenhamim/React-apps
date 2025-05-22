@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 // Fixme: import { logoutUser } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Package, LogOut } from "lucide-react";
+import { axiosInstance } from "@/store/slices/productsSlice";
 
 export default function AdminSidebar() {
   const pathname = usePathname();
@@ -14,9 +15,16 @@ export default function AdminSidebar() {
   // const dispatch = useDispatch();
 
   const handleLogout = async () => {
+    try {
+      await axiosInstance.post(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/logout`
+      );
+      router.push("/login");
+    } catch (error) {
+      console.log("Logout error:", error);
+    }
     // await logoutUser();
     // dispatch(logout());
-    router.push("/login");
   };
 
   const navItems = [
