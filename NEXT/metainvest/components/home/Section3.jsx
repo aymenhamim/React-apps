@@ -1,6 +1,9 @@
+"use client";
+
 import capacity1 from "@/public/images/project-imgs/home/capacity1.jpg";
 import capacity2 from "@/public/images/project-imgs/home/capacity2.jpg";
 import capacity3 from "@/public/images/project-imgs/home/capacity3.jpg";
+import { motion } from "framer-motion";
 import { CogIcon, HammerIcon, CircleArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -26,6 +29,26 @@ const capacities = [
 ];
 
 function Section3() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const imageItemVariants = {
+    hidden: { opacity: 0, x: -40 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
     <div
       className="bg-white min-h-[80dvh] py-32 
@@ -43,9 +66,20 @@ function Section3() {
         Nos capacités de fabrication
       </h3>
 
-      <div className="flex max-md:flex-col w-[80dvw] max-lg:w-[90dvw] mx-auto gap-6   items-center justify-center py-14 max-md:gap-15">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        // viewport={{ once: true }}
+        className="flex max-md:flex-col w-[80dvw] max-lg:w-[90dvw] mx-auto gap-6   items-center justify-center py-14 max-md:gap-15"
+      >
         {capacities.map((capacity, index) => (
-          <div key={index} className="w-96 aspect-square relative">
+          <motion.div
+            variants={imageItemVariants}
+            // viewport={{ once: true }}
+            key={index}
+            className="w-96 aspect-square relative"
+          >
             {/*  Capacity Image */}
 
             <Image
@@ -73,9 +107,9 @@ function Section3() {
                 {capacity.text}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

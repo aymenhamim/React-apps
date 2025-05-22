@@ -26,7 +26,6 @@ function MetaInvestInfos() {
     <motion.ul
       variants={textContainerVariants}
       initial="hidden"
-      show="show"
       whileInView="visible"
       viewport={{ once: true }}
       className="
@@ -36,7 +35,7 @@ function MetaInvestInfos() {
             list-inside list-disc 
           "
     >
-      <motion.li variants={textItemVariants} initial="hidden" animate="visible">
+      <motion.li variants={textItemVariants}>
         <b>Fondée en 2013,</b> MetaInvest est née d'une idée simple mais
         essentielle : fournir du mobilier métallique robuste et fonctionnel pour
         répondre aux besoins réels des institutions. D'un petit atelier local,
