@@ -13,6 +13,7 @@ import Link from "next/link";
 import { axiosInstance } from "@/store/slices/productsSlice";
 import { createKey } from "next/dist/shared/lib/router/router";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const API_BASE_URL = "/backend";
 
@@ -28,6 +29,7 @@ function LoginForm() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
   const router = useRouter();
+  const [loginError, setLoginError] = useState("");
 
   const onSubmit = async (data) => {
     try {
@@ -35,42 +37,18 @@ function LoginForm() {
 
       await axiosInstance.post(`${API_BASE_URL}/login`, data);
 
-      const userResponse = await axiosInstance.get(`${API_BASE_URL}/user`);
-      const user = userResponse.data;
-
-      console.log("Login successful:", user);
-
-      // Redirect to dashboard
+      // ? Redirect to dashboard
       router.push("/admin/dashboard");
     } catch (error) {
-      console.error("Login error:", error);
+      console.log("Login error:", error);
 
       if (error.response?.status === 422) {
-        // Validation errors
-        const errors = error.response.data.errors;
+        const errors = error.response?.data?.message;
         if (errors) {
-          // Handle specific field errors if needed
-          setLoginError("Please check your credentials and try again.");
-        } else {
           setLoginError("Invalid credentials. Please try again.");
         }
-      } else if (error.response?.status === 401) {
-        setLoginError("Invalid email or password.");
       } else {
         setLoginError("An error occurred. Please try again later.");
-      }
-    }
-  };
-
-  const getUser = async () => {
-    try {
-      const response = await axiosInstance.get(`${API_BASE_URL}/user`);
-      const user = response.data;
-      console.log("Current user:", user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      if (error.response?.status === 401) {
-        console.log("User not authenticated");
       }
     }
   };
@@ -96,7 +74,13 @@ function LoginForm() {
             <Label htmlFor="password">password</Label>
             <Input type={"password"} {...register("password")} />
             {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
+
+            {loginError && (
+              <p className="text-red-500 text-sm mt-2">{loginError}</p>
             )}
           </div>
 
@@ -104,15 +88,6 @@ function LoginForm() {
             <Button type="submit" className="w-full cursor-pointer">
               {/* <Link href="/admin/dashboard">Login</Link> */}
               Login
-            </Button>
-
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full cursor-pointer my-5"
-              onClick={getUser}
-            >
-              Get User
             </Button>
           </div>
         </div>
