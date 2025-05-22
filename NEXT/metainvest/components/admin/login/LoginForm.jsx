@@ -37,7 +37,7 @@ function LoginForm() {
       // ? Redirect to dashboard
       router.push("/admin/dashboard");
     } catch (error) {
-      console.log("Login error:", error);
+      // console.log("Login error:", error);
 
       if (error.response?.status === 422) {
         const errors = error.response?.data?.message;
