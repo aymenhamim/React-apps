@@ -15,6 +15,7 @@
 //   const isProtectedRoute = authProtectedRoutes.some((route) =>
 //     pathname.startsWith(route)
 //   );
+
 //   const isAdminRoute = pathname.startsWith("/admin");
 
 //   // Skip middleware if not protecting any routes
@@ -83,3 +84,19 @@
 // export const config = {
 //   matcher: ["/admin/dashboard", "/admin/products/new", "/admin/products"],
 // };
+
+import { NextResponse } from "next/server";
+
+// This function can be marked `async` if using `await` inside
+export function middleware(request) {
+  // if (request.url.includes("admin/dashboard")) {
+  // }
+  return NextResponse.redirect(new URL("/", request.url));
+
+  // return NextResponse.next();
+}
+
+export const config = {
+  // matcher: "/admin/:path*",
+  matcher: "/admin",
+};

@@ -1,26 +1,41 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosInstance } from "@/store/slices/productsSlice";
 
 const API_BASE_URL = "/backend";
 
-async function TotalProducts() {
-  let totalProducts = 0;
-  let error = null;
+function TotalProducts() {
+  const [totalProducts, setTotalProducts] = useState(10);
+  const [error, setError] = useState(null);
 
-  try {
-    const response = await axiosInstance.get(
-      `${API_BASE_URL}/api/products/count`
-    );
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       // Get CSRF token
+  //       await axiosInstance.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+  //       // Fetch products count
+  //       const response = await axiosInstance.get(
+  //         `${API_BASE_URL}/api/products/count`
+  //       );
+  //       // console.log("fqds");
 
-    totalProducts = await response.json();
-  } catch (err) {
-    console.error("Error fetching product count:", err);
-    error = "Failed to load product count";
-  }
+  //       setTotalProducts(response.data);
+  //       console.log("Total products:", response.data);
+  //     } catch (err) {
+  //       console.error("Error fetching products:", err);
+
+  //       if (err.response?.status === 401) {
+  //         setError("Please log in to view this data");
+  //       } else {
+  //         setError("Failed to load product count");
+  //       }
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, []);
 
   return (
     <Card>
@@ -31,7 +46,7 @@ async function TotalProducts() {
         {error ? (
           <p className="text-red-500">{error}</p>
         ) : (
-          <p className="text-3xl font-bold">{totalProducts?.count}</p>
+          <p className="text-3xl font-bold">{totalProducts}</p>
         )}
       </CardContent>
     </Card>

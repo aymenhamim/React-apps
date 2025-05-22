@@ -12,7 +12,7 @@ import Link from "next/link";
 // import { redirect } from "next/dist/server/api-utils";
 import { axiosInstance } from "@/store/slices/productsSlice";
 import { createKey } from "next/dist/shared/lib/router/router";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const API_BASE_URL = "/backend";
 
@@ -27,19 +27,52 @@ function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(formSchema) });
+  const router = useRouter();
 
   const onSubmit = async (data) => {
-    await axiosInstance.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
+    try {
+      await axiosInstance.get(`${API_BASE_URL}/sanctum/csrf-cookie`);
 
-    await axiosInstance.post(`${API_BASE_URL}/login`, data);
+      await axiosInstance.post(`${API_BASE_URL}/login`, data);
 
-    await new Promise((resolve) => setTimeout(resolve, 100));
+      const userResponse = await axiosInstance.get(`${API_BASE_URL}/user`);
+      const user = userResponse.data;
 
-    // Now make the user request
-    const response = await axiosInstance.get(`${API_BASE_URL}/user`);
-    const user = response.data;
+      console.log("Login successful:", user);
 
-    console.log(user);
+      // Redirect to dashboard
+      router.push("/admin/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+
+      if (error.response?.status === 422) {
+        // Validation errors
+        const errors = error.response.data.errors;
+        if (errors) {
+          // Handle specific field errors if needed
+          setLoginError("Please check your credentials and try again.");
+        } else {
+          setLoginError("Invalid credentials. Please try again.");
+        }
+      } else if (error.response?.status === 401) {
+        setLoginError("Invalid email or password.");
+      } else {
+        setLoginError("An error occurred. Please try again later.");
+      }
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      const response = await axiosInstance.get(`${API_BASE_URL}/user`);
+      const user = response.data;
+      console.log("Current user:", user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      if (error.response?.status === 401) {
+        console.log("User not authenticated");
+      }
+    }
   };
 
   return (
@@ -69,7 +102,17 @@ function LoginForm() {
 
           <div>
             <Button type="submit" className="w-full cursor-pointer">
-              <Link href="/admin/dashboard">Login</Link>
+              {/* <Link href="/admin/dashboard">Login</Link> */}
+              Login
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full cursor-pointer my-5"
+              onClick={getUser}
+            >
+              Get User
             </Button>
           </div>
         </div>

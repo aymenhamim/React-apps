@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum'])
     ->prefix('/products')
     ->group(function () {
         Route::get('/count', 'count');
-        Route::get('/{product}', 'show');
+        // Route::get('/{product}', 'show');
         Route::put('/{product}', 'update');
         Route::post('/', 'store');
         Route::delete('/{product}', 'destroy');
