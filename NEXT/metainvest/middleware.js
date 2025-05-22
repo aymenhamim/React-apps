@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { axiosInstance } from "./store/slices/productsSlice";
+// import { axiosInstance } from "./store/slices/productsSlice";
+import { serverRequest } from "./lib/axios-server";
 
 const authProtectedRoutes = [
   "/admin/dashboard",
@@ -19,9 +20,7 @@ export async function middleware(request) {
   }
 
   try {
-    const { data: user } = await axiosInstance.get(
-      `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/user`
-    );
+    const user = await serverRequest(`${process.env.BACKEND_URL}user`);
 
     if (user) {
       return NextResponse.next();
