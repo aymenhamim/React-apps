@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // !Product routes
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
-
 Route::middleware(['auth:sanctum'])
     ->controller(ProductController::class)
     ->prefix('/products')
@@ -21,6 +18,13 @@ Route::middleware(['auth:sanctum'])
         Route::post('/', 'store');
         Route::delete('/{product}', 'destroy');
     });
+
+// Route::get('/products/count', [ProductController::class, 'count']);
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
+
+
 
 
 // Route::get('/test-admin', function () {
