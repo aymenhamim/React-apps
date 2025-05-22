@@ -22,7 +22,6 @@ export const axiosInstance = axios.create({
 });
 
 const API_BASE_URL = "http://127.0.0.1:8000/api/";
-// const token = localStorage.getItem('authToken');
 
 // ! Common headers
 export const axiosConfig = {
@@ -36,10 +35,11 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (page, thunkAPI) => {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}products?page=${page}`,
-        axiosConfig
-      );
+      // await axiosInstance.get(
+      //   `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
+      // );
+
+      const response = await fetch(`${API_BASE_URL}products?page=${page}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch products");
@@ -49,6 +49,7 @@ export const fetchProducts = createAsyncThunk(
 
       return data;
     } catch (error) {
+      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -58,7 +59,13 @@ export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (id, thunkAPI) => {
     try {
-      await axios.delete(`${API_BASE_URL}products/${id}/`, axiosConfig);
+      await axiosInstance.get(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
+      );
+
+      await axiosInstance.delete(
+        `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/api/products/${id}`
+      );
 
       return id;
     } catch (error) {
