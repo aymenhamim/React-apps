@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { PlusCircle, XIcon } from "lucide-react";
 import Image from "next/image";
+import { axiosInstance } from "@/store/slices/productsSlice";
 
 export default function ProductImageUploaderV2({
   onImagesUploaded,
@@ -69,6 +70,23 @@ export default function ProductImageUploaderV2({
       formData.append("upload_preset", "my-uploads");
 
       try {
+        // ! Check if user is authenticated
+
+        await axiosInstance.get(
+          `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
+        );
+
+        const user = await axiosInstance.get(
+          `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/user`
+        );
+
+        if (!user) {
+          console.error("User not authenticated");
+          return;
+        }
+
+        // ! end of authentication check
+
         const data = await fetch(
           "https://api.cloudinary.com/v1_1/dwjzvuqy4/image/upload",
           {
