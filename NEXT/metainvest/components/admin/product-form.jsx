@@ -104,23 +104,6 @@ export default function ProductForm() {
             )}
           </div>
 
-          {/* <div className="space-y-2">
-            <Tiptap></Tiptap>
-
-            <Label htmlFor="description">Description *</Label>
-            <Textarea
-              id="description"
-              className="max-h-[35rem] overflow-y-auto resize-none"
-              {...register("description")}
-            ></Textarea>
-
-            {errors.description && (
-              <p className="text-red-500 text-sm">
-                {errors.description.message}
-              </p>
-            )}
-          </div> */}
-
           {/* Price */}
 
           <div className="flex flex-wrap justify-between">
@@ -154,7 +137,7 @@ export default function ProductForm() {
 
           {/* Price */}
 
-          {/* Description - Now using Tiptap */}
+          {/* Description  */}
           <div className="space-y-2">
             <Label>Description *</Label>
             <Controller
@@ -162,7 +145,6 @@ export default function ProductForm() {
               control={control}
               render={({ field }) => (
                 <Tiptap
-                  title="" // Remove title since we have the label above
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Enter product description..."

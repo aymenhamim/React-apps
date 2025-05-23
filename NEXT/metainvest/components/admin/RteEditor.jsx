@@ -20,7 +20,6 @@ import "./RteEditorStyles.css";
 import { useEffect } from "react";
 
 function Tiptap({
-  children,
   value = "",
   onChange = () => {},
   placeholder = "Start typing...",
@@ -66,8 +65,6 @@ function Tiptap({
   return (
     <div className="flex flex-col w-full">
       <div className="w-full py-2">
-        {children}
-
         <div className="flex space-x-2 my-4">
           {/* Heading */}
 
@@ -106,7 +103,7 @@ function Tiptap({
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 4 }).run()
             }
-            className={`border border-stone-500 cursor-pointer rounded-md p-1${editor.isActive("heading", { level: 4 }) ? "bg-gray-300" : ""}`}
+            className={`border border-stone-500 cursor-pointer rounded-md p-1 ${editor.isActive("heading", { level: 4 }) ? "bg-gray-300" : ""}`}
           >
             <Heading4Icon />
           </button>
