@@ -1,6 +1,6 @@
 "use client";
 
-import { set, useForm } from "react-hook-form";
+import { Controller, set, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Label } from "@radix-ui/react-label";
@@ -15,6 +15,7 @@ import { PlusCircleIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import ProductImageUploaderV2 from "./ImageUpload-v2";
+import Tiptap from "./RteEditor";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -47,6 +48,7 @@ function EditProductForm({ product, setIsOpen }) {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSchema),
@@ -137,18 +139,6 @@ function EditProductForm({ product, setIsOpen }) {
           )}
         </div>
 
-        <div>
-          <Label htmlFor="description">Description</Label>
-          <Textarea
-            id="description"
-            className="max-h-[15rem] overflow-y-auto resize-none"
-            {...register("description")}
-          ></Textarea>
-          {errors.description && (
-            <p className="text-red-500 text-sm">{errors.description.message}</p>
-          )}
-        </div>
-
         <div className="flex flex-wrap justify-between">
           <div className="w-[48%]">
             <Label htmlFor="price">Price</Label>
@@ -170,6 +160,25 @@ function EditProductForm({ product, setIsOpen }) {
               <p className="text-red-500 text-sm">{errors.quantity.message}</p>
             )}
           </div>
+        </div>
+
+        {/* Description  */}
+        <div className="space-y-2">
+          <Label>Description *</Label>
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <Tiptap
+                value={field.value}
+                onChange={field.onChange}
+                placeholder="Enter product description..."
+              />
+            )}
+          />
+          {errors.description && (
+            <p className="text-red-500 text-sm">{errors.description.message}</p>
+          )}
         </div>
       </div>
 
