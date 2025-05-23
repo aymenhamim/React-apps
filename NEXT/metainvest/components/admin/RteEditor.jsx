@@ -17,15 +17,21 @@ import {
   UnderlineIcon,
 } from "lucide-react";
 import "./RteEditorStyles.css";
+import { useEffect } from "react";
 
-function Tiptap({ title = "Editor" }) {
+function Tiptap({
+  children,
+  value = "",
+  onChange = () => {},
+  placeholder = "Start typing...",
+}) {
   const editor = useEditor({
     extensions: [
       StarterKit,
       Underline,
       Heading.configure({ levels: [1, 2, 3, 4] }),
     ],
-    content: "<p>Hello World! 🌍️</p>",
+    content: value || `<p>${placeholder}</p>`,
 
     editorProps: {
       attributes: {
@@ -34,7 +40,18 @@ function Tiptap({ title = "Editor" }) {
       },
     },
     immediatelyRender: false,
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML();
+      onChange(html);
+    },
   });
+
+  // ! update editor content when value prop change
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value || `<p>${placeholder}</p>`);
+    }
+  }, [editor, value, placeholder]);
 
   if (!editor) {
     return null;
@@ -49,12 +66,13 @@ function Tiptap({ title = "Editor" }) {
   return (
     <div className="flex flex-col w-full">
       <div className="w-full py-2">
-        <h2 className="mb-5">{title}</h2>
+        {children}
 
         <div className="flex space-x-2 my-4">
           {/* Heading */}
 
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
@@ -64,6 +82,7 @@ function Tiptap({ title = "Editor" }) {
           </button>
 
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
@@ -73,6 +92,7 @@ function Tiptap({ title = "Editor" }) {
           </button>
 
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 3 }).run()
             }
@@ -82,6 +102,7 @@ function Tiptap({ title = "Editor" }) {
           </button>
 
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 4 }).run()
             }
@@ -92,6 +113,7 @@ function Tiptap({ title = "Editor" }) {
 
           {/* Bold */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleBold().run()}
             className={`border border-stone-500 cursor-pointer rounded-md p-1  ml-3 ${editor.isActive("bold") ? "bg-gray-300" : ""}`}
           >
@@ -100,6 +122,7 @@ function Tiptap({ title = "Editor" }) {
 
           {/* ITALIC */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleItalic().run()}
             className={`border border-stone-500  cursor-pointer rounded-md p-1 ${editor.isActive("italic") ? "bg-gray-300" : ""}`}
           >
@@ -108,6 +131,7 @@ function Tiptap({ title = "Editor" }) {
 
           {/* Underline */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleUnderline().run()}
             className={`border border-stone-500  cursor-pointer rounded-md p-1 ${
               editor.isActive("underline") ? "bg-gray-300" : ""
@@ -118,6 +142,7 @@ function Tiptap({ title = "Editor" }) {
 
           {/* List */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             className={`border border-stone-500  cursor-pointer rounded-md  p-1 ${
               editor.isActive("bulletList") ? "bg-gray-300" : ""
@@ -129,6 +154,7 @@ function Tiptap({ title = "Editor" }) {
           {/* Ordered List */}
 
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
             className={`border border-stone-500  cursor-pointer rounded-md p-1 ${
               editor.isActive("orderedList") ? "bg-gray-300" : ""
@@ -139,13 +165,6 @@ function Tiptap({ title = "Editor" }) {
         </div>
 
         <EditorContent editor={editor} className="border rounded-lg p-2" />
-
-        <button
-          onClick={saveContent}
-          className="mt-2 p-2 bg-blue-500 text-white rounded"
-        >
-          Save
-        </button>
       </div>
     </div>
   );

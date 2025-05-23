@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -15,10 +15,22 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import ProductImageUploaderV2 from "./ImageUpload-v2";
+import Tiptap from "./RteEditor";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  description: z.string().min(1, { message: "Description is required" }),
+  description: z
+    .string()
+    .min(1, { message: "Description is required" })
+    .refine(
+      (val) => {
+        // ! remove html tags for validation to check actual content
+
+        const textContent = val.replace(/<[^>]*>/g, "").trim();
+        return textContent.length > 0;
+      },
+      { message: "Description cannot be empty" }
+    ),
   price: z
     .string()
     .transform((val) => parseFloat(val))
@@ -49,10 +61,13 @@ export default function ProductForm() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(formSchema),
   });
+
+  const [description, setDescription] = useState("");
 
   const onSubmit = async (data) => {
     const finalData = { ...data, images: imagesArray };
@@ -89,21 +104,22 @@ export default function ProductForm() {
             )}
           </div>
 
-          {/* Description */}
+          {/* <div className="space-y-2">
+            <Tiptap></Tiptap>
 
-          <div className="space-y-2">
             <Label htmlFor="description">Description *</Label>
             <Textarea
               id="description"
               className="max-h-[35rem] overflow-y-auto resize-none"
               {...register("description")}
             ></Textarea>
+
             {errors.description && (
               <p className="text-red-500 text-sm">
                 {errors.description.message}
               </p>
             )}
-          </div>
+          </div> */}
 
           {/* Price */}
 
@@ -137,6 +153,28 @@ export default function ProductForm() {
           </div>
 
           {/* Price */}
+
+          {/* Description - Now using Tiptap */}
+          <div className="space-y-2">
+            <Label>Description *</Label>
+            <Controller
+              name="description"
+              control={control}
+              render={({ field }) => (
+                <Tiptap
+                  title="" // Remove title since we have the label above
+                  value={field.value}
+                  onChange={field.onChange}
+                  placeholder="Enter product description..."
+                />
+              )}
+            />
+            {errors.description && (
+              <p className="text-red-500 text-sm">
+                {errors.description.message}
+              </p>
+            )}
+          </div>
 
           {/* Image URL */}
           <p className="font-bold text-2xl">Add Product Images</p>

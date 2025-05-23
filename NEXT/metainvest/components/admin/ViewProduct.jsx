@@ -18,7 +18,7 @@ function ViewProduct({ children }) {
         <div className="flex flex-col items-center justify-center min-w-[30rem]">
           <h2 className="text-2xl font-bold my-5">View Product</h2>
 
-          <Tiptap />
+          {/* <Tiptap /> */}
         </div>
       </Modal>
     </div>
