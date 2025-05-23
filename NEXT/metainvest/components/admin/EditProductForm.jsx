@@ -1,25 +1,35 @@
 "use client";
 
-import { Controller, set, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Label } from "@radix-ui/react-label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch, useSelector } from "react-redux";
 import { editProduct, fetchProducts } from "@/store/slices/productsSlice";
-import { toast } from "sonner";
-import { PlusCircleIcon, XIcon } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Label } from "@radix-ui/react-label";
+import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 import ProductImageUploaderV2 from "./ImageUpload-v2";
 import Tiptap from "./RteEditor";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
-  description: z.string().min(1, { message: "Description is required" }),
+  description: z
+    .string()
+    .min(1, { message: "Description is required" })
+    .refine(
+      (val) => {
+        // ! remove html tags for validation to check actual content
+
+        const textContent = val.replace(/<[^>]*>/g, "").trim();
+        return textContent.length > 0;
+      },
+      { message: "Description cannot be empty" }
+    ),
   price: z
     .string()
     .transform((val) => parseFloat(val))

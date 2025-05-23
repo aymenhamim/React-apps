@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "../ui/button";
 import Modal from "../Modal";
-import Tiptap from "./RteEditor";
+import { Button } from "../ui/button";
 
 function ViewProduct({ children }) {
   const [isOpen, setIsOpen] = useState(false);
