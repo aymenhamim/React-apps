@@ -10,7 +10,6 @@ import {
   Heading1Icon,
   Heading2Icon,
   Heading3Icon,
-  Heading4Icon,
   ItalicIcon,
   ListIcon,
   ListOrderedIcon,
@@ -28,7 +27,7 @@ function Tiptap({
     extensions: [
       StarterKit,
       Underline,
-      Heading.configure({ levels: [1, 2, 3, 4] }),
+      Heading.configure({ levels: [1, 2, 3] }),
     ],
     content: value || `<p>${placeholder}</p>`,
 
@@ -96,16 +95,6 @@ function Tiptap({
             className={`border border-stone-500 cursor-pointer rounded-md p-1 ${editor.isActive("heading", { level: 3 }) ? "bg-gray-300" : ""}`}
           >
             <Heading3Icon />
-          </button>
-
-          <button
-            type="button"
-            onClick={() =>
-              editor.chain().focus().toggleHeading({ level: 4 }).run()
-            }
-            className={`border border-stone-500 cursor-pointer rounded-md p-1 ${editor.isActive("heading", { level: 4 }) ? "bg-gray-300" : ""}`}
-          >
-            <Heading4Icon />
           </button>
 
           {/* Bold */}

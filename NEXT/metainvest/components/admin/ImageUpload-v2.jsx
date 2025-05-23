@@ -86,9 +86,8 @@ export default function ProductImageUploaderV2({
         }
 
         // ! end of authentication check
-
         const data = await fetch(
-          "https://api.cloudinary.com/v1_1/dwjzvuqy4/image/upload",
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
           {
             method: "POST",
             body: formData,
@@ -96,6 +95,7 @@ export default function ProductImageUploaderV2({
         ).then((r) => r.json());
 
         uploadedUrls.push(data.secure_url);
+        console.log(uploadedUrls);
       } catch (error) {
         console.error("Upload failed:", error);
       }

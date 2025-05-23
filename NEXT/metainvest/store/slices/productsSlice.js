@@ -1,3 +1,4 @@
+import { deleteImageFromUrl } from "@/lib/images";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -58,7 +59,34 @@ export const fetchProducts = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (id, thunkAPI) => {
+    const product = thunkAPI
+      .getState()
+      .products.products.find((product) => product.id === id);
+
     try {
+      // product.images.forEach((image) => {
+      //   if (image) {
+      //     const publicId = image.split("/").pop().split(".")[0];
+      //     const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/destroy`;
+      //     const data = {
+      //       token: process.env.NEXT_CLOUDINARY_API_KEY,
+      //       public_id: publicId,
+      //     };
+
+      //     axios.post(url, data).then((response) => {
+      //       console.log("Image deleted successfully:", response.data);
+      //     });
+      //   }
+      // });
+
+      product.images.forEach((image) => {
+        if (image.length > 0) {
+          console.log(process.env.NEXT_CLOUDINARY_API_KEY);
+
+          deleteImageFromUrl(image, process.env.NEXT_CLOUDINARY_API_KEY);
+        }
+      });
+
       await axiosInstance.get(
         `${process.env.NEXT_PUBLIC_LARAVEL_API_URL}/sanctum/csrf-cookie`
       );
