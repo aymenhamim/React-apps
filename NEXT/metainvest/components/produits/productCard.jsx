@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { useState } from "react";
 import { Badge } from "../ui/badge";
+import Link from "next/link";
 // import { Badge } from "@/components/ui/badge";
 
 export default function ProductCard({ product }) {
@@ -28,7 +29,7 @@ export default function ProductCard({ product }) {
         </Badge>
       </div>
       <CardContent className="pt-4 flex-grow">
-        <h3 className="font-medium text-lg mb-1 line-clamp-1">
+        <h3 className="font-semibold text-lg mb-1 line-clamp-1 ">
           {product.name}
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-2 mb-2">
@@ -37,7 +38,9 @@ export default function ProductCard({ product }) {
         {/* <p className="font-bold text-lg">${product.price.toFixed(2)}</p> */}
       </CardContent>
       <CardFooter className="pt-0">
-        <Button className="w-full">Afficher le produit</Button>
+        <Button className="w-full">
+          <Link href={`/produits/${product.id}`}>Afficher le produit</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

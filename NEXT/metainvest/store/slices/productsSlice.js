@@ -8,6 +8,7 @@ const initialState = {
   error: null,
   currentPage: 1,
   lastPage: 1,
+  product: null,
 };
 
 export const axiosInstance = axios.create({
@@ -44,6 +45,26 @@ export const fetchProducts = createAsyncThunk(
 
       if (!response.ok) {
         throw new Error("Failed to fetch products");
+      }
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchProduct = createAsyncThunk(
+  "products/fetchProduct",
+  async (id, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}products/${id}`);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch product");
       }
 
       const data = await response.json();
@@ -181,6 +202,22 @@ const productsSlice = createSlice({
         state.lastPage = action.payload.last_page;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    // ? Delete product
+
+    builder
+      .addCase(fetchProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.product = action.payload;
+        state.error = action.payload;
+      })
+      .addCase(fetchProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
