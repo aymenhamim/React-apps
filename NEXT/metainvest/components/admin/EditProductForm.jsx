@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import ProductImageUploaderV2 from "./ImageUpload-v2";
 import Tiptap from "./RteEditor";
+import ImageUploader from "./ImageUpload";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -54,6 +55,8 @@ function EditProductForm({ product, setIsOpen }) {
   const currentPage = useSelector((state) => state.products.currentPage);
   const dispatch = useDispatch();
   const [images, setImages] = useState(product.images || []);
+
+  console.log(product.setImages);
 
   const {
     register,
@@ -109,7 +112,7 @@ function EditProductForm({ product, setIsOpen }) {
         <h2 className="text-xl font-semibold mt-4">Product Images</h2>
 
         <div className="flex flex-wrap gap-4">
-          {images.length > 0 && (
+          {/* {images.length > 0 && (
             <>
               {images.map((image, index) => (
                 <div
@@ -117,7 +120,7 @@ function EditProductForm({ product, setIsOpen }) {
                   className="w-[10rem] h-[10rem] relative overflow-hidden shadow-lg border border-stone-700 rounded-md"
                 >
                   <Image
-                    src={image}
+                    src={image.url}
                     alt={`Product Image ${index + 1}`}
                     className="object-cover"
                     fill
@@ -136,9 +139,10 @@ function EditProductForm({ product, setIsOpen }) {
                 </div>
               ))}
             </>
-          )}
+          )} */}
 
-          <ProductImageUploaderV2 onImagesUploaded={setImages} />
+          {/* <ProductImageUploaderV2 onImagesUploaded={setImages} /> */}
+          <ImageUploader setImgsArray={setImages} imgsArray={images} />
         </div>
 
         <div>
