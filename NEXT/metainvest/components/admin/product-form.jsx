@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import ProductImageUploaderV2 from "./ImageUpload-v2";
 import Tiptap from "./RteEditor";
+import ImageUploader from "./ImageUpload";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -161,9 +162,9 @@ export default function ProductForm() {
           {/* Image URL */}
           <p className="font-bold text-2xl">Add Product Images</p>
 
-          <ProductImageUploaderV2
-            onImagesUploaded={setImagesArray}
-            autoReset={false}
+          <ImageUploader
+            imgsArray={imagesArray}
+            setImgsArray={setImagesArray}
           />
 
           {/* <HomeImage setImagesArray={setImagesArray} /> */}
