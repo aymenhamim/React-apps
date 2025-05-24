@@ -1,13 +1,23 @@
 "use client";
+import "@/components/admin/RteEditorStyles.css";
 
-import { useState } from "react";
-import { Star, Heart, Share2, Truck, Shield, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Heart, Share2 } from "lucide-react";
+import { useState } from "react";
+
+function extractDescription(description) {
+  if (!description) return "";
+
+  return (
+    <div
+      className="prose prose-lg max-w-none"
+      dangerouslySetInnerHTML={{ __html: description }}
+    />
+  );
+}
 
 export default function ProductInfo({ product }) {
-  const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const discount = product.originalPrice
@@ -19,9 +29,11 @@ export default function ProductInfo({ product }) {
   return (
     <div className="space-y-6">
       {/* Product Name */}
+
       <h1 className="text-3xl font-bold">{product.name}</h1>
 
       {/* Stock Status */}
+
       <div className="flex items-center gap-2">
         <div
           className={`w-2 h-2 rounded-full ${product.quantity > 0 ? "bg-green-500" : "bg-red-500"}`}
@@ -32,17 +44,24 @@ export default function ProductInfo({ product }) {
           {product.quantity > 0 ? "In Stock" : "Out of Stock"}
         </span>
       </div>
+
       {/* description */}
-      <p className="text-muted-foreground leading-relaxed">
-        {product.description}
-      </p>
+
+      <div>
+        <h2 className="text-4xl font-bold my-10">Description</h2>
+        {extractDescription(product.description)}
+      </div>
 
       <Separator />
 
       {/* quantity and Add to Cart */}
       <div className="space-y-4">
         <div className="flex gap-3">
-          <Button className="flex-1" size="lg" disabled={!product.inStock}>
+          <Button
+            className="flex-1 "
+            size="lg"
+            disabled={!product.quantity > 0}
+          >
             Demande de devis
           </Button>
           <Button
