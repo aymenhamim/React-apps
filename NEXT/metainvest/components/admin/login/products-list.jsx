@@ -17,9 +17,7 @@ import {
 import { fetchProducts, setPage } from "@/store/slices/productsSlice";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { Button } from "../../ui/button";
 import EditProduct from "../EditProduct";
-import ViewProduct from "../ViewProduct";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
@@ -96,8 +94,6 @@ export default function ProductsList() {
                 {/* Button */}
 
                 <TableCell className={"flex items-center h-30"}>
-                  <ViewProduct id={product.id}>View</ViewProduct>
-
                   <EditProduct id={product.id}>Edit</EditProduct>
 
                   <DeleteProduct
