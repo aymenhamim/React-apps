@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
     >
       <div className="relative aspect-square overflow-hidden w-full">
         <Image
-          src={product.images[0] || "/placeholder.svg"}
+          src={product.images[0]?.url || "/placeholder.svg"}
           alt={product.name}
           fill
           className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"} ${product.quantity > 0 ? "" : "grayscale"}`}
