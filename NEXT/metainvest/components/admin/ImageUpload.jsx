@@ -45,7 +45,7 @@ function ImageUploader({ imgsArray, setImgsArray }) {
     }
   };
 
-  // ! Delete image - FIXED VERSION
+  // ! Delete image
   const handleDelete = async (index) => {
     // Prevent multiple simultaneous delete operations
     if (isProcessing.current || deletingIndex === index) return;
