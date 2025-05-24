@@ -3,27 +3,63 @@
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 import { Button } from "../ui/button";
-import { deleteProduct, fetchProducts } from "@/store/slices/productsSlice";
+import {
+  deleteProduct,
+  fetchProducts,
+  findProduct,
+} from "@/store/slices/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 
 function DeleteProduct({ id, children, lastProductInList }) {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.products.currentPage);
+
+  const { currentPage, products } = useSelector((state) => state.products);
+
+  // ! get images urls to delete them from the server
+  const imgPublicIds = products
+    ?.find((product) => product.id === id)
+    .images?.map((img) => img?.publicId);
 
   async function deleteData() {
-    dispatch(deleteProduct(id));
-    setIsOpen(false);
-    toast.success("Product deleted successfully");
+    try {
+      // Delete images from cloudinary first
+      if (imgPublicIds?.length > 0) {
+        const response = await fetch("/api/delete-images", {
+          // Changed to plural
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ publicIds: imgPublicIds }),
+        });
 
-    setTimeout(() => {
-      dispatch(
-        fetchProducts(
-          lastProductInList && currentPage !== 1 ? currentPage - 1 : currentPage
-        )
-      );
-    }, 400);
+        if (!response.ok) {
+          throw new Error("Failed to delete images");
+        }
+
+        const deleteResult = await response.json();
+        console.log("Delete result:", deleteResult);
+      }
+
+      // Delete product from your database/store
+      dispatch(deleteProduct(id));
+
+      setIsOpen(false);
+      toast.success("Product deleted successfully");
+
+      setTimeout(() => {
+        dispatch(
+          fetchProducts(
+            lastProductInList && currentPage !== 1
+              ? currentPage - 1
+              : currentPage
+          )
+        );
+      }, 400);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      toast.error("Failed to delete product");
+    }
   }
 
   return (

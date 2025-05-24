@@ -34,10 +34,6 @@ function ImageUploader({ imgsArray, setImgsArray }) {
 
       const data = await response.json();
 
-      console.log(data);
-      // note: Log the publicId to the console
-      console.log(data.publicId);
-
       setImgsArray((prev) => [
         ...prev,
         { url: data.url, publicId: data.publicId },

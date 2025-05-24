@@ -8,15 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { createProduct } from "@/store/slices/productsSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import ProductImageUploaderV2 from "./ImageUpload-v2";
-import Tiptap from "./RteEditor";
 import ImageUploader from "./ImageUpload";
+import Tiptap from "./RteEditor";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
