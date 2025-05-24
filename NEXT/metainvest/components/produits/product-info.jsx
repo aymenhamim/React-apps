@@ -41,28 +41,9 @@ export default function ProductInfo({ product }) {
 
       {/* quantity and Add to Cart */}
       <div className="space-y-4">
-        <div className="flex items-center gap-4">
-          <label htmlFor="quantity" className="font-medium">
-            Quantity:
-          </label>
-          <div className="flex items-center border rounded-md">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              disabled={quantity <= 1}
-            >
-              -
-            </Button>
-            <span className="px-4 py-2 min-w-[60px] text-center">
-              {quantity}
-            </span>
-          </div>
-        </div>
-
         <div className="flex gap-3">
           <Button className="flex-1" size="lg" disabled={!product.inStock}>
-            Demande de devis -
+            Demande de devis
           </Button>
           <Button
             variant="outline"
