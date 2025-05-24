@@ -83,7 +83,7 @@ export default function ProductsList() {
                       priority
                       fill
                       quality={70}
-                      src={product.images[0] || defaultImg}
+                      src={product.images[0]?.url || defaultImg}
                       alt={product.name}
                       className="absolute object-cover rounded-lg"
                     />
