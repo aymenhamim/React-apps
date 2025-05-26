@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->json('images')->nullable();
 
+
+
             $table->timestamps();
         });
     }
