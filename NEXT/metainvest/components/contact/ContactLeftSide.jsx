@@ -30,12 +30,12 @@ function ContactLeftSide() {
         <motion.div className="mt-10 pl-4">
           <ContactIcon
             title="Notre emplacement"
-            value=" Zone Industrielle, Casablanca, "
+            value=" Hay Essasfa Lot N°E 42, Casablanca"
           >
             <HomeIcon />
           </ContactIcon>
 
-          <ContactIcon title="Numéro de Téléphone" value="(+212) 646055092 ">
+          <ContactIcon title="Numéro de Téléphone" value="(+212) 634436068 ">
             <PhoneIcon />
           </ContactIcon>
 

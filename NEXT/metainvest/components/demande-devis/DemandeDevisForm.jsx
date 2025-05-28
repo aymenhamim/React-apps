@@ -82,7 +82,7 @@ function DemandeDevisForm() {
   };
   return (
     <div className="min-h-dvh bg-stone-50 py-20">
-      <h2 className="text-center my-10 text-4xl font-bold">Formulaire</h2>
+      <h2 className="text-center my-10 text-4xl font-bold">Demande de devis</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
