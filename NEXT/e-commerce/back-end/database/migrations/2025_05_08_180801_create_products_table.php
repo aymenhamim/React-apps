@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('name');
+            $table->text('long_title')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
-            $table->integer('quantity')->nullable();
+            $table->integer('stock')->nullable();
             //$table->decimal('discount', 5, 2)->default(0); // % or fixed amount
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->json('images')->nullable();

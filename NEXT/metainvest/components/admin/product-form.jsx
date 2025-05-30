@@ -18,6 +18,7 @@ import Tiptap from "./RteEditor";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
+  long_title: z.string().min(10, { message: "long_title is required" }),
   description: z
     .string()
     .min(1, { message: "Description is required" })
@@ -40,14 +41,14 @@ const formSchema = z.object({
       message: "Price must be less than 10000",
     }),
 
-  quantity: z
+  stock: z
     .string()
     .transform((val) => parseInt(val))
     .refine((val) => !isNaN(val) && val >= 0, {
-      message: "Quantity must be a positive number",
+      message: "Stock must be a positive number",
     })
     .refine((val) => val <= 10000, {
-      message: "Quantity must be less than 10000",
+      message: "Stock must be less than 10000",
     }),
 });
 
@@ -121,20 +122,28 @@ export default function ProductForm() {
               )}
             </div>
 
-            {/* Quantity */}
+            {/* stock */}
 
             <div className="space-y-2  w-[48%]">
-              <Label htmlFor="quantity">Quantity *</Label>
-              <Input type="number" step="1" {...register("quantity")} />
-              {errors.quantity && (
-                <p className="text-red-500 text-sm">
-                  {errors.quantity.message}
-                </p>
+              <Label htmlFor="stock">Stock *</Label>
+              <Input type="number" step="1" {...register("stock")} />
+              {errors.stock && (
+                <p className="text-red-500 text-sm">{errors.stock.message}</p>
               )}
             </div>
           </div>
 
-          {/* Price */}
+          {/* Long_title */}
+
+          <div className="space-y-2">
+            <Label htmlFor="long_title">Long Title *</Label>
+            <Input type="text" {...register("long_title")} />
+            {errors.long_title && (
+              <p className="text-red-500 text-sm">
+                {errors.long_title.message}
+              </p>
+            )}
+          </div>
 
           {/* Description  */}
           <div className="space-y-2">
