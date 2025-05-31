@@ -26,9 +26,7 @@ const NavLinks = () => {
           <Link
             href={link.href}
             key={i}
-            className={`dsq ${
-              pathname === link.href ? "font-bold underline" : ""
-            }`}
+            className={`dsq ${pathname === link.href ? "font-bold " : ""}`}
           >
             {link.label}
           </Link>
