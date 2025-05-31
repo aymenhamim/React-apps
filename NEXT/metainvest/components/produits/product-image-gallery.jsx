@@ -19,7 +19,7 @@ export default function ProductImageGallery({ images, productName }) {
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <div className="relative aspect-square overflow-hidden rounded-lg border bg-muted">
+      <div className="relative aspect-square overflow-hidden rounded-lg border bg-muted min-2xl:max-w-[640px]">
         <Image
           src={images[currentImage] || "/placeholder.svg"}
           alt={`${productName} - Image ${currentImage + 1}`}

@@ -7,10 +7,12 @@ export const metadata = {
 
 function Contact() {
   return (
-    <div className="container min-h-dvh flex max-lg:flex-col justify-center mx-auto ">
-      <ContactLeftSide />
+    <div className="bg-stone-950">
+      <div className="container min-h-dvh flex max-lg:flex-col justify-center mx-auto">
+        <ContactLeftSide />
 
-      <ContactForm />
+        <ContactForm />
+      </div>
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import axios from "axios";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 const formSchema = z.object({
   name: z
@@ -67,7 +68,11 @@ function ContactForm() {
   };
 
   return (
-    <div className="max-sm:h-fit w-[60%] max-lg:w-full flex items-center justify-center max-lg:pb-20">
+    <motion.div
+      className="max-sm:h-fit w-[60%] max-lg:w-full flex items-center justify-center max-lg:pb-20"
+      initial={{ opacity: 0, y: -30, scale: 0.7 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white w-[30rem] max-xl:w-[25rem] max-lg:w-[30rem] max-sm:w-[28rem] rounded-2xl "
@@ -119,7 +124,7 @@ function ContactForm() {
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

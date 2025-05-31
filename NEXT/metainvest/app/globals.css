@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.prose p:empty::before {
+  content: "\00a0";
+  display: inline-block;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

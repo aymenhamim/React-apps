@@ -3,7 +3,8 @@ import "@/components/admin/RteEditorStyles.css";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Heart, Share2 } from "lucide-react";
+import { Heart } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 function extractDescription(description) {
@@ -20,28 +21,29 @@ function extractDescription(description) {
 export default function ProductInfo({ product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const discount = product.originalPrice
-    ? Math.round(
-        ((product.originalPrice - product.price) / product.originalPrice) * 100
-      )
-    : 0;
+  // const discount = product.originalPrice
+  //   ? Math.round(
+  //       ((product.originalPrice - product.price) / product.originalPrice) * 100
+  //     )
+  //   : 0;
 
   return (
     <div className="space-y-6">
-      {/* Product Name */}
+      {/* product Name */}
 
       <h1 className="text-3xl font-bold">{product.name}</h1>
+      <p className="text-lg">{product.long_title}</p>
 
-      {/* Stock Status */}
+      {/* stock Status */}
 
       <div className="flex items-center gap-2">
         <div
-          className={`w-2 h-2 rounded-full ${product.quantity > 0 ? "bg-green-500" : "bg-red-500"}`}
+          className={`w-2 h-2 rounded-full ${product.stock > 0 ? "bg-green-500" : "bg-red-500"}`}
         />
         <span
-          className={`text-sm font-medium ${product.quantity > 0 ? "text-green-600" : "text-red-600"}`}
+          className={`text-sm font-medium ${product.stock > 0 ? "text-green-600" : "text-red-600"}`}
         >
-          {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+          {product.stock > 0 ? "In Stock" : "Out of Stock"}
         </span>
       </div>
 
@@ -49,20 +51,23 @@ export default function ProductInfo({ product }) {
 
       <div>
         <h2 className="text-4xl font-bold my-10">Description</h2>
-        {extractDescription(product.description)}
+        <div className="flex flex-col gap-10">
+          {extractDescription(product.description)}
+        </div>
       </div>
 
       <Separator />
 
-      {/* quantity and Add to Cart */}
+      {/* quantity  */}
       <div className="space-y-4">
         <div className="flex gap-3">
-          <Button
-            className="flex-1 "
-            size="lg"
-            disabled={!product.quantity > 0}
-          >
-            Demande de devis
+          <Button className="flex-1 " size="lg" disabled={!product.stock > 0}>
+            <Link
+              href="/demande-devis"
+              className="w-full h-full flex items-center justify-center"
+            >
+              Demande de devis
+            </Link>
           </Button>
           <Button
             variant="outline"
@@ -72,9 +77,6 @@ export default function ProductInfo({ product }) {
             <Heart
               className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`}
             />
-          </Button>
-          <Button variant="outline" size="lg">
-            <Share2 className="w-5 h-5" />
           </Button>
         </div>
       </div>

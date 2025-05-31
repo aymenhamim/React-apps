@@ -12,14 +12,14 @@ export const metadata = {
 async function Produits() {
   return (
     <div className="min-h-dvh bg-white">
-      <HeroSectionProduct />
+      {/* <HeroSectionProduct /> */}
 
       <div className="container mx-auto px-4 py-8 bg-white mb-40">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2 mt-20 mb-10">
-            <h1 className="text-3xl font-bold">Products</h1>
+            <h1 className="text-3xl font-bold">Produits</h1>
             <p className="text-muted-foreground">
-              Browse our collection of high-quality products
+              Découvrez notre collection de produits de haute qualité
             </p>
           </div>
 

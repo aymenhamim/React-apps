@@ -1,6 +1,5 @@
 // This would typically come from an API or database
 
-import { set } from "react-hook-form";
 import ProductCard from "./productCard";
 
 export default async function ProductGrid() {
@@ -24,16 +23,4 @@ export default async function ProductGrid() {
       ))}
     </div>
   );
-}
-
-{
-  /* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-  <div className="contents sm:col-span-2 md:col-span-3 lg:col-span-3 xl:col-span-4 sm:flex sm:flex-wrap sm:justify-center">
-    {products.map((product) => (
-      <div key={product.id} className="sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-        <ProductCard product={product} />
-      </div>
-    ))}
-  </div>
-</div> */
 }

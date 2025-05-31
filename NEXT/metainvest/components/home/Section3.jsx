@@ -70,7 +70,7 @@ function Section3() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        // viewport={{ once: true }}
+        viewport={{ once: true }}
         className="flex max-md:flex-col w-[80dvw] max-lg:w-[90dvw] mx-auto gap-6   items-center justify-center py-14 max-md:gap-15"
       >
         {capacities.map((capacity, index) => (

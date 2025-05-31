@@ -22,10 +22,10 @@ export default function ProductCard({ product }) {
           src={product.images[0]?.url || "/placeholder.svg"}
           alt={product.name}
           fill
-          className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"} ${product.quantity > 0 ? "" : "grayscale"}`}
+          className={`object-cover transition-transform duration-300 ${isHovered ? "scale-110" : "scale-100"} ${product.stock > 0 ? "" : "grayscale"}`}
         />
         <Badge className="absolute top-2 right-2">
-          {product.quantity > 0 ? "disponible" : "out of stock"}
+          {product.stock > 0 ? "disponible" : "out of stock"}
         </Badge>
       </div>
       <CardContent className="pt-4 flex-grow">
@@ -33,10 +33,11 @@ export default function ProductCard({ product }) {
           {product.name}
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-2 mb-2">
-          {product.description}
+          {product.long_title}
         </p>
         {/* <p className="font-bold text-lg">${product.price.toFixed(2)}</p> */}
       </CardContent>
+
       <CardFooter className="pt-0">
         <Button className="w-full">
           <Link href={`/produits/${product.id}`}>Afficher le produit</Link>
