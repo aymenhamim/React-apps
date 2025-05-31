@@ -26,8 +26,7 @@ function MetaInvestInfos() {
     <motion.ul
       variants={textContainerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
+      animate="visible"
       className="
             flex flex-col gap-10 mx-auto 
             text-lg max-md:text-sm
