@@ -4,9 +4,9 @@ import ContactButton from '@/components/ui/ContactButton';
 
 function Header() {
   return (
-    <header>
+    <header className="bg-sky-100">
       <nav>
-        <ul className="flex justify-around">
+        <ul className="flex justify-center gap-10">
           <li>
             <NavLink href="/about">About</NavLink>
           </li>
@@ -16,7 +16,7 @@ function Header() {
           <li>
             <NavLink href="/contact">Contact</NavLink>
           </li>
-          <ContactButton />
+          {/* <ContactButton /> */}
         </ul>
       </nav>
     </header>
