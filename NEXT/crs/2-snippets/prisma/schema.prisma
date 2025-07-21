@@ -1,9 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -12,7 +8,7 @@ datasource db {
 }
 
 model Snippet {
-  id Int @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   title String
-  code String
+  code  String
 }
