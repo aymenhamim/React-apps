@@ -4,6 +4,8 @@ import { navLinks } from "@/config/navlinks";
 import { Button } from "./button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import userImage from "@/public/images/user.jpg";
 
 function Navbar() {
   const pathname = usePathname();
@@ -35,7 +37,13 @@ function Navbar() {
           );
         })}
       </div>
-      <div className="text-sm">@aymenhamim</div>
+      <div className="text-sm flex items-center gap-3">
+        <Avatar>
+          <AvatarImage src={userImage.src} />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <span>@aymenhamim</span>
+      </div>
     </nav>
   );
 }
