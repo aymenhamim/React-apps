@@ -106,7 +106,7 @@ export const transactions = [
 
 function RecentTransactions() {
   return (
-    <aside className="lg:w-1/3 bg-white p-4 rounded-2xl overflow-y-auto max-h-[calc(100vh-4rem)]">
+    <aside className="lg:w-1/3 bg-white p-4 rounded-2xl overflow-y-auto max-h-[calc(100vh-4rem)] ">
       <RecentTransactionsHeader />
       <RecentTransactionList transactions={transactions} />
     </aside>
