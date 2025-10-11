@@ -16,7 +16,7 @@ function Navbar() {
         <div className="w-10 aspect-square bg-sky-600 rounded-md" />
         <span>Hamim Bank</span>
       </div>
-      <div className="flex items-center space-x-6">
+      <div className="flex items-center space-x-3">
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
 

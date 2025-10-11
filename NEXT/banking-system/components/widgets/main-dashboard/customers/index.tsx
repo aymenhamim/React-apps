@@ -1,4 +1,3 @@
-import CustomersItem from "./customers-item";
 import CustomersList from "./customers-list";
 
 const users = [
@@ -53,7 +52,7 @@ const users = [
 function Customers() {
   return (
     <div>
-      <p className="font-bold ">Customers</p>
+      <p className="font-bold">Customers</p>
       <CustomersList users={users} />
     </div>
   );
