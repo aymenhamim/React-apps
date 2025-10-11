@@ -6,7 +6,8 @@ export interface Transaction {
   amount: number;
   currency: string;
   description: string;
-  type: string;
+  // type: string;
+  type: "deposit" | "withdraw";
   // created_at: string;
   // updated_at: string;
   user?: User;
