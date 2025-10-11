@@ -1,3 +1,5 @@
+import SpendingEarning from "./spending-earning";
+
 function MainDashbord() {
   return (
     <main className="flex-1 flex flex-col gap-3 ">
@@ -7,8 +9,18 @@ function MainDashbord() {
       </div>
       <div className="h-1/3 rounded-3xl  flex gap-3 ">
         <div className="w-2/5 flex flex-col gap-2">
-          <div className="bg-white rounded-2xl h-full"></div>
-          <div className="bg-white rounded-2xl h-full"></div>
+          <SpendingEarning
+            type="earning"
+            date="Oct 2025"
+            amount={"24,199.00dh"}
+          />
+          <SpendingEarning
+            type="spending"
+            date="Oct 2025"
+            amount={"12,499.00dh"}
+          />
+
+          {/* <div className="bg-white rounded-2xl h-full"></div> */}
         </div>
         <div className="w-3/5 bg-white rounded-2xl"></div>
       </div>
