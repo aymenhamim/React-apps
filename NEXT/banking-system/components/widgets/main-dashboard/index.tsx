@@ -1,3 +1,4 @@
+import ConvertCurrency from "./convert-currency";
 import SpendingEarning from "./spending-earning";
 
 function MainDashbord() {
@@ -19,10 +20,10 @@ function MainDashbord() {
             date="Oct 2025"
             amount={"12,499.00dh"}
           />
-
-          {/* <div className="bg-white rounded-2xl h-full"></div> */}
         </div>
-        <div className="w-3/5 bg-white rounded-2xl"></div>
+        <div className="w-3/5 bg-white rounded-2xl">
+          <ConvertCurrency />
+        </div>
       </div>
     </main>
   );

@@ -14,7 +14,7 @@ function SpendingEarning({ type, date, amount }: SpendingEarningType) {
         </div>
         <h3 className="text-xl font-bold">{amount}</h3>
       </div>
-      <div className="w-32 h-20 bg-indigo-300 rounded-2xl"></div>
+      <div className="w-32 h-20 bg-indigo-100 rounded-2xl border border-indigo-300"></div>
     </div>
   );
 }
