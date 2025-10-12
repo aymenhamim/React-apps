@@ -18,7 +18,7 @@ function DepositPage() {
 
       <hr />
 
-      <div className=" mt-10">
+      <div className="mt-10">
         <TransactionsCarousel />
       </div>
     </div>
