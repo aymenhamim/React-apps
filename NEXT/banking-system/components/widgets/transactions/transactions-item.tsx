@@ -20,7 +20,7 @@ function TransactionsItem({ transaction }: TransactionsItemType) {
           {transaction.user?.name || "Aymen Hamim (unknown)"}
         </p>
       </div>
-      <p className="text-gray-400">14:50, 30 Oct</p>
+      <p className="text-gray-400 max-sm:text-sm">14:50, 30 Oct</p>
       {/* <p className="font-semibold">{transaction.created_at}</p> */}
 
       <p className="font-semibold max-md:hidden">
@@ -28,7 +28,7 @@ function TransactionsItem({ transaction }: TransactionsItemType) {
       </p>
       <p className="max-lg:hidden">Moroccan Dirham</p>
       <TransactionType type={transaction.type} />
-      <p className="font-semibold">{transaction.amount}dh</p>
+      <p className="font-semibold max-sm:text-sm">{transaction.amount}dh</p>
     </div>
   );
 }
