@@ -1,5 +1,6 @@
 import PageHeader from "@/components/ui/header";
 import Deposit from "@/components/widgets/deposit";
+import { TransactionsCarousel } from "@/components/widgets/deposit/carousel";
 import Withdraw from "@/components/widgets/withdraw";
 
 function DepositPage() {
@@ -17,7 +18,9 @@ function DepositPage() {
 
       <hr />
 
-      <p>fdsih</p>
+      <div className=" mt-10">
+        <TransactionsCarousel />
+      </div>
     </div>
   );
 }
