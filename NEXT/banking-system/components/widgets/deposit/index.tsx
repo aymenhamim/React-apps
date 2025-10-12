@@ -1,10 +1,19 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Deposit() {
+  const [amount, setAmount] = useState("");
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
+
   return (
-    <div className="min-xl:w-1/3 mx-auto mt-2 p-6">
+    <form className="min-xl:w-1/3 mx-auto mt-2 p-6" onChange={handleSubmit}>
       <Card className="py-10">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-center">
@@ -16,12 +25,14 @@ export default function Deposit() {
             placeholder="Enter amount"
             type="number"
             className="rounded-full"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <Button className="w-full rounded-full  bg-green-400 hover:bg-green-500">
             Deposit
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </form>
   );
 }

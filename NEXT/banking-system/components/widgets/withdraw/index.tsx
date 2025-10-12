@@ -1,10 +1,19 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Withdraw() {
+  const [amount, setAmount] = useState("");
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
+
   return (
-    <div className="min-xl:w-1/3 mx-auto mt-2 p-6">
+    <form className="min-xl:w-1/3 mx-auto mt-2 p-6" onSubmit={handleSubmit}>
       <Card className="py-10">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-center">
@@ -16,12 +25,14 @@ export default function Withdraw() {
             placeholder="Enter amount"
             type="number"
             className="rounded-full"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <Button className="w-full bg-red-500 hover:bg-red-600 rounded-full">
             Withdraw
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </form>
   );
 }

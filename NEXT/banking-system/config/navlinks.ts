@@ -13,11 +13,11 @@ export const navLinks: Navlink[] = [
     href: "/transactions",
   },
   {
-    label: "Deposit",
-    href: "/deposit",
+    label: "Actions",
+    href: "/actions",
   },
-  {
-    label: "Withdraw",
-    href: "/withdraw",
-  },
+  // {
+  //   label: "Withdraw",
+  //   href: "/withdraw",
+  // },
 ];
