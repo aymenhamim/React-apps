@@ -37,13 +37,15 @@ function TransactionsFilter() {
 
       <Select onValueChange={(e) => setCustomer(e)} value={customer}>
         <SelectTrigger className="w-fit" size="sm">
-          <SelectValue placeholder="Transaction Type" />
+          <SelectValue placeholder="Customers" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="deposit">Deposit</SelectItem>
-            <SelectItem value="withdraw">Withdraw</SelectItem>
+            <SelectItem value="Aymen hamim">Aymen Hamim</SelectItem>
+            <SelectItem value="soufiane hamim">Soufiane Hamim</SelectItem>
+            <SelectItem value="Khadija hamim">Khadija Hamim</SelectItem>
+            <SelectItem value="Abdessamad hamim">Abdessamad Hamim</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
