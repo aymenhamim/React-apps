@@ -10,4 +10,4 @@ const api = axios.create({
 
 export default api;
 
-export const axiosInstance = axios.create({});
+// export const axiosInstance = axios.create({});

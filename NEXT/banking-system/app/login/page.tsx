@@ -10,12 +10,18 @@ import React, { useState } from "react";
 
 function LoginPage() {
   const [email, setEmail] = useState("aymenhamim@gmail.com");
-  const [password, setPassword] = useState("hamim122");
+  const [password, setPassword] = useState("hamim123");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const res = await login({ email, password });
-    console.log("Login success:", res);
+    console.log("Login success:", res.user);
+  }
+
+  async function handleTest() {
+    // console.log("🍪 Cookies after request:", document.cookie);
+    const res = await api.get("http://localhost:8000/api/transactions");
+    console.log(res);
   }
 
   return (
@@ -67,6 +73,7 @@ function LoginPage() {
           </div>
         </div>
       </form>
+      <Button onClick={handleTest}>test</Button>
     </div>
   );
 }

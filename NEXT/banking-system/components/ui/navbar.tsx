@@ -6,9 +6,32 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import userImage from "@/public/images/user.jpg";
+import { useEffect, useState } from "react";
+import api from "@/lib/axios";
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
+
+  async function handleLogout() {
+    const res = await api.post("http://localhost:8000/logout");
+    console.log(res);
+  }
+
+  useEffect(
+    function () {
+      async function fetchUser() {
+        const res = await api.get("http://localhost:8000/api/user");
+        console.log(res);
+        console.log(res.status);
+        if (res.status == 200) {
+          setIsLoggedIn(true);
+        }
+      }
+      fetchUser();
+    },
+    [pathname]
+  );
 
   return (
     <nav className="w-full bg-white py-4 px-30 flex justify-between items-center">
@@ -43,6 +66,11 @@ function Navbar() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <span>@aymenhamim</span>
+        {isLoggedIn && (
+          <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
+            Logout
+          </Button>
+        )}
       </div>
     </nav>
   );
