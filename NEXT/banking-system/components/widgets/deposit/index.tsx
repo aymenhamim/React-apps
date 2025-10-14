@@ -4,16 +4,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { deposit } from "@/api/transactions";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (parseFloat(amount) > 0) {
+      const res = await deposit(+amount);
+      setAmount("");
+    }
   }
 
   return (
-    <form className="min-xl:w-1/3 mx-auto mt-2 p-6" onChange={handleSubmit}>
+    <form className="min-xl:w-1/3 mx-auto mt-2 p-6" onSubmit={handleSubmit}>
       <Card className="py-10">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-center">
@@ -28,7 +33,10 @@ export default function Deposit() {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <Button className="w-full rounded-full  bg-green-400 hover:bg-green-500">
+          <Button
+            className="w-full rounded-full  bg-green-400 hover:bg-green-500"
+            type="submit"
+          >
             Deposit
           </Button>
         </CardContent>

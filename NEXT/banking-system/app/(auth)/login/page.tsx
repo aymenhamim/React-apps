@@ -3,7 +3,6 @@
 import { login } from "@/api/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import api from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 

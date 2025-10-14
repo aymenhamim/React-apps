@@ -4,12 +4,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { withdraw } from "@/api/transactions";
 
 export default function Withdraw() {
   const [amount, setAmount] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (parseFloat(amount) > 0) {
+      const res = await withdraw(+amount);
+      console.log(res);
+      setAmount("");
+    }
   }
 
   return (

@@ -15,3 +15,39 @@ export const fetchTransactions = async () => {
     throw error;
   }
 };
+
+export const deposit = async (amount: number) => {
+  try {
+    const res = await api.post(
+      "http://localhost:8000/api/transactions/deposit",
+      {
+        amount,
+        currency: "DH",
+      }
+    );
+    return res;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Fetch Transactions error:", error);
+    }
+    throw error;
+  }
+};
+
+export const withdraw = async (amount: number) => {
+  try {
+    const res = await api.post(
+      "http://localhost:8000/api/transactions/withdraw",
+      {
+        amount,
+        currency: "DH",
+      }
+    );
+    return res;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Fetch Transactions error:", error);
+    }
+    throw error;
+  }
+};

@@ -112,7 +112,8 @@ export const transactions: Transaction[] = [
 ];
 
 function TransactionsPage() {
-  const [data, setData] = useState(transactions);
+  const [data, setData] = useState([]);
+
   useEffect(function () {
     async function fetchData() {
       const res = await api.get("http://localhost:8000/api/transactions");
