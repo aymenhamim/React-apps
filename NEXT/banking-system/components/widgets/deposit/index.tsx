@@ -12,7 +12,7 @@ export default function Deposit() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (parseFloat(amount) > 0) {
-      const res = await deposit(+amount);
+      await deposit(+amount);
       setAmount("");
     }
   }

@@ -8,7 +8,7 @@ export interface Transaction {
   description: string;
   // type: string;
   type: "deposit" | "withdraw";
-  // created_at: string;
+  created_at: Date;
   // updated_at: string;
   user?: User;
 }

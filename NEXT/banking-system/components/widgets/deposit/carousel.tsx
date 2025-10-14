@@ -15,7 +15,7 @@ const transactions = [
     amount: 500.0,
     currency: "DH",
     description: "Deposit 500 DH",
-    // created_at: new Date("2025-10-01T09:15:00Z"),
+    created_at: new Date("2025-10-01T09:15:00Z"),
     // updated_at: new Date("2025-10-01T09:15:00Z"),
     type: "deposit" as "deposit",
     user: {
@@ -35,7 +35,7 @@ const transactions = [
     amount: 500.0,
     currency: "DH",
     description: "Deposit 500 DH",
-    // created_at: new Date("2025-10-01T09:15:00Z"),
+    created_at: new Date("2025-10-01T09:15:00Z"),
     // updated_at: new Date("2025-10-01T09:15:00Z"),
     type: "deposit" as "deposit",
     user: {
@@ -55,7 +55,7 @@ const transactions = [
     amount: 500.0,
     currency: "DH",
     description: "Deposit 500 DH",
-    // created_at: new Date("2025-10-01T09:15:00Z"),
+    created_at: new Date("2025-10-01T09:15:00Z"),
     // updated_at: new Date("2025-10-01T09:15:00Z"),
     type: "deposit" as "deposit",
     user: {
