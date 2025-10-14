@@ -6,7 +6,6 @@ interface RecentTransactionListType {
 }
 
 function RecentTransactionList({ transactions }: RecentTransactionListType) {
-  console.log(transactions);
   return (
     <div className="">
       {transactions.map((tr) => (

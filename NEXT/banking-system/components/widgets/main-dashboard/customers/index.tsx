@@ -53,7 +53,8 @@ function Customers() {
   return (
     <div>
       <p className="font-bold">Customers</p>
-      <CustomersList users={users} />
+      {/* <CustomersList users={users} /> */}
+      <CustomersList />
     </div>
   );
 }

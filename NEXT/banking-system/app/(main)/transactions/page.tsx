@@ -1,11 +1,9 @@
 "use client";
 
-import { fetchTransactions } from "@/api/transactions";
 import Transactions from "@/components/widgets/transactions";
 import TransactionsFooter from "@/components/widgets/transactions/transactions-footer";
 import TransactionsHeader from "@/components/widgets/transactions/transactions-header";
 import api from "@/lib/axios";
-import { Transaction } from "@/types/transactions";
 import { useEffect, useState } from "react";
 
 // export const transactions: Transaction[] = [
@@ -117,8 +115,6 @@ function TransactionsPage() {
   useEffect(function () {
     async function fetchData() {
       const res = await api.get("http://localhost:8000/api/transactions");
-      console.log("----------");
-      console.log(res.data.data);
       setData(res.data.data);
     }
     fetchData();
