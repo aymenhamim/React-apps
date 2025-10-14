@@ -4,11 +4,13 @@ import { login } from "@/api/login";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("aymenhamim@gmail.com");
   const [password, setPassword] = useState("hamim123");
 
@@ -17,12 +19,11 @@ function LoginPage() {
 
     const res = await login({ email, password });
 
-    console.log("Login success:", res.data.user);
-  }
+    if (res.status == 200) {
+      router.push("/home");
+    }
 
-  async function handleTest() {
-    const res = await api.get("http://localhost:8000/api/transactions");
-    console.log(res);
+    console.log("Login success:", res.data.user);
   }
 
   return (
@@ -68,13 +69,11 @@ function LoginPage() {
 
           <div>
             <Button type="submit" className="w-full cursor-pointer">
-              {/* <Link href="/admin/dashboard">Login</Link> */}
               Login
             </Button>
           </div>
         </div>
       </form>
-      <Button onClick={handleTest}>test</Button>
     </div>
   );
 }
