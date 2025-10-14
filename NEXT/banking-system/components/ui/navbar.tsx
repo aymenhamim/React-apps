@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/config/navlinks";
 import { Button } from "./button";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import userImage from "@/public/images/user.jpg";
@@ -12,10 +12,13 @@ import api from "@/lib/axios";
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   async function handleLogout() {
     const res = await api.post("http://localhost:8000/logout");
-    console.log(res);
+    if (res.status == 204) {
+      router.push("/login");
+    }
   }
 
   useEffect(
