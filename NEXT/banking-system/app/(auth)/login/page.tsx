@@ -14,12 +14,13 @@ function LoginPage() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const res = await login({ email, password });
-    console.log("Login success:", res.user);
+
+    console.log("Login success:", res.data.user);
   }
 
   async function handleTest() {
-    // console.log("🍪 Cookies after request:", document.cookie);
     const res = await api.get("http://localhost:8000/api/transactions");
     console.log(res);
   }
