@@ -1,4 +1,5 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { dateFromNow } from "@/lib/date";
 import userImage from "@/public/images/user.jpg";
 import { Transaction } from "@/types/transactions";
 
@@ -10,15 +11,21 @@ function RecentTransactionItem({ transaction }: RecentTransactionItemType) {
   return (
     <div className="flex gap-5 my-6 items-center">
       <Avatar className="w-12 h-12 ">
-        <AvatarImage src={transaction?.user?.image || userImage.src} />
+        {/* <AvatarImage src={transaction?.user?.image || userImage.src} /> */}
+        <AvatarImage src={userImage.src} />
       </Avatar>
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
-          <p className="font-semibold">aymen hamim</p>
-          <p className="text-gray-600 text-sm">15:30, 30 Oct</p>
+          {/* <p className="font-semibold">aymen hamim</p> */}
+          <p className="font-semibold">{transaction.user?.name}</p>
+          <p className="text-gray-600 text-sm">
+            {dateFromNow(transaction.created_at)}
+          </p>
         </div>
         <p className={transaction.type === "deposit" ? "text-green-600" : ""}>
-          -3000dh
+          {transaction.type == "withdraw"
+            ? "-" + transaction.amount
+            : transaction.amount}
         </p>
       </div>
     </div>

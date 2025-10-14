@@ -4,10 +4,9 @@ export const fetchTransactions = async () => {
   try {
     // await api.get("/sanctum/csrf-cookie");
 
-    const response = await api.get("http://localhost:8000/api/user");
+    const response = await api.get("http://localhost:8000/api/transactions");
 
-    console.log("response--------- : ", response);
-    return response.data;
+    return response;
   } catch (error) {
     if (error instanceof Error) {
       console.error("Fetch Transactions error:", error);

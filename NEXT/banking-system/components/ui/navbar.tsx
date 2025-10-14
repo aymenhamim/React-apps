@@ -25,8 +25,7 @@ function Navbar() {
     function () {
       async function fetchUser() {
         const res = await api.get("http://localhost:8000/api/user");
-        console.log(res);
-        console.log(res.status);
+
         if (res.status == 200) {
           setIsLoggedIn(true);
         }
