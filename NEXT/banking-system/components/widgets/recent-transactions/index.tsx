@@ -114,10 +114,10 @@ function RecentTransactions() {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetchTransactions();
+      const { status, data } = await fetchTransactions();
 
-      if (res.status === 200) {
-        setTransactions(res.data.data);
+      if (status === 200) {
+        setTransactions(data.transactions.data);
       }
     }
     fetchData();
@@ -125,7 +125,7 @@ function RecentTransactions() {
   return (
     <aside className="lg:w-1/3 bg-white p-4 rounded-2xl overflow-y-auto max-h-[calc(100vh-4rem)] ">
       <RecentTransactionsHeader />
-      <RecentTransactionList transactions={transactions.slice(0, 10)} />
+      <RecentTransactionList transactions={transactions} />
     </aside>
   );
 }

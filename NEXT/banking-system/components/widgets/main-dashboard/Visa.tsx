@@ -28,9 +28,6 @@ function Visa() {
     async function fetchData() {
       const res = await fetchAccount();
       setCustomer(res.data.data);
-      console.log(res.data.data);
-
-      // console.log(res);
     }
     fetchData();
   }, []);

@@ -110,12 +110,18 @@ import { useEffect, useState } from "react";
 // ];
 
 function TransactionsPage() {
-  const [data, setData] = useState([]);
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(function () {
     async function fetchData() {
-      const res = await api.get("http://localhost:8000/api/transactions");
-      setData(res.data.data);
+      const { status, data } = await api.get(
+        "http://localhost:8000/api/transactions"
+      );
+
+      if (status === 200) {
+        setTransactions(data.transactions.data);
+      }
+      console.log(data);
     }
     fetchData();
   }, []);
@@ -124,7 +130,7 @@ function TransactionsPage() {
     <div className="max-w-screen-2xl mx-auto max-sm:mx-1 max-xl:mx-2 mt-5 bg-white rounded-2xl relative min-h-[65dvh] max-h-[87dvh] flex flex-col overflow-hidden">
       <div className="overflow-y-auto flex-1 px-4 py-2 lg:px-20 lg:pt-6">
         <TransactionsHeader />
-        <Transactions transactions={data} />
+        <Transactions transactions={transactions} />
       </div>
 
       <TransactionsFooter />
