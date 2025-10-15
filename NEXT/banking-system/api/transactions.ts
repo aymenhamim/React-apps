@@ -50,3 +50,17 @@ export const withdraw = async (amount: number) => {
     throw error;
   }
 };
+
+export const fetchAccount = async () => {
+  try {
+    const res = await api.get("http://localhost:8000/api/account");
+    console.log(res);
+
+    return res;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Fetch Transactions error:", error);
+    }
+    throw error;
+  }
+};

@@ -26,9 +26,7 @@ function CustomersItem({ user, isActive }: CustomersItemType) {
         </Avatar>
       </div>
       <div>
-        <h4 className="text-md md:text-lg lg:text-2xl font-bold font-mono">
-          {user.totalSpent + ",00"}dh
-        </h4>
+        <h4 className="font-bold font-mono">{user.totalSpent + ",00"}dh</h4>
       </div>
     </div>
   );
