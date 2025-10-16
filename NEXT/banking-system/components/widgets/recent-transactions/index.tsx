@@ -114,7 +114,7 @@ function RecentTransactions() {
 
   useEffect(() => {
     async function fetchData() {
-      const { status, data } = await fetchTransactions();
+      const { status, data } = await fetchTransactions({});
 
       if (status === 200) {
         setTransactions(data.transactions.data);
