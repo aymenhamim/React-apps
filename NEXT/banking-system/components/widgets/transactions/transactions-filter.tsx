@@ -1,5 +1,6 @@
 "use client";
 
+import { fetchTransactions } from "@/api/transactions";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -9,15 +10,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-function TransactionsFilter() {
+interface TransactionsFilterType {
+  setTransactions: Dispatch<SetStateAction<never[]>>;
+}
+
+function TransactionsFilter({ setTransactions }: TransactionsFilterType) {
   const [type, setType] = useState("");
   const [customer, setCustomer] = useState("");
   const [perPage, setPerPage] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const res = await fetchTransactions({
+      type,
+      customer: customer,
+      limit: perPage,
+    });
+
+    setTransactions(res.data.transactions.data);
   }
 
   return (
@@ -42,10 +54,10 @@ function TransactionsFilter() {
         <SelectContent>
           <SelectGroup>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="Aymen hamim">Aymen Hamim</SelectItem>
-            <SelectItem value="soufiane hamim">Soufiane Hamim</SelectItem>
-            <SelectItem value="Khadija hamim">Khadija Hamim</SelectItem>
-            <SelectItem value="Abdessamad hamim">Abdessamad Hamim</SelectItem>
+            <SelectItem value="2">Aymen Hamim</SelectItem>
+            <SelectItem value="1">Soufiane Hamim</SelectItem>
+            <SelectItem value="3">Khadija Hamim</SelectItem>
+            <SelectItem value="4">Abdessamad Hamim</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -56,9 +68,9 @@ function TransactionsFilter() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="all">5</SelectItem>
-            <SelectItem value="deposit">10</SelectItem>
-            <SelectItem value="withdraw">20</SelectItem>
+            <SelectItem value="5">5</SelectItem>
+            <SelectItem value="10">10</SelectItem>
+            <SelectItem value="20">20</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

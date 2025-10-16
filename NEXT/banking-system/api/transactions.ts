@@ -1,10 +1,22 @@
 import api from "@/lib/axios";
 
-export const fetchTransactions = async () => {
+interface fetchTransactionsType {
+  customer?: string;
+  type?: string;
+  limit?: string;
+}
+
+export const fetchTransactions = async ({
+  limit = "10",
+  type,
+  customer,
+}: fetchTransactionsType) => {
   try {
     // await api.get("/sanctum/csrf-cookie");
 
-    const response = await api.get("http://localhost:8000/api/transactions");
+    const response = await api.get(
+      `http://localhost:8000/api/transactions?customer=${customer}&type=${type}&limit=${limit}`
+    );
 
     return response;
   } catch (error) {

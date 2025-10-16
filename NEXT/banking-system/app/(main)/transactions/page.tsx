@@ -129,7 +129,7 @@ function TransactionsPage() {
   return (
     <div className="max-w-screen-2xl mx-auto max-sm:mx-1 max-xl:mx-2 mt-5 bg-white rounded-2xl relative min-h-[65dvh] max-h-[87dvh] flex flex-col overflow-hidden">
       <div className="overflow-y-auto flex-1 px-4 py-2 lg:px-20 lg:pt-6">
-        <TransactionsHeader />
+        <TransactionsHeader setTransactions={setTransactions} />
         <Transactions transactions={transactions} />
       </div>
 
