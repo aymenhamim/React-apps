@@ -1,6 +1,6 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@/types/user";
-import userImage from "@/public/images/user.jpg";
+import userImage from "@/public/images/users/user.jpg";
 
 interface CustomersItemType {
   user: User;
@@ -21,7 +21,7 @@ function CustomersItem({ user, isActive }: CustomersItemType) {
           <p className="text-sm lg-text-md text-gray-500">Moroccan Dirham</p>
         </div>
         <Avatar className="w-10 h-10">
-          <AvatarImage src={userImage.src} />
+          <AvatarImage src={"http://localhost:3000/" + user?.image} />
           {/* <AvatarImage src={user.image || userImage.src} /> */}
         </Avatar>
       </div>

@@ -1,6 +1,6 @@
 import { Transaction } from "@/types/transactions";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import userImage from "@/public/images/user.jpg";
+import userImage from "@/public/images/users/user.jpg";
 import TransactionType from "@/components/ui/transaction-type";
 import { dateFromNow } from "@/lib/date";
 
@@ -14,7 +14,9 @@ function TransactionsItem({ transaction }: TransactionsItemType) {
       <div className="flex gap-2 items-center">
         <Avatar className="w-12 h-12">
           {/* <AvatarImage src={transaction?.user?.image || userImage.src} /> */}
-          <AvatarImage src={userImage.src} />
+          <AvatarImage
+            src={"http://localhost:3000/" + transaction?.user?.image}
+          />
         </Avatar>
 
         <p className="max-sm:text-sm">

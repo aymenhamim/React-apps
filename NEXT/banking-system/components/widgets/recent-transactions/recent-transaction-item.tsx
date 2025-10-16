@@ -1,6 +1,5 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { dateFromNow } from "@/lib/date";
-import userImage from "@/public/images/user.jpg";
 import { Transaction } from "@/types/transactions";
 
 interface RecentTransactionItemType {
@@ -12,7 +11,9 @@ function RecentTransactionItem({ transaction }: RecentTransactionItemType) {
     <div className="flex gap-5 my-6 items-center">
       <Avatar className="w-12 h-12 ">
         {/* <AvatarImage src={transaction?.user?.image || userImage.src} /> */}
-        <AvatarImage src={userImage.src} />
+        <AvatarImage
+          src={"http://localhost:3000/" + transaction?.user?.image}
+        />
       </Avatar>
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
