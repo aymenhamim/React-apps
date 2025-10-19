@@ -8,13 +8,19 @@ interface TransactionsListType {
 function TransactionsList({ transactions }: TransactionsListType) {
   return (
     <div className="flex flex-col">
-      {transactions.length > 0 ? (
-        transactions.map((transaction) => (
-          <TransactionsItem key={transaction.id} transaction={transaction} />
-        ))
-      ) : (
-        <div>No Item</div>
+      {transactions.length > 0 && (
+        <table className="border-separate border-spacing-y-3">
+          <tbody>
+            {transactions.map((transaction) => (
+              <TransactionsItem
+                transaction={transaction}
+                key={transaction.id}
+              />
+            ))}
+          </tbody>
+        </table>
       )}
+      {transactions.length == 0 && <div>No Item</div>}
     </div>
   );
 }
