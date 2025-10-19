@@ -121,7 +121,6 @@ function TransactionsPage() {
       if (status === 200) {
         setTransactions(data.transactions.data);
       }
-      console.log(data);
     }
     fetchData();
   }, []);

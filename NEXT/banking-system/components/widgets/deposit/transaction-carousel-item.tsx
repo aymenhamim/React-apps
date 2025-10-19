@@ -14,8 +14,10 @@ function TransactionCarouselItem({ transaction }: CustomersItemType) {
     <div className="bg-white  flex-1 w-1/4 h-full px-3 py-3 rounded-xl text-sm flex flex-col gap-6 ">
       <div className=" flex gap-4">
         <Avatar className="w-10 h-10">
-          <AvatarImage src="http://localhost:3000/images/user.jpg" />
-          {/* <AvatarImage src={user?.image || userImage.src} /> */}
+          {/* <AvatarImage src="http://localhost:3000/images/user.jpg" /> */}
+          <AvatarImage
+            src={"http://localhost:3000/" + transaction.user?.image}
+          />
         </Avatar>
 
         <div>

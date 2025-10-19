@@ -80,7 +80,7 @@ function Navbar() {
           {/* <AvatarImage src={userImage.src} /> */}
           <AvatarImage src={"http://localhost:3000/" + user?.image} />
         </Avatar>
-        <span>@aymenhamim</span>
+        <span>{user.name || "unknown"}</span>
         {isLoggedIn && (
           <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
             Logout
