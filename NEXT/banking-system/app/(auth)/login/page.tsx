@@ -1,10 +1,13 @@
 "use client";
 
-import { login } from "@/api/auth";
+// import { login } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { login } from "@/store/slices/authSlice";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch } from "@/store/store";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -12,17 +15,21 @@ function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("aymenhamim@gmail.com");
   const [password, setPassword] = useState("hamim123");
+  const dispatch = useDispatch<AppDispatch>();
+  // const auth = useSelector((store) => store.auth);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const res = await login({ email, password });
+    try {
+      const resultAction = await dispatch(login({ email, password }));
 
-    if (res.status == 200) {
-      router.push("/home");
+      if (login.fulfilled.match(resultAction)) {
+        router.push("/home");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
     }
-
-    console.log("Login success:", res.data.user);
   }
 
   return (

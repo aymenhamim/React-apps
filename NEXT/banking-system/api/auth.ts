@@ -5,19 +5,19 @@ interface LoginData {
   password: string;
 }
 
-export const login = async (data: LoginData) => {
-  try {
-    await api.get("/sanctum/csrf-cookie");
+// export const login = async (data: LoginData) => {
+//   try {
+//     // await api.get("/sanctum/csrf-cookie");
 
-    const res = await api.post("/login", data);
-    return res;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Login error:", error.message);
-    }
-    throw error;
-  }
-};
+//     const res = await api.post("/login", data);
+//     return res;
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.error("Login error:", error.message);
+//     }
+//     throw error;
+//   }
+// };
 
 export const fetchCustomers = async () => {
   try {
