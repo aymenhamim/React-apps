@@ -5,7 +5,7 @@ import Visa from "./Visa";
 
 function MainDashbord() {
   return (
-    <main className="flex-1 flex flex-col gap-3 ">
+    <main className="flex-1 flex flex-col gap-3 min-h-[75dvh]">
       <div className="h-2/3 rounded-3xl bg-[#E5E8EB]">
         <Visa />
         <div className="h-2/6 px-8 py-3">
