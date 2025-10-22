@@ -1,14 +1,17 @@
 "use client";
 
 import { navLinks } from "@/config/navlinks";
-import { Button } from "./button";
-import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import userImage from "@/public/images/users/user.jpg";
-import { useEffect, useState } from "react";
 import api from "@/lib/axios";
+import userImage from "@/public/images/users/user.jpg";
+import { useAppDispatch } from "@/store/hooks";
+import { AppDispatch } from "@/store/store";
 import { User } from "@/types/user";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Avatar, AvatarImage } from "./avatar";
+import { Button } from "./button";
+import { logout } from "@/store/slices/authSlice";
 
 const guest: User = {
   id: 1,
@@ -25,12 +28,11 @@ function Navbar() {
   const [user, setUser] = useState(guest);
   const pathname = usePathname();
   const router = useRouter();
+  const dispatch = useAppDispatch<AppDispatch>();
 
   async function handleLogout() {
-    const res = await api.post("http://localhost:8000/logout");
-    if (res.status == 204) {
-      router.push("/login");
-    }
+    dispatch(logout());
+    router.push("/login");
   }
 
   useEffect(

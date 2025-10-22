@@ -48,11 +48,6 @@ function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-
-            {/* <Label htmlFor="email">Email</Label> */}
-            {/* {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email.message}</p>
-            )} */}
           </div>
 
           <div>
@@ -61,23 +56,13 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
-            {/* <Label htmlFor="password">password</Label> */}
-            {/* {errors.password && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.password.message}
-              </p>
-            )} */}
-
-            {/* {loginError && (
-              <p className="text-red-500 text-sm mt-2">{loginError}</p>
-            )} */}
           </div>
 
           <div>
             <Button type="submit" className="w-full cursor-pointer">
               {loading ? "loading.." : "Login"}
             </Button>
+            {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
           </div>
         </div>
       </form>

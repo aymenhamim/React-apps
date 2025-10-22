@@ -31,6 +31,10 @@ export const login = createAsyncThunk<User, LoginData>(
     }
   }
 );
+export const logout = createAsyncThunk("auth/logout", async (thunkAPI) => {
+  const res = await api.post("/logout");
+  return res.data;
+});
 
 interface AuthState {
   user: User | null;
@@ -66,10 +70,28 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
         state.error = null;
+        state.isAuth = true;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = (action.payload as string) || "Login failed";
+      });
+
+    //logout
+
+    builder
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.user = null;
+        state.isAuth = false;
+      })
+      .addCase(logout.rejected, (state) => {
+        state.loading = false;
       });
   },
 });
