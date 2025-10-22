@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "@/store/store";
+import { useAppSelector } from "@/store/hooks";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -16,7 +17,7 @@ function LoginPage() {
   const [email, setEmail] = useState("aymenhamim@gmail.com");
   const [password, setPassword] = useState("hamim123");
   const dispatch = useDispatch<AppDispatch>();
-  // const auth = useSelector((store) => store.auth);
+  const { loading, error } = useAppSelector((state) => state.auth);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -75,7 +76,7 @@ function LoginPage() {
 
           <div>
             <Button type="submit" className="w-full cursor-pointer">
-              Login
+              {loading ? "loading.." : "Login"}
             </Button>
           </div>
         </div>

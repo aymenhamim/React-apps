@@ -10,4 +10,7 @@ const store = configureStore({
 });
 
 export default store;
+
+//! Export types (for typescript)
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

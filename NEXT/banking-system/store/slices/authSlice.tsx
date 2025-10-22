@@ -14,9 +14,21 @@ interface LoginData {
 export const login = createAsyncThunk<User, LoginData>(
   "auth/login",
   async (data: LoginData, thunkAPI) => {
-    const res = await api.post("/login", data);
-
-    return res.data;
+    try {
+      const res = await api.post("/login", data);
+      return res.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      // Extract the error message from the response
+      if (error.response) {
+        // Server responded with an error
+        return thunkAPI.rejectWithValue(
+          error.response.data.message || error.response.data.error
+        );
+      }
+      // Network error or other issues
+      return thunkAPI.rejectWithValue("Network error. Please try again.");
+    }
   }
 );
 
@@ -53,10 +65,11 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message ?? null;
+        state.error = (action.payload as string) || "Login failed";
       });
   },
 });
