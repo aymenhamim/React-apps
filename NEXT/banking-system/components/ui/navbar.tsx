@@ -3,7 +3,7 @@
 import { navLinks } from "@/config/navlinks";
 import api from "@/lib/axios";
 import userImage from "@/public/images/users/user.jpg";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
 import { User } from "@/types/user";
 import Link from "next/link";
@@ -28,7 +28,8 @@ function Navbar() {
   const [user, setUser] = useState(guest);
   const pathname = usePathname();
   const router = useRouter();
-  const dispatch = useAppDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
+  // const { user, isAuth } = useAppSelector((state) => state.auth);
 
   async function handleLogout() {
     dispatch(logout());
