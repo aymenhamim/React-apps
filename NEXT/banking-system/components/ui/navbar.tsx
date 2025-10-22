@@ -1,55 +1,24 @@
 "use client";
 
 import { navLinks } from "@/config/navlinks";
-import api from "@/lib/axios";
-import userImage from "@/public/images/users/user.jpg";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { AppDispatch } from "@/store/store";
-import { User } from "@/types/user";
+import { logout } from "@/store/slices/authSlice";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { Avatar, AvatarImage } from "./avatar";
 import { Button } from "./button";
-import { logout } from "@/store/slices/authSlice";
-
-const guest: User = {
-  id: 1,
-  name: "guest",
-  email: "test@gmail.com",
-  created_at: new Date(),
-  updated_at: new Date(),
-  totalSpent: 1000,
-  image: userImage,
-};
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(guest);
   const pathname = usePathname();
   const router = useRouter();
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
-  // const { user, isAuth } = useAppSelector((state) => state.auth);
+  console.log(user?.id);
 
   async function handleLogout() {
     dispatch(logout());
     router.push("/login");
   }
-
-  useEffect(
-    function () {
-      async function fetchUser() {
-        const res = await api.get("http://localhost:8000/api/user");
-
-        if (res.status == 200) {
-          setUser(res.data);
-          setIsLoggedIn(true);
-        }
-      }
-      fetchUser();
-    },
-    [pathname]
-  );
 
   return (
     <nav className="w-full bg-white py-4 px-30 flex justify-between items-center">
@@ -80,15 +49,12 @@ function Navbar() {
       </div>
       <div className="text-sm flex items-center gap-3">
         <Avatar>
-          {/* <AvatarImage src={userImage.src} /> */}
           <AvatarImage src={"http://localhost:3000/" + user?.image} />
         </Avatar>
-        <span>{user.name || "unknown"}</span>
-        {isLoggedIn && (
-          <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
-            Logout
-          </Button>
-        )}
+        <span>{user?.name}</span>
+        <Button variant={"destructive"} size={"sm"} onClick={handleLogout}>
+          Logout
+        </Button>
       </div>
     </nav>
   );

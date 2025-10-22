@@ -3,12 +3,12 @@
 // import { login } from "@/api/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAppSelector } from "@/store/hooks";
 import { login } from "@/store/slices/authSlice";
+import type { AppDispatch } from "@/store/store";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "@/store/store";
-import { useAppSelector } from "@/store/hooks";
+import { useDispatch } from "react-redux";
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 

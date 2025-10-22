@@ -2,9 +2,26 @@ import api from "@/lib/axios";
 import { Account } from "@/types/account";
 import { Transaction } from "@/types/transactions";
 import { User } from "@/types/user";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const API_BASE_URL = "http://127.0.0.1:8000/";
+
+//! Load user from localStorage on initialization
+const loadUserFromStorage = (): User | null => {
+  if (typeof window !== "undefined") {
+    const user = localStorage.getItem("user");
+    return user ? JSON.parse(user) : null;
+  }
+  return null;
+};
+
+// const loadIsAuthFromStorage = (): boolean => {
+//   if (typeof window !== "undefined") {
+//     const isAuth = localStorage.getItem("isAuth");
+//     return isAuth ? JSON.parse(isAuth) : false;
+//   }
+//   return false;
+// };
 
 interface LoginData {
   email: string;
@@ -16,6 +33,13 @@ export const login = createAsyncThunk<User, LoginData>(
   async (data: LoginData, thunkAPI) => {
     try {
       const res = await api.post("/login", data);
+
+      //! save user to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("isAuth", JSON.stringify(true));
+      }
+
       return res.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -31,8 +55,16 @@ export const login = createAsyncThunk<User, LoginData>(
     }
   }
 );
+
 export const logout = createAsyncThunk("auth/logout", async (thunkAPI) => {
   const res = await api.post("/logout");
+
+  //! Clear localStorage
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("user");
+    localStorage.removeItem("isAuth");
+  }
+
   return res.data;
 });
 
@@ -47,7 +79,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: null,
+  user: loadUserFromStorage(),
   account: null,
   filteredTransactions: [],
   recentTransactions: [],
@@ -59,7 +91,11 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -97,3 +133,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+export const { setUser } = authSlice.actions;
