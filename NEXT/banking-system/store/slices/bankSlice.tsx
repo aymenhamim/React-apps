@@ -1,11 +1,8 @@
-import { fetchTransactions } from "@/api/transactions";
 import api from "@/lib/axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Account } from "@/types/account";
 import { Transaction } from "@/types/transactions";
 import { User } from "@/types/user";
-
-const API_BASE_URL = "http://127.0.0.1:8000/";
 
 interface fetchTransactionsType {
   customer?: string;
@@ -21,6 +18,7 @@ interface StateType {
   isAuth: boolean;
   loading: boolean;
   error: string | null;
+  isNeedsFetch: boolean;
 }
 
 const initialState: StateType = {
@@ -31,10 +29,11 @@ const initialState: StateType = {
   isAuth: false,
   loading: false,
   error: null,
+  isNeedsFetch: true,
 };
 
 export const getTransactions = createAsyncThunk(
-  "transactions/get",
+  "/bank/transactions",
   async ({ limit = "10", type, customer }: fetchTransactionsType, thunkAPI) => {
     const res = await api.get(
       `http://localhost:8000/api/transactions?customer=${customer}&type=${type}&limit=${limit}`
@@ -74,7 +73,7 @@ export const postDeposit = createAsyncThunk(
 );
 
 export const postWithdraw = createAsyncThunk(
-  "/bank/deposit",
+  "/bank/withdraw",
   async (amount: number, thunkAPI) => {
     const res = await api.post("/api/transactions/withdraw", {
       amount,
@@ -100,6 +99,7 @@ const bankSlice = createSlice({
         state.loading = false;
         state.recentTransactions = action.payload.transactions.data;
         state.error = null;
+        state.isNeedsFetch = false;
       })
       .addCase(getTransactions.rejected, (state) => {
         state.loading = false;
@@ -116,6 +116,7 @@ const bankSlice = createSlice({
       .addCase(getAccount.fulfilled, (state, action) => {
         state.loading = false;
         state.account = action.payload.data;
+        state.isNeedsFetch = false;
       })
       .addCase(getAccount.rejected, (state) => {
         state.loading = false;
@@ -131,7 +132,7 @@ const bankSlice = createSlice({
       .addCase(getCustomers.fulfilled, (state, action) => {
         state.loading = false;
         state.customers = action.payload.users;
-        console.log(action.payload.users);
+        state.isNeedsFetch = false;
       })
       .addCase(getCustomers.rejected, (state) => {
         state.loading = false;
@@ -146,12 +147,29 @@ const bankSlice = createSlice({
       .addCase(postDeposit.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
+        state.isNeedsFetch = true;
       })
       .addCase(postDeposit.rejected, (state) => {
         state.loading = false;
         state.error = null;
       });
+
     /// ! withdraw
+
+    builder
+      .addCase(postWithdraw.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(postWithdraw.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.isNeedsFetch = true;
+      })
+      .addCase(postWithdraw.rejected, (state) => {
+        state.loading = false;
+        state.error = null;
+      });
   },
 });
 

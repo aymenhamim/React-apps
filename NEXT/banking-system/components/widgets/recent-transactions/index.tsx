@@ -8,12 +8,15 @@ import RecentTransactionsHeader from "./recent-transactions-header";
 
 function RecentTransactions() {
   const dispatch = useAppDispatch();
-  const recentTransactions = useAppSelector(
-    (state) => state.bank.recentTransactions
+  const { recentTransactions, isNeedsFetch } = useAppSelector(
+    (state) => state.bank
   );
   useEffect(() => {
-    dispatch(getTransactions({}));
-  }, [dispatch]);
+    if (isNeedsFetch) {
+      dispatch(getTransactions({}));
+    }
+  }, [dispatch, isNeedsFetch]);
+
   return (
     <aside className="lg:w-1/3 bg-white p-4 rounded-2xl overflow-y-auto max-h-[calc(100vh-4rem)] ">
       <RecentTransactionsHeader />

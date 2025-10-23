@@ -7,11 +7,16 @@ import CustomersItem from "./customers-item";
 
 function CustomersList() {
   const dispatch = useAppDispatch();
-  const users = useAppSelector((state) => state.bank.customers);
+  // const users = useAppSelector((state) => state.bank.customers);
+  const { customers: users, isNeedsFetch } = useAppSelector(
+    (state) => state.bank
+  );
 
   useEffect(() => {
-    dispatch(getCustomers());
-  }, [dispatch]);
+    if (isNeedsFetch) {
+      dispatch(getCustomers());
+    }
+  }, [dispatch, isNeedsFetch]);
 
   return (
     <div className="flex gap-2">

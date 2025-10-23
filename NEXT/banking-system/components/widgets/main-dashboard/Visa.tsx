@@ -8,11 +8,15 @@ import { useEffect } from "react";
 
 function Visa() {
   const dispach = useAppDispatch();
-  const customer = useAppSelector((state) => state.bank.account);
+  const { account: customer, isNeedsFetch } = useAppSelector(
+    (state) => state.bank
+  );
 
   useEffect(() => {
-    dispach(getAccount());
-  }, [dispach, customer?.balance]);
+    if (isNeedsFetch) {
+      dispach(getAccount());
+    }
+  }, [dispach, isNeedsFetch]);
 
   return (
     <div className="bg-gradient-to-tl from-indigo-500 via-purple-700 to-slate-900 h-4/6 rounded-3xl m-0.5 text-white px-6 py-3 lg:px-20 lg:py-10 flex flex-col justify-between">
