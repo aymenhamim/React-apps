@@ -8,14 +8,25 @@ import { getTransactions } from "@/store/slices/bankSlice";
 import { Transaction } from "@/types/transactions";
 import { useEffect, useRef, useState } from "react";
 
+function extractPageFromUrl(url: string | null) {
+  const page = url?.split("page=")[1];
+  return page;
+}
+
 function TransactionsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const dispatch = useAppDispatch();
   const isFetching = useRef(false);
 
-  const { recentTransactions, isNeedsFetch } = useAppSelector(
+  const { recentTransactions, isNeedsFetch, pagination } = useAppSelector(
     (state) => state.bank
   );
+
+  const clickLink = (url: string) => {
+    const page = extractPageFromUrl(url);
+    dispatch(getTransactions({ page }));
+  };
+  console.log(pagination);
 
   useEffect(
     function () {
@@ -40,7 +51,12 @@ function TransactionsPage() {
         <Transactions transactions={transactions} />
       </div>
 
-      <TransactionsFooter />
+      <TransactionsFooter
+        next_page_url={pagination.next_page_url}
+        prev_page_url={pagination.prev_page_url}
+        links={pagination.links}
+        onClickButton={clickLink}
+      />
     </div>
   );
 }

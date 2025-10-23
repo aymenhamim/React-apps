@@ -5,9 +5,15 @@ import { Transaction } from "@/types/transactions";
 import { User } from "@/types/user";
 
 interface fetchTransactionsType {
+  page?: string | number;
   customer?: string;
   type?: string;
   limit?: string;
+}
+interface PaginationType {
+  next_page_url: string | null;
+  prev_page_url: string | null;
+  links: { active: boolean; label: string; page: number; url: string }[];
 }
 
 interface StateType {
@@ -19,6 +25,7 @@ interface StateType {
   loading: boolean;
   error: string | null;
   isNeedsFetch: boolean;
+  pagination: PaginationType;
 }
 
 const initialState: StateType = {
@@ -30,14 +37,23 @@ const initialState: StateType = {
   loading: false,
   error: null,
   isNeedsFetch: true,
+  pagination: {
+    next_page_url: null,
+    prev_page_url: null,
+    links: [],
+  },
 };
 
 export const getTransactions = createAsyncThunk(
   "/bank/transactions",
-  async ({ limit = "10", type, customer }: fetchTransactionsType, thunkAPI) => {
+  async (
+    { page = "1", limit = "10", type, customer }: fetchTransactionsType,
+    thunkAPI
+  ) => {
     const res = await api.get(
-      `http://localhost:8000/api/transactions?customer=${customer}&type=${type}&limit=${limit}`
+      `http://localhost:8000/api/transactions?page=${page}&customer=${customer}&type=${type}&limit=${limit}`
     );
+    console.log(res.data);
     return res.data;
   }
 );
@@ -102,6 +118,12 @@ const bankSlice = createSlice({
         state.recentTransactions = action.payload.transactions.data;
         state.error = null;
         state.isNeedsFetch = false;
+        // !
+        state.pagination.prev_page_url =
+          action.payload.transactions.prev_page_url;
+        state.pagination.next_page_url =
+          action.payload.transactions.next_page_url;
+        state.pagination.links = action.payload.transactions.links;
       })
       .addCase(getTransactions.rejected, (state) => {
         state.loading = false;
