@@ -66,7 +66,7 @@ export const withdraw = async (amount: number) => {
 export const fetchAccount = async () => {
   try {
     const res = await api.get("http://localhost:8000/api/account");
-    console.log(res);
+    // console.log(res);
 
     return res;
   } catch (error) {

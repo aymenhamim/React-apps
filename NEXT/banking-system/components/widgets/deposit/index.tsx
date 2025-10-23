@@ -1,18 +1,20 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useAppDispatch } from "@/store/hooks";
+import { postDeposit } from "@/store/slices/bankSlice";
 import { useState } from "react";
-import { deposit } from "@/api/transactions";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
+  const disptach = useAppDispatch();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (parseFloat(amount) > 0) {
-      await deposit(+amount);
+      disptach(postDeposit(+amount));
       setAmount("");
     }
   }

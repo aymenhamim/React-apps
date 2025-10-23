@@ -1,36 +1,18 @@
 "use client";
 
-import { fetchAccount } from "@/api/transactions";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getAccount } from "@/store/slices/bankSlice";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
-interface customerType {
-  id: number;
-  balance: number;
-  currency: string;
-  create_at: Date;
-  updated_at: Date;
-}
-
-const initalValue: customerType = {
-  id: 1,
-  balance: 0,
-  currency: "dh",
-  create_at: new Date(),
-  updated_at: new Date(),
-};
+import { useEffect } from "react";
 
 function Visa() {
-  const [customer, setCustomer] = useState(initalValue);
+  const dispach = useAppDispatch();
+  const customer = useAppSelector((state) => state.bank.account);
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetchAccount();
-      setCustomer(res.data.data);
-    }
-    fetchData();
-  }, []);
+    dispach(getAccount());
+  }, [dispach, customer?.balance]);
 
   return (
     <div className="bg-gradient-to-tl from-indigo-500 via-purple-700 to-slate-900 h-4/6 rounded-3xl m-0.5 text-white px-6 py-3 lg:px-20 lg:py-10 flex flex-col justify-between">
@@ -45,8 +27,8 @@ function Visa() {
             Total Balance
           </p>
           <p className="text-[clamp(1.5rem,2vw,2.5rem)] font-mono font-bold ml-4 my-1">
-            {customer.balance}
-            {customer.currency}
+            {customer?.balance}
+            {customer?.currency}
           </p>
         </div>
         <p className="text-2xl font-semibold font-mono">11/10</p>
@@ -54,12 +36,16 @@ function Visa() {
 
       <div>
         <div className="flex gap-5">
-          <Button className="rounded-full lg:w-1/3 py-2 lg:py-6 text-xs text-lg:sm">
+          <Button
+            className="rounded-full lg:w-1/3 py-2 lg:py-6 text-xs text-lg:sm"
+            asChild
+          >
             <Link href={"/actions"}>Withdraw Money</Link>
           </Button>
           <Button
             className="rounded-full lg:w-1/3 py-2 lg:py-6 text-xs text-lg:sm"
             variant={"secondary"}
+            asChild
           >
             <Link href={"/actions"}>Withdraw Money</Link>
           </Button>

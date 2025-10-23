@@ -8,7 +8,6 @@ interface CustomersItemType {
 }
 
 function CustomersItem({ user, isActive }: CustomersItemType) {
-  // function CustomersItem() {
   return (
     <div
       className={`${

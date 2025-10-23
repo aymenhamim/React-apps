@@ -32,6 +32,7 @@ export const login = createAsyncThunk<User, LoginData>(
   "auth/login",
   async (data: LoginData, thunkAPI) => {
     try {
+      await api.get("/sanctum/csrf-cookie");
       const res = await api.post("/login", data);
 
       //! save user to localStorage

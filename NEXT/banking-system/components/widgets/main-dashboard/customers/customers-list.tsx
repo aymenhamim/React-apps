@@ -1,30 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { User } from "@/types/user";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getCustomers } from "@/store/slices/bankSlice";
+import { useEffect } from "react";
 import CustomersItem from "./customers-item";
-import { fetchCustomers } from "@/api/auth";
 
-const data: User[] = [];
-
-// interface CustomersItemType {
-//   users: User[];
-// }
-
-// function CustomersList({ users }: CustomersItemType) {
 function CustomersList() {
-  const [users, setUsers] = useState(data);
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetchCustomers();
+  const dispatch = useAppDispatch();
+  const users = useAppSelector((state) => state.bank.customers);
 
-      if (res.status === 200) {
-        console.log(res.data.data);
-        setUsers(res.data.users);
-      }
-    }
-    fetchData();
-  }, []);
+  useEffect(() => {
+    dispatch(getCustomers());
+  }, [dispatch]);
 
   return (
     <div className="flex gap-2">
