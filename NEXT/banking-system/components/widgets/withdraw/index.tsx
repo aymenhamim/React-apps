@@ -3,19 +3,24 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { postWithdraw } from "@/store/slices/bankSlice";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Withdraw() {
   const [amount, setAmount] = useState("");
   const disptach = useAppDispatch();
+  const loading = useAppSelector((state) => state.bank.loading);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (parseFloat(amount) > 0) {
       disptach(postWithdraw(+amount));
-      setAmount("");
+      if (!loading) {
+        toast.success(`You have successfully withdrawn ${amount}dh.`);
+        setAmount("");
+      }
     }
   }
 

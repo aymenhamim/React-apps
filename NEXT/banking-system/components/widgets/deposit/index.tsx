@@ -3,19 +3,26 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { postDeposit } from "@/store/slices/bankSlice";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
+  const loading = useAppSelector((state) => state.bank.loading);
   const disptach = useAppDispatch();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (parseFloat(amount) > 0) {
       disptach(postDeposit(+amount));
-      setAmount("");
+
+      if (!loading) {
+        toast.success(`You have successfully deposited ${amount}dh.`);
+
+        setAmount("");
+      }
     }
   }
 
