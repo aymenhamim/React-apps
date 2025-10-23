@@ -13,7 +13,6 @@ function Navbar() {
   const router = useRouter();
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
-  console.log(user?.id);
 
   async function handleLogout() {
     dispatch(logout());

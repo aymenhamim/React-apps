@@ -153,7 +153,7 @@ const bankSlice = createSlice({
 
         const amount = Number(action.payload) || 1;
         if (state.account) {
-          state.account.balance = (state.account.balance ?? 0) + +amount;
+          state.account.balance = state.account.balance + amount;
         }
       })
       .addCase(postDeposit.rejected, (state) => {

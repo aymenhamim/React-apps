@@ -4,8 +4,6 @@ import { Transaction } from "@/types/transactions";
 import { User } from "@/types/user";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const API_BASE_URL = "http://127.0.0.1:8000/";
-
 //! Load user from localStorage on initialization
 const loadUserFromStorage = (): User | null => {
   if (typeof window !== "undefined") {
@@ -14,14 +12,6 @@ const loadUserFromStorage = (): User | null => {
   }
   return null;
 };
-
-// const loadIsAuthFromStorage = (): boolean => {
-//   if (typeof window !== "undefined") {
-//     const isAuth = localStorage.getItem("isAuth");
-//     return isAuth ? JSON.parse(isAuth) : false;
-//   }
-//   return false;
-// };
 
 interface LoginData {
   email: string;
@@ -41,7 +31,7 @@ export const login = createAsyncThunk<User, LoginData>(
         localStorage.setItem("isAuth", JSON.stringify(true));
       }
 
-      return res.data;
+      return res.data.user;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       // Extract the error message from the response
@@ -108,6 +98,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.error = null;
         state.isAuth = true;
+        console.log(action.payload);
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
