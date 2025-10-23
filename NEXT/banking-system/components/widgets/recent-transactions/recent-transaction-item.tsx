@@ -10,14 +10,12 @@ function RecentTransactionItem({ transaction }: RecentTransactionItemType) {
   return (
     <div className="flex gap-5 my-6 items-center">
       <Avatar className="w-12 h-12 ">
-        {/* <AvatarImage src={transaction?.user?.image || userImage.src} /> */}
         <AvatarImage
           src={"http://localhost:3000/" + transaction?.user?.image}
         />
       </Avatar>
       <div className="flex justify-between items-center w-full">
         <div className="flex flex-col">
-          {/* <p className="font-semibold">aymen hamim</p> */}
           <p className="font-semibold">{transaction.user?.name}</p>
           <p className="text-gray-600 text-sm">
             {dateFromNow(transaction.created_at)}

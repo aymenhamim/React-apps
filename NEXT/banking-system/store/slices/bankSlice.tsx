@@ -68,7 +68,8 @@ export const postDeposit = createAsyncThunk(
       currency: "DH",
     });
 
-    return res.data;
+    return amount;
+    // return res.data;
   }
 );
 
@@ -80,7 +81,8 @@ export const postWithdraw = createAsyncThunk(
       currency: "DH",
     });
 
-    return res.data;
+    return amount;
+    // return res.data;
   }
 );
 
@@ -144,10 +146,15 @@ const bankSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(postDeposit.fulfilled, (state) => {
+      .addCase(postDeposit.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.isNeedsFetch = true;
+
+        const amount = Number(action.payload) || 1;
+        if (state.account) {
+          state.account.balance = (state.account.balance ?? 0) + amount;
+        }
       })
       .addCase(postDeposit.rejected, (state) => {
         state.loading = false;
@@ -161,10 +168,15 @@ const bankSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(postWithdraw.fulfilled, (state) => {
+      .addCase(postWithdraw.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.isNeedsFetch = true;
+
+        const amount = Number(action.payload) || 1;
+        if (state.account) {
+          state.account.balance = (state.account.balance ?? 0) - amount;
+        }
       })
       .addCase(postWithdraw.rejected, (state) => {
         state.loading = false;

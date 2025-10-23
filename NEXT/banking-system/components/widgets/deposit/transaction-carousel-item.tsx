@@ -17,6 +17,7 @@ function TransactionCarouselItem({ transaction }: CustomersItemType) {
           {/* <AvatarImage src="http://localhost:3000/images/user.jpg" /> */}
           <AvatarImage
             src={"http://localhost:3000/" + transaction.user?.image}
+            loading="lazy"
           />
         </Avatar>
 
@@ -32,7 +33,7 @@ function TransactionCarouselItem({ transaction }: CustomersItemType) {
       <div className="flex items-center justify-between">
         {/* <h4 className="text-md md:text-lg lg:text-2xl font-bold font-mono">{user?.totalSpent + ",00"}dh</h4> */}
         {/* <h4 className="font-bold font-mono">{transaction.amount}dh</h4> */}
-        <h4 className="font-bold font-mono">1000dh</h4>
+        <h4 className="font-bold font-mono">{transaction.amount}dh</h4>
         <TransactionType type={transaction.type} />
       </div>
     </div>
