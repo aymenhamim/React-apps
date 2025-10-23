@@ -1,20 +1,16 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@/types/user";
-import userImage from "@/public/images/users/user.jpg";
 
 interface CustomersItemType {
   user: User;
-  isActive: boolean;
 }
 
-function CustomersItem({ user, isActive }: CustomersItemType) {
+function CustomersItem({ user }: CustomersItemType) {
   return (
     <div
-      className={`${
-        isActive ? "bg-white border-transparent flex-1" : "border-stone-400 "
-      } w-1/4 h-full px-3 py-3 rounded-xl text-sm flex flex-col gap-6 border  hover:bg-white hover:border-transparent transition-all duration-200`}
+      className={`bg-white border-stone-400 rounded-xl text-sm flex flex-col w-full p-1 py-6 max-lg:p-4 gap-3`}
     >
-      <div className="flex-col-reverse lg:flex-row flex justify-between">
+      <div className="flex justify-between">
         <div>
           <p className="font-bold">{user.name}</p>
           <p className="text-sm lg-text-md text-gray-500">Moroccan Dirham</p>
