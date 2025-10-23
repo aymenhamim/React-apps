@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import TransactionsFilter from "./transactions-filter";
+import { Transaction } from "@/types/transactions";
 
 interface TransactionsHeaderType {
-  setTransactions: Dispatch<SetStateAction<never[]>>;
+  setTransactions: Dispatch<SetStateAction<Transaction[]>>;
 }
 
 function TransactionsHeader({ setTransactions }: TransactionsHeaderType) {

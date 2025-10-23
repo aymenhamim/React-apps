@@ -10,10 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Transaction } from "@/types/transactions";
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface TransactionsFilterType {
-  setTransactions: Dispatch<SetStateAction<never[]>>;
+  setTransactions: Dispatch<SetStateAction<Transaction[]>>;
 }
 
 function TransactionsFilter({ setTransactions }: TransactionsFilterType) {

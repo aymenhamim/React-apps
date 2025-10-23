@@ -13,10 +13,10 @@ function Visa() {
   );
 
   useEffect(() => {
-    if (isNeedsFetch) {
+    if (isNeedsFetch || !customer?.id) {
       dispach(getAccount());
     }
-  }, [dispach, isNeedsFetch]);
+  }, [dispach, isNeedsFetch, customer?.id]);
 
   return (
     <div className="bg-gradient-to-tl from-indigo-500 via-purple-700 to-slate-900 h-4/6 rounded-3xl m-0.5 text-white px-6 py-3 lg:px-20 lg:py-10 flex flex-col justify-between">

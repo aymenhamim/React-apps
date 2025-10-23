@@ -7,13 +7,12 @@ import CustomersItem from "./customers-item";
 
 function CustomersList() {
   const dispatch = useAppDispatch();
-  // const users = useAppSelector((state) => state.bank.customers);
   const { customers: users, isNeedsFetch } = useAppSelector(
     (state) => state.bank
   );
 
   useEffect(() => {
-    if (isNeedsFetch) {
+    if (isNeedsFetch || users.length <= 0) {
       dispatch(getCustomers());
     }
   }, [dispatch, isNeedsFetch]);
