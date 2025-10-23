@@ -6,11 +6,13 @@ import TransactionsHeader from "@/components/widgets/transactions/transactions-h
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getTransactions } from "@/store/slices/bankSlice";
 import { Transaction } from "@/types/transactions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function TransactionsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const dispatch = useAppDispatch();
+  const isFetching = useRef(false);
+
   const { recentTransactions, isNeedsFetch } = useAppSelector(
     (state) => state.bank
   );
@@ -18,8 +20,14 @@ function TransactionsPage() {
   useEffect(
     function () {
       setTransactions(recentTransactions);
-      if (isNeedsFetch) {
+      if (isNeedsFetch && !isFetching.current) {
+        isFetching.current = true;
         dispatch(getTransactions({}));
+      }
+
+      // reset isFetching
+      if (!isNeedsFetch) {
+        isFetching.current = false;
       }
     },
     [recentTransactions, dispatch, isNeedsFetch]

@@ -4,19 +4,24 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getAccount } from "@/store/slices/bankSlice";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function Visa() {
-  const dispach = useAppDispatch();
-  const { account: customer, isNeedsFetch } = useAppSelector(
-    (state) => state.bank
-  );
+  const dispatch = useAppDispatch();
+  const { account, isNeedsFetch } = useAppSelector((state) => state.bank);
+  const isFetching = useRef(false);
 
   useEffect(() => {
-    if (isNeedsFetch || !customer?.id) {
-      dispach(getAccount());
+    if ((isNeedsFetch || account?.id == null) && !isFetching.current) {
+      isFetching.current = true;
+      dispatch(getAccount());
     }
-  }, [dispach, isNeedsFetch, customer?.id]);
+
+    // reset isFetching
+    if (!isNeedsFetch && account?.id != null) {
+      isFetching.current = false;
+    }
+  }, [dispatch, account?.id, isNeedsFetch]);
 
   return (
     <div className="bg-gradient-to-tl from-indigo-500 via-purple-700 to-slate-900 h-4/6 rounded-3xl m-0.5 text-white px-6 py-3 lg:px-20 lg:py-10 flex flex-col justify-between">
@@ -31,8 +36,8 @@ function Visa() {
             Total Balance
           </p>
           <p className="text-[clamp(1.5rem,2vw,2.5rem)] font-mono font-bold ml-4 my-1">
-            {customer?.balance}
-            {customer?.currency}
+            {account?.balance}
+            {account?.currency}
           </p>
         </div>
         <p className="text-2xl font-semibold font-mono">11/10</p>

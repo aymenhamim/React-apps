@@ -2,20 +2,28 @@
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getCustomers } from "@/store/slices/bankSlice";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import CustomersItem from "./customers-item";
 
 function CustomersList() {
+  const isFetching = useRef(false);
   const dispatch = useAppDispatch();
+
   const { customers: users, isNeedsFetch } = useAppSelector(
     (state) => state.bank
   );
 
   useEffect(() => {
-    if (isNeedsFetch || users.length <= 0) {
+    if ((isNeedsFetch || users.length <= 0) && !isFetching.current) {
+      isFetching.current = true;
       dispatch(getCustomers());
     }
-  }, [dispatch, isNeedsFetch]);
+
+    // reset isFetching
+    if (!isNeedsFetch && users.length <= 0) {
+      isFetching.current = false;
+    }
+  }, [dispatch, isNeedsFetch, users.length]);
 
   return (
     <div className="flex gap-2">
