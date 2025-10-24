@@ -154,11 +154,6 @@ const bankSlice = createSlice({
           prev_page_url: action.payload.transactions.prev_page_url ?? null,
           links: action.payload.transactions.links ?? [],
         };
-        // state.pagination.prev_page_url =
-        //   action.payload.transactions.prev_page_url;
-        // state.pagination.next_page_url =
-        //   action.payload.transactions.next_page_url;
-        // state.pagination.links = action.payload.transactions.links;
       })
       .addCase(getTransactions.rejected, (state) => {
         state.loading = false;
@@ -235,7 +230,7 @@ const bankSlice = createSlice({
 
         const amount = Number(action.payload) || 1;
         if (state.account) {
-          state.account.balance = state.account.balance + amount;
+          state.account.balance = Number(state.account.balance) + amount;
         }
       })
       .addCase(postDeposit.rejected, (state) => {
