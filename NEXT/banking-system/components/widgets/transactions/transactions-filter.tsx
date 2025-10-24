@@ -1,6 +1,5 @@
 "use client";
 
-import { fetchTransactions } from "@/api/transactions";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -10,41 +9,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import {
   getFilteredTransactions,
   setFilterParams,
 } from "@/store/slices/bankSlice";
-import { Transaction } from "@/types/transactions";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 
-interface TransactionsFilterType {
-  setTransactions: Dispatch<SetStateAction<Transaction[]>>;
-}
-
-function TransactionsFilter({ setTransactions }: TransactionsFilterType) {
+function TransactionsFilter() {
   const [type, setType] = useState("");
   const [customer, setCustomer] = useState("");
   const [perPage, setPerPage] = useState("");
   const dispatch = useAppDispatch();
-  const { pagination, filterParams } = useAppSelector((state) => state.bank);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     dispatch(
       getFilteredTransactions({
-        customer: filterParams.customer,
-        limit: filterParams.perPage,
-        type: filterParams.type,
+        customer,
+        limit: perPage,
+        type,
       })
     );
 
-    setFilterParams({
-      customer,
-      perPage,
-      type,
-    });
+    dispatch(
+      setFilterParams({
+        customer,
+        perPage,
+        type,
+        page: 1,
+      })
+    );
   }
 
   return (

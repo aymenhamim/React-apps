@@ -1,12 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
 import TransactionsFilter from "./transactions-filter";
-import { Transaction } from "@/types/transactions";
 
-interface TransactionsHeaderType {
-  setTransactions: Dispatch<SetStateAction<Transaction[]>>;
-}
-
-function TransactionsHeader({ setTransactions }: TransactionsHeaderType) {
+function TransactionsHeader() {
   return (
     <div className="mb-6 flex justify-between items-center flex-wrap">
       <div className="max-sm:mb-5">
@@ -14,7 +8,7 @@ function TransactionsHeader({ setTransactions }: TransactionsHeaderType) {
         <p className="text-gray-500 mt-2">All the transactions in one place</p>
       </div>
 
-      <TransactionsFilter setTransactions={setTransactions} />
+      <TransactionsFilter />
     </div>
   );
 }

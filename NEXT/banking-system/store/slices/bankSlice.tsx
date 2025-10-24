@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Account } from "@/types/account";
 import { Transaction } from "@/types/transactions";
 import { User } from "@/types/user";
@@ -125,14 +125,8 @@ const bankSlice = createSlice({
   name: "bank",
   initialState,
   reducers: {
-    setFilterParams(state, action) {
-      const payload = action.payload || {};
-      state.filterParams = {
-        customer: payload.customer,
-        page: payload.page,
-        perPage: payload.perPage,
-        type: payload.type,
-      };
+    setFilterParams(state, action: PayloadAction<StateType["filterParams"]>) {
+      state.filterParams = action.payload;
     },
   },
   extraReducers: (builder) => {
