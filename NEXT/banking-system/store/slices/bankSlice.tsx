@@ -26,6 +26,12 @@ interface StateType {
   error: string | null;
   isNeedsFetch: boolean;
   pagination: PaginationType;
+  filterParams: {
+    page?: string | number;
+    type?: string;
+    customer?: string;
+    perPage?: string;
+  };
 }
 
 const initialState: StateType = {
@@ -42,6 +48,7 @@ const initialState: StateType = {
     prev_page_url: null,
     links: [],
   },
+  filterParams: {},
 };
 
 export const getTransactions = createAsyncThunk(
@@ -53,7 +60,19 @@ export const getTransactions = createAsyncThunk(
     const res = await api.get(
       `http://localhost:8000/api/transactions?page=${page}&customer=${customer}&type=${type}&limit=${limit}`
     );
-    console.log(res.data);
+    return res.data;
+  }
+);
+
+export const getFilteredTransactions = createAsyncThunk(
+  "/bank/filteredTransactions",
+  async (
+    { page = "1", limit = "10", type, customer }: fetchTransactionsType,
+    thunkAPI
+  ) => {
+    const res = await api.get(
+      `http://localhost:8000/api/transactions?page=${page}&customer=${customer}&type=${type}&limit=${limit}`
+    );
     return res.data;
   }
 );
@@ -105,7 +124,17 @@ export const postWithdraw = createAsyncThunk(
 const bankSlice = createSlice({
   name: "bank",
   initialState,
-  reducers: {},
+  reducers: {
+    setFilterParams(state, action) {
+      const payload = action.payload || {};
+      state.filterParams = {
+        customer: payload.customer,
+        page: payload.page,
+        perPage: payload.perPage,
+        type: payload.type,
+      };
+    },
+  },
   extraReducers: (builder) => {
     /// ! fetch Transactions
     builder
@@ -126,6 +155,29 @@ const bankSlice = createSlice({
         state.pagination.links = action.payload.transactions.links;
       })
       .addCase(getTransactions.rejected, (state) => {
+        state.loading = false;
+        // state.error = null;
+      });
+
+    /// ! fetch Transactions
+    builder
+      .addCase(getFilteredTransactions.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getFilteredTransactions.fulfilled, (state, action) => {
+        state.loading = false;
+        state.filteredTransactions = action.payload.transactions.data;
+        state.error = null;
+        state.isNeedsFetch = false;
+        // !
+        state.pagination.prev_page_url =
+          action.payload.transactions.prev_page_url;
+        state.pagination.next_page_url =
+          action.payload.transactions.next_page_url;
+        state.pagination.links = action.payload.transactions.links;
+      })
+      .addCase(getFilteredTransactions.rejected, (state) => {
         state.loading = false;
         // state.error = null;
       });
@@ -208,3 +260,5 @@ const bankSlice = createSlice({
 });
 
 export default bankSlice.reducer;
+
+export const { setFilterParams } = bankSlice.actions;

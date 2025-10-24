@@ -4,7 +4,10 @@ import Transactions from "@/components/widgets/transactions";
 import TransactionsFooter from "@/components/widgets/transactions/transactions-footer";
 import TransactionsHeader from "@/components/widgets/transactions/transactions-header";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getTransactions } from "@/store/slices/bankSlice";
+import {
+  getFilteredTransactions,
+  getTransactions,
+} from "@/store/slices/bankSlice";
 import { Transaction } from "@/types/transactions";
 import { useEffect, useRef, useState } from "react";
 
@@ -18,19 +21,25 @@ function TransactionsPage() {
   const dispatch = useAppDispatch();
   const isFetching = useRef(false);
 
-  const { recentTransactions, isNeedsFetch, pagination } = useAppSelector(
-    (state) => state.bank
-  );
+  const { filteredTransactions, isNeedsFetch, pagination, filterParams } =
+    useAppSelector((state) => state.bank);
 
-  const clickLink = (url: string) => {
+  const clickLink = (url: string | null) => {
     const page = extractPageFromUrl(url);
-    dispatch(getTransactions({ page }));
+    dispatch(
+      getFilteredTransactions({
+        page,
+        customer: filterParams.customer,
+        limit: filterParams.perPage,
+        type: filterParams.type,
+      })
+    );
   };
   console.log(pagination);
 
   useEffect(
     function () {
-      setTransactions(recentTransactions);
+      setTransactions(filteredTransactions);
       if (isNeedsFetch && !isFetching.current) {
         isFetching.current = true;
         dispatch(getTransactions({}));
@@ -41,7 +50,7 @@ function TransactionsPage() {
         isFetching.current = false;
       }
     },
-    [recentTransactions, dispatch, isNeedsFetch]
+    [filteredTransactions, dispatch, isNeedsFetch]
   );
 
   return (
