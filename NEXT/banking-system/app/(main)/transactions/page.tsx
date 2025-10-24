@@ -56,6 +56,8 @@ function TransactionsPage() {
       </div>
 
       <TransactionsFooter
+        current_page={pagination.current_page}
+        last_page={pagination.last_page}
         next_page_url={pagination.next_page_url}
         prev_page_url={pagination.prev_page_url}
         links={pagination.links}

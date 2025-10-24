@@ -11,6 +11,8 @@ interface fetchTransactionsType {
   limit?: string;
 }
 interface PaginationType {
+  current_page: string | null;
+  last_page: string | null;
   next_page_url: string | null;
   prev_page_url: string | null;
   links: { active: boolean; label: string; page: number; url: string }[];
@@ -44,6 +46,8 @@ const initialState: StateType = {
   error: null,
   isNeedsFetch: true,
   pagination: {
+    current_page: null,
+    last_page: null,
     next_page_url: null,
     prev_page_url: null,
     links: [],
@@ -142,11 +146,19 @@ const bankSlice = createSlice({
         state.error = null;
         state.isNeedsFetch = false;
         // !
-        state.pagination.prev_page_url =
-          action.payload.transactions.prev_page_url;
-        state.pagination.next_page_url =
-          action.payload.transactions.next_page_url;
-        state.pagination.links = action.payload.transactions.links;
+
+        state.pagination = {
+          current_page: action.payload.transactions.current_page ?? null,
+          last_page: action.payload.transactions.last_page ?? null,
+          next_page_url: action.payload.transactions.next_page_url ?? null,
+          prev_page_url: action.payload.transactions.prev_page_url ?? null,
+          links: action.payload.transactions.links ?? [],
+        };
+        // state.pagination.prev_page_url =
+        //   action.payload.transactions.prev_page_url;
+        // state.pagination.next_page_url =
+        //   action.payload.transactions.next_page_url;
+        // state.pagination.links = action.payload.transactions.links;
       })
       .addCase(getTransactions.rejected, (state) => {
         state.loading = false;
@@ -165,11 +177,13 @@ const bankSlice = createSlice({
         state.error = null;
         state.isNeedsFetch = false;
         // !
-        state.pagination.prev_page_url =
-          action.payload.transactions.prev_page_url;
-        state.pagination.next_page_url =
-          action.payload.transactions.next_page_url;
-        state.pagination.links = action.payload.transactions.links;
+        state.pagination = {
+          current_page: action.payload.transactions.current_page ?? null,
+          last_page: action.payload.transactions.last_page ?? null,
+          next_page_url: action.payload.transactions.next_page_url ?? null,
+          prev_page_url: action.payload.transactions.prev_page_url ?? null,
+          links: action.payload.transactions.links ?? [],
+        };
       })
       .addCase(getFilteredTransactions.rejected, (state) => {
         state.loading = false;
