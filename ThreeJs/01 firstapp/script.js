@@ -28,3 +28,10 @@ scene.add(camera);
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.heigth);
 renderer.render(scene, camera);
+
+// There are 4 properties to transofrm objects
+// - position
+// - scale
+// - rotation
+// - quaternion
+// (All classes that inherit from the Object3D class possess those properties like PerspectiveCamera or Mesh.)
