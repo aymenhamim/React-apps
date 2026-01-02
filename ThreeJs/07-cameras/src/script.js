@@ -1,4 +1,17 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
+import { update } from "three/examples/jsm/libs/tween.module.js";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+/*
+ * Cursor
+ */
+const cursor = { x: 0, y: 0 };
+
+window.addEventListener("mousemove", (e) => {
+  cursor.x = e.clientX / sizes.width - 0.5;
+  cursor.y = -(e.clientY / sizes.height - 0.5);
+});
 
 /**
  * Base
@@ -20,27 +33,25 @@ const mesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1, 5, 5, 5),
   new THREE.MeshBasicMaterial({
     color: 0xff0000,
+    wireframe: true,
   })
 );
 scene.add(mesh);
 
 // Camera
-// const camera = new THREE.PerspectiveCamera(50,sizes.width / sizes.height,0.1,100);
-const aspectRation = sizes.width / sizes.height;
-const camera = new THREE.OrthographicCamera(
-  -1 * aspectRation,
-  1 * aspectRation,
-  1,
-  -1,
+const camera = new THREE.PerspectiveCamera(
+  100,
+  sizes.width / sizes.height,
   0.1,
   100
 );
-
-camera.position.x = 2;
-camera.position.y = 2;
 camera.position.z = 2;
 camera.lookAt(mesh.position);
 scene.add(camera);
+
+// Controls
+const controls = new OrbitControls(camera, canvas);
+// controls.enableDamping = true;
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -55,7 +66,10 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Update objects
-  mesh.rotation.y = elapsedTime;
+  //   mesh.rotation.y = elapsedTime;
+
+  // Update controls
+  //   controls.update();
 
   // Render
   renderer.render(scene, camera);
