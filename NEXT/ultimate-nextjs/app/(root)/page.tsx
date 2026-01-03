@@ -1,7 +1,4 @@
-import { auth, signOut } from "@/auth";
-import MobileNavigation from "@/components/navigation/navbar/MobileNavigation";
-import { Button } from "@/components/ui/button";
-import ROUTES from "@/constants/routes";
+import { auth } from "@/auth";
 
 const Home = async () => {
   const session = await auth();
