@@ -1,3 +1,4 @@
+import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,12 +14,26 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ROUTES from "@/constants/routes";
 
-export default function Home() {
+const Home = async () => {
+  const session = await auth();
+  console.log(session);
   return (
     <div className="w-dvw h-dvh flex justify-center">
-      <div className="px-20 py-10 mt-32 rounded-2xl flex items-center justify-center border h-fit  flex-col">
+      <div className="px-20 py-10 mt-32 rounded-2xl flex items-center justify-center border h-fit  flex-row">
         <p>Tailwind CSS is fun!</p>
+        <form
+          className="px-10"
+          action={async () => {
+            "use server";
+            await signOut({ redirectTo: ROUTES.SIGN_IN });
+          }}
+        >
+          <Button type="submit" size={"sm"}>
+            Log out
+          </Button>
+        </form>
         <>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -78,4 +93,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

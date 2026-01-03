@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { update } from "three/examples/jsm/libs/tween.module.js";
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 /*
@@ -51,7 +50,7 @@ scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
-// controls.enableDamping = true;
+controls.enableDamping = true;
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -69,7 +68,7 @@ const tick = () => {
   //   mesh.rotation.y = elapsedTime;
 
   // Update controls
-  //   controls.update();
+  controls.update();
 
   // Render
   renderer.render(scene, camera);
